@@ -11,9 +11,7 @@ func _physics_process(delta):
 	# Get input_vector based on the which movement buttons are being pressed or which way the joystick is tilted
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
-	# Normalize input vector in order to calculate velocity
 	input_vector = input_vector.normalized()
-	
 	# If movement button is being pressed, move velocity toward max speed
 	if input_vector != Vector2.ZERO:
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)

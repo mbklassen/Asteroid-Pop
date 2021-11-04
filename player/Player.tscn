@@ -6,7 +6,7 @@
 [ext_resource path="res://player/Player.gd" type="Script" id=4]
 
 [node name="Player" type="KinematicBody2D"]
-collision_mask = 0
+collision_layer = 2
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -27,5 +27,13 @@ script = ExtResource( 3 )
 process_mode = 0
 wait_time = 0.3
 one_shot = true
+
+[node name="FiringPositions" type="Node2D" parent="."]
+
+[node name="LeftGun" type="Node2D" parent="FiringPositions"]
+position = Vector2( -10, -4 )
+
+[node name="RightGun" type="Node2D" parent="FiringPositions"]
+position = Vector2( 10, -4 )
 
 [connection signal="timeout" from="States/Shoot/TimeBetweenShots" to="States/Shoot" method="_on_TimeBetweenShots_timeout"]
