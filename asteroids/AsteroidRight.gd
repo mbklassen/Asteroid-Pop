@@ -46,7 +46,7 @@ func _physics_process(_delta):
 		queue_free()
 
 # Called when body_entered signal is emmited
-func _on_AsteroidTop_body_entered(body):
+func _on_AsteroidRight_body_entered(body):
 	# Instantiate Explosion node
 	var explosion = explosion_scene.instance()
 	# set explosion's initial position to be the same as Asteroid's current position
@@ -72,9 +72,9 @@ func _on_AsteroidTop_body_entered(body):
 		# Instantiate AsteroidPiece1 node
 		var piece1 = piece1_scene.instance()
 		# Set piece1's initial position
-		piece1.position.x = position.x - PIECE_POSITION_VARIABILITY
-		piece1.position.y = position.y
-		piece1.set_linear_velocity(velocity_linear + Vector2(rand_range(-150, -50), 0))
+		piece1.position.x = position.x
+		piece1.position.y = position.y - PIECE_POSITION_VARIABILITY
+		piece1.set_linear_velocity(velocity_linear + Vector2(0, rand_range(-150, -50)))
 		piece1.get_node("Sprite").scale = scale_vector
 		piece1.get_node("CollisionPolygon2D").scale = scale_vector
 		# Add child of world node (so it is a sibling to AsteroidTop)
@@ -82,10 +82,10 @@ func _on_AsteroidTop_body_entered(body):
 
 		# Instantiate AsteroidPiece2 node
 		var piece2 = piece2_scene.instance()
-		# Set piece1's initial position
-		piece2.position.x = position.x
-		piece2.position.y = position.y + PIECE_POSITION_VARIABILITY
-		piece2.set_linear_velocity(velocity_linear + Vector2(rand_range(-50, 50), 0))
+		# Set piece2's initial position
+		piece2.position.x = position.x + PIECE_POSITION_VARIABILITY
+		piece2.position.y = position.y
+		piece2.set_linear_velocity(velocity_linear + Vector2(0, rand_range(-50, 50)))
 		piece2.get_node("Sprite").scale = scale_vector
 		piece2.get_node("CollisionPolygon2D").scale = scale_vector
 		# Add child of world node (so it is a sibling to AsteroidTop)
@@ -93,10 +93,10 @@ func _on_AsteroidTop_body_entered(body):
 
 		# Instantiate AsteroidPiece3 node
 		var piece3 = piece3_scene.instance()
-		# Set piece1's initial position
-		piece3.position.x = position.x + PIECE_POSITION_VARIABILITY
-		piece3.position.y = position.y
-		piece3.set_linear_velocity(velocity_linear + Vector2(rand_range(50, 150), 0))
+		# Set piece3's initial position
+		piece3.position.x = position.x
+		piece3.position.y = position.y + PIECE_POSITION_VARIABILITY
+		piece3.set_linear_velocity(velocity_linear + Vector2(0, rand_range(50, 150)))
 		piece3.get_node("Sprite").scale = scale_vector
 		piece3.get_node("CollisionPolygon2D").scale = scale_vector
 		# Add child of world node (so it is a sibling to AsteroidTop)

@@ -3,26 +3,26 @@ extends Node2D
 const LEVEL_TIMER_WAIT_TIME = 25
 const LEVEL_END_TIMER_WAIT_TIME = 4
 
-var asteroid_scene = load("res://asteroids/AsteroidTop.tscn")
+var asteroid_scene = preload("res://asteroids/AsteroidTop.tscn")
 
-# length of time for this level
+# Length of time for this level
 var level_timer
-# wait time at the end of this level
+# Wait time at the end of this level
 var level_end_timer
-# length of time between each asteroid
+# Length of time between each asteroid
 var asteroid_timer
 
 
 func _ready():
-	# get LevelTimer node and connect its timeout signal to _on_level_timer_timeout() method
-	level_timer = get_node("Timers/LevelTimer")
+	# Get LevelTimer node and connect its timeout signal to _on_level_timer_timeout() method
+	level_timer = $Timers/LevelTimer
 	level_timer.wait_time = LEVEL_TIMER_WAIT_TIME
 	level_timer.start()
-	# get LevelEndTimer node and connect its timeout signal to _on_level_end_timer_timeout() method
-	level_end_timer = get_node("Timers/LevelEndTimer")
+	# Get LevelEndTimer node and connect its timeout signal to _on_level_end_timer_timeout() method
+	level_end_timer = $Timers/LevelEndTimer
 	level_end_timer.wait_time = LEVEL_END_TIMER_WAIT_TIME
-	# get AsteroidTimer node
-	asteroid_timer = get_node("Timers/AsteroidTimer")
+	# Get AsteroidTimer node
+	asteroid_timer = $Timers/AsteroidTimer
 	_setup_asteroid_timer()
 	
 	
@@ -43,4 +43,3 @@ func _on_AsteroidTimer_timeout():
 	asteroid.global_position = Vector2(rand_range(20, 340), -30)
 	get_tree().current_scene.get_node("World").add_child(asteroid)
 	asteroid_timer.start()
-	print("Asteroid spawned")
