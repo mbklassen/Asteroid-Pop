@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/hud/LevelString.gd" type="Script" id=1]
+[ext_resource path="res://ui/hud/ScoreString.gd" type="Script" id=2]
+[ext_resource path="res://ui/hud/hpbar_theme.tres" type="Theme" id=3]
+
+[node name="HUD" type="Control"]
+margin_right = 360.0
+margin_bottom = 640.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level" type="Label" parent="."]
+margin_right = 360.0
+margin_bottom = 64.0
+text = "Level 0    "
+align = 2
+valign = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="."]
+margin_right = 360.0
+margin_bottom = 64.0
+text = "    Score 0"
+valign = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+margin_top = 616.0
+margin_right = 360.0
+margin_bottom = 640.0
+theme = ExtResource( 3 )
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

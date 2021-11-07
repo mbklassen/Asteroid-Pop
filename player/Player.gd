@@ -14,4 +14,3 @@ func _physics_process(_delta):
 	# Moves player according to velocity vector
 	# Also handles collision (slides along walls)
 	var _collision = move_and_slide(player_velocity)
-	print("movement occured")
