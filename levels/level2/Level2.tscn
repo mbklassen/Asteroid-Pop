@@ -2,9 +2,9 @@
 
 [ext_resource path="res://background.png" type="Texture" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://levels/level1/Level1.gd" type="Script" id=3]
+[ext_resource path="res://levels/level2/Level2.gd" type="Script" id=3]
 
-[node name="Level1" type="Node2D"]
+[node name="Level2" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="Background" type="Sprite" parent="."]
@@ -29,6 +29,11 @@ one_shot = true
 process_mode = 0
 one_shot = true
 
+[node name="AsteroidRLTimer" type="Timer" parent="Timers"]
+process_mode = 0
+one_shot = true
+
 [connection signal="timeout" from="Timers/LevelTimer" to="." method="_on_LevelTimer_timeout"]
 [connection signal="timeout" from="Timers/LevelEndTimer" to="." method="_on_LevelEndTimer_timeout"]
 [connection signal="timeout" from="Timers/AsteroidTopTimer" to="." method="_on_AsteroidTopTimer_timeout"]
+[connection signal="timeout" from="Timers/AsteroidRLTimer" to="." method="_on_AsteroidRLTimer_timeout"]

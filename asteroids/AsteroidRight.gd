@@ -24,7 +24,7 @@ var piece3_scene = preload("res://asteroids/pieces/AsteroidPiece3.tscn")
 
 var explosion_color = Color(0.35, 0.35, 0.35, 1)
 
-#var healthbar
+var healthbar
 
 func _ready():
 	# Scale asteroid by a value in a random range
@@ -38,7 +38,7 @@ func _ready():
 	else:
 		angular_velocity = velocity_clockwise
 	# get HealthBar node
-#	healthbar = get_parent().get_node("UI/HUD/HealthBar")
+	healthbar = get_tree().current_scene.get_node("UI/HUD/HealthBar")
 
 func _physics_process(_delta):
 	# If asteroid goes off the bottom of the screen, destroy it
@@ -63,9 +63,7 @@ func _on_AsteroidRight_body_entered(body):
 	
 	# If asteroid collided with player, decrease value of HealthBar by 20
 	if body.name == "Player":
-		#healthbar.value -= 20
-		print("player hit")
-	# destroy the asteroid
+		healthbar.value -= 20
 	
 	# If asteroid collides with PlayerBullet
 	else:

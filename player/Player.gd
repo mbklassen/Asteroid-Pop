@@ -1,12 +1,15 @@
 extends KinematicBody2D
 
-# Get width and height of viewport
-onready var screen_width = get_viewport_rect().size.x
-onready var screen_height = get_viewport_rect().size.y
+
+var screen_width
+var screen_height
 
 func _ready():
+	# Get width and height of viewport
+	screen_width = get_viewport_rect().size.x
+	screen_height = get_viewport_rect().size.y
 	# Set player position to the lower center of the screen
-	position = Vector2((screen_width/2), (screen_height - 100))
+	position = Vector2((screen_width/2), (screen_height - 60))
 	
 func _physics_process(_delta):
 	# Get player velocity from move state node
