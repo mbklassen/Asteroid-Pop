@@ -2,12 +2,12 @@ extends RigidBody2D
 
 
 const ROTATION_DIRECTION_SWITCH = 1
-const OFF_SCREEN = 660
+const OFF_SCREEN = -40
 const PIECE_POSITION_VARIABILITY = 16
 
 
 # the asteroids are given variable velocities
-var velocity_linear = Vector2(0, rand_range(100, 300))
+var velocity_linear = Vector2(rand_range(-200,-50), rand_range(100,200))
 var velocity_counterclockwise = rand_range(-4, -1)
 var velocity_clockwise = rand_range(1, 4)
 # Will dictate the spin direction, depending on the number that rand_range() returns 
@@ -42,7 +42,7 @@ func _ready():
 
 func _physics_process(_delta):
 	# If asteroid goes off the bottom of the screen, destroy it
-	if position.y > OFF_SCREEN:
+	if position.x < OFF_SCREEN:
 		queue_free()
 
 # Called when body_entered signal is emmited

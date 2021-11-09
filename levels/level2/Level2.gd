@@ -19,6 +19,11 @@ var asteroid_rl_timer
 
 
 func _ready():
+	Global.first_level = false
+	Global.final_level = true
+	Global.level = 2
+	Global.score = 0
+	Global.hp = 100
 	world_node = get_tree().current_scene.get_node("World")
 	# Get LevelTimer node and connect its timeout signal to _on_level_timer_timeout() method
 	level_timer = $Timers/LevelTimer
@@ -48,7 +53,6 @@ func _on_LevelTimer_timeout():
 	level_end_timer.start()
 
 func _on_LevelEndTimer_timeout():
-	Global.score = 0
 	Global.level += 1
 
 func _on_AsteroidTopTimer_timeout():
