@@ -57,9 +57,9 @@ func _on_AsteroidTop_body_entered(body):
 	# explosion particles are now emitting
 	explosion.emitting = true
 	# get World node
-	var world = get_tree().current_scene.get_node("World")
-	# add child of World node (so it is a sibling to Asteroid)
-	world.add_child(explosion)
+	var level_node = get_parent()
+	# add child of level_node (so it is a sibling to Asteroid)
+	level_node.add_child(explosion)
 
 	
 	# If asteroid collided with player, decrease value of HealthBar by 20
@@ -76,8 +76,8 @@ func _on_AsteroidTop_body_entered(body):
 		piece1.set_linear_velocity(velocity_linear + Vector2(rand_range(-150, -50), 0))
 		piece1.get_node("Sprite").scale = scale_vector
 		piece1.get_node("CollisionPolygon2D").scale = scale_vector
-		# Add child of world node (so it is a sibling to AsteroidTop)
-		world.call_deferred("add_child", piece1)
+		# Add child of level_node (so it is a sibling to AsteroidTop)
+		level_node.call_deferred("add_child", piece1)
 
 		# Instantiate AsteroidPiece2 node
 		var piece2 = piece2_scene.instance()
@@ -87,8 +87,8 @@ func _on_AsteroidTop_body_entered(body):
 		piece2.set_linear_velocity(velocity_linear + Vector2(rand_range(-50, 50), 0))
 		piece2.get_node("Sprite").scale = scale_vector
 		piece2.get_node("CollisionPolygon2D").scale = scale_vector
-		# Add child of world node (so it is a sibling to AsteroidTop)
-		world.call_deferred("add_child", piece2)
+		# Add child of level_node (so it is a sibling to AsteroidTop)
+		level_node.call_deferred("add_child", piece2)
 
 		# Instantiate AsteroidPiece3 node
 		var piece3 = piece3_scene.instance()
@@ -98,8 +98,8 @@ func _on_AsteroidTop_body_entered(body):
 		piece3.set_linear_velocity(velocity_linear + Vector2(rand_range(50, 150), 0))
 		piece3.get_node("Sprite").scale = scale_vector
 		piece3.get_node("CollisionPolygon2D").scale = scale_vector
-		# Add child of world node (so it is a sibling to AsteroidTop)
-		world.call_deferred("add_child", piece3)
+		# Add child of level_node (so it is a sibling to AsteroidTop)
+		level_node.call_deferred("add_child", piece3)
 	
 	# Remove Asteroid and all its children from the queue
 	queue_free()

@@ -20,7 +20,6 @@ func _ready():
 	Global.level = 1
 	Global.score = 0
 	Global.hp = 100
-	world_node = get_tree().current_scene.get_node("World")
 	# Get LevelTimer node and connect its timeout signal to _on_level_timer_timeout() method
 	level_timer = $Timers/LevelTimer
 	level_timer.wait_time = LEVEL_TIMER_WAIT_TIME
@@ -47,5 +46,5 @@ func _on_LevelEndTimer_timeout():
 func _on_AsteroidTopTimer_timeout():
 	var asteroid_top = asteroid_top_scene.instance()
 	asteroid_top.global_position = Vector2(rand_range(20, 340), -30)
-	world_node.add_child(asteroid_top)
+	add_child(asteroid_top)
 	asteroid_top_timer.start()

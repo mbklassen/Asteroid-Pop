@@ -29,11 +29,9 @@ func _input(event):
 		current_level = Global.level
 
 func _process(_delta):
-	print(current_level)
 	if current_level != Global.level and !Global.final_level:
 		level_scene = load("res://levels/level" + str(Global.level) + "/Level" + str(Global.level) + ".tscn")
 		get_node("Level" + str(current_level)).queue_free()
 		level_x = level_scene.instance()
 		add_child(level_x)
 		current_level = Global.level
-		print(current_level)

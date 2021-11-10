@@ -24,7 +24,6 @@ func _ready():
 	Global.level = 2
 	Global.score = 0
 	Global.hp = 100
-	world_node = get_tree().current_scene.get_node("World")
 	# Get LevelTimer node and connect its timeout signal to _on_level_timer_timeout() method
 	level_timer = $Timers/LevelTimer
 	level_timer.wait_time = LEVEL_TIMER_WAIT_TIME
@@ -58,7 +57,7 @@ func _on_LevelEndTimer_timeout():
 func _on_AsteroidTopTimer_timeout():
 	var asteroid_top = asteroid_top_scene.instance()
 	asteroid_top.global_position = Vector2(rand_range(20, 340), -30)
-	world_node.add_child(asteroid_top)
+	add_child(asteroid_top)
 	asteroid_top_timer.start()
 
 
@@ -68,12 +67,12 @@ func _on_AsteroidRLTimer_timeout():
 	if asteroid_rl_spawn_side < 1:
 		var asteroid_left = asteroid_left_scene.instance()
 		asteroid_left.global_position = Vector2(-30, rand_range(-30, 350))
-		world_node.add_child(asteroid_left)
+		add_child(asteroid_left)
 		
 	# Spawn from the right, travelling left
 	elif asteroid_rl_spawn_side >= 1:
 		var asteroid_right = asteroid_right_scene.instance()
 		asteroid_right.global_position = Vector2(390, rand_range(-30, 350))
-		world_node.add_child(asteroid_right)
+		add_child(asteroid_right)
 
 	asteroid_rl_timer.start()

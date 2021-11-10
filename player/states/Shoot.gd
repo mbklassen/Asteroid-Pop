@@ -20,7 +20,8 @@ func _physics_process(_delta):
 		for child in firing_positions.get_children():
 			var bullet = bullet_scene.instance()
 			bullet.global_position = child.global_position
-			get_tree().current_scene.get_node("World").add_child(bullet)
+			var level_node = get_parent().get_parent().get_parent()
+			level_node.add_child(bullet)
 		# Player can no longer shoot, start timer
 		can_shoot = false
 		timer.start()
