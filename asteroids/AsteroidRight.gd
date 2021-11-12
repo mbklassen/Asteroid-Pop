@@ -2,11 +2,11 @@ extends RigidBody2D
 
 
 const ROTATION_DIRECTION_SWITCH = 1
-const OFF_SCREEN = -40
+const OFF_SCREEN = -50
 const PIECE_POSITION_VARIABILITY = 16
 
 
-# the asteroids are given variable velocities
+# The asteroids are given variable velocities
 var velocity_linear = Vector2(rand_range(-200,-50), rand_range(100,200))
 var velocity_counterclockwise = rand_range(-4, -1)
 var velocity_clockwise = rand_range(1, 4)
@@ -16,7 +16,7 @@ var rotation_direction = rand_range(0, 2)
 # Will dictate the factor by which the asteroid will be scaled
 var scale_factor = rand_range(1, 1.8)
 var scale_vector = Vector2(scale_factor, scale_factor)
-# load explosion particles node
+# Load explosion particles node
 var explosion_scene = preload("res://particles/Explosion.tscn")
 var piece1_scene = preload("res://asteroids/pieces/AsteroidPiece1.tscn")
 var piece2_scene = preload("res://asteroids/pieces/AsteroidPiece2.tscn")
@@ -24,7 +24,7 @@ var piece3_scene = preload("res://asteroids/pieces/AsteroidPiece3.tscn")
 
 var explosion_color = Color(0.35, 0.35, 0.35, 1)
 
-var healthbar
+#var healthbar
 
 func _ready():
 	# Scale asteroid by a value in a random range
@@ -38,7 +38,7 @@ func _ready():
 	else:
 		angular_velocity = velocity_clockwise
 	# get HealthBar node
-	healthbar = get_tree().current_scene.get_node("UI/HUD/HealthBar")
+#	healthbar = get_tree().current_scene.get_node("UI/HUD/HealthBar")
 
 func _physics_process(_delta):
 	# If asteroid goes off the bottom of the screen, destroy it
@@ -63,7 +63,7 @@ func _on_AsteroidRight_body_entered(body):
 	
 	# If asteroid collided with player, decrease value of HealthBar by 20
 	if body.name == "Player":
-		healthbar.value -= 20
+		Global.hp -= 20
 	
 	# If asteroid collides with PlayerBullet
 	else:

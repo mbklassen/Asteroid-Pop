@@ -4,7 +4,9 @@
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://levels/level2/Level2.gd" type="Script" id=3]
 
-[node name="Level2" type="Node2D"]
+[node name="Level2" type="Node2D" groups=[
+"levels",
+]]
 script = ExtResource( 3 )
 
 [node name="Background" type="Sprite" parent="."]

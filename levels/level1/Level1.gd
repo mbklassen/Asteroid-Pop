@@ -3,7 +3,7 @@ extends Node2D
 const LEVEL_TIMER_WAIT_TIME = 30
 const LEVEL_END_TIMER_WAIT_TIME = 4
 
-var asteroid_top_scene = preload("res://asteroids/AsteroidTop.tscn")
+var asteroid_top_scene = load("res://asteroids/AsteroidTop.tscn")
 
 var world_node
 # Length of time for this level
@@ -41,7 +41,7 @@ func _on_LevelTimer_timeout():
 	level_end_timer.start()
 
 func _on_LevelEndTimer_timeout():
-	Global.level += 1
+	pass
 
 func _on_AsteroidTopTimer_timeout():
 	var asteroid_top = asteroid_top_scene.instance()
