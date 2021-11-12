@@ -13,21 +13,25 @@ func _ready():
 	add_child(level1)
 
 func _process(_delta):
-	if current_level != Global.level and !Global.final_level:
-		for child in get_children():
-			if child.is_in_group("levels"):
-				print("level deleted ahhh fuck")
-				child.queue_free()
-		current_level = Global.level
-		var level_scene = load("res://levels/level" + str(current_level) + "/Level" + str(current_level) + ".tscn")
-		var level_x = level_scene.instance()
-		add_child(level_x)
+#	if current_level != Global.level and !Global.final_level:
+#		for child in get_children():
+#			if child.is_in_group("levels"):
+#				print("level deleted ahhh fuck")
+#				child.queue_free()
+#		current_level = Global.level
+#		var level_scene = load("res://levels/level" + str(current_level) + "/Level" + str(current_level) + ".tscn")
+#		var level_x = level_scene.instance()
+#		add_child(level_x)
 		
 	if Input.is_action_just_pressed("next_level") and !Global.final_level:
 		for child in get_children():
 			if child.is_in_group("levels"):
+				for c in child.get_children():
+					child.remove_child(c)
+					c.free()
 				print("level deleted")
-				child.queue_free()
+				remove_child(child)
+				child.free()
 		current_level += 1
 		var prev_level_scene = load("res://levels/level" + str(current_level) + "/Level" + str(current_level) + ".tscn")
 		var prev_level_x = prev_level_scene.instance()
@@ -36,8 +40,12 @@ func _process(_delta):
 	if Input.is_action_just_pressed("prev_level") and !Global.first_level:
 		for child in get_children():
 			if child.is_in_group("levels"):
+				for c in child.get_children():
+					child.remove_child(c)
+					c.free()
 				print("level deleted")
-				child.queue_free()
+				remove_child(child)
+				child.free()
 		current_level -= 1
 		var next_level_scene = load("res://levels/level" + str(current_level) + "/Level" + str(current_level) + ".tscn")
 		var next_level_x = next_level_scene.instance()
