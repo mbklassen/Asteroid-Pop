@@ -37,6 +37,7 @@ func _process(_delta):
 		var prev_level_x = prev_level_scene.instance()
 		add_child(prev_level_x)
 	
+	
 	if Input.is_action_just_pressed("prev_level") and !Global.first_level:
 		for child in get_children():
 			if child.is_in_group("levels"):
