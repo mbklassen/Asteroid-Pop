@@ -35,7 +35,7 @@ func _input(event):
 		# Instantiate the next level and add it as a child of the world node
 		level_x = level_scene.instance()
 		add_child(level_x)
-		# New level node changes Global.level so current_level needs to be set to it
+		# Newly created level node changes Global.level, so current_level needs to be set to it
 		current_level = Global.level
 	
 	if event.is_action_pressed("prev_level") and !Global.first_level:
@@ -47,5 +47,5 @@ func _input(event):
 		# Instantiate the previous level and add it as a child of the world node
 		level_x = level_scene.instance()
 		add_child(level_x)
-		# New level node changes Global.level so current_level needs to be set to it
+		# Newly created level node changes Global.level, so current_level needs to be set to it
 		current_level = Global.level

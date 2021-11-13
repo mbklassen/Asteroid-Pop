@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemy1-bullet.png-0ae7ee1acaae23a616b81534e87ddd89.stex"
+path="res://.import/background1.png-2be5da64b1ad6217fb2fa5e06c377c6c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy1-bullet.png"
-dest_files=[ "res://.import/enemy1-bullet.png-0ae7ee1acaae23a616b81534e87ddd89.stex" ]
+source_file="res://levels/textures/background1.png"
+dest_files=[ "res://.import/background1.png-2be5da64b1ad6217fb2fa5e06c377c6c.stex" ]
 
 [params]
 

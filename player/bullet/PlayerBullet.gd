@@ -8,7 +8,7 @@ func _ready():
 	linear_velocity = Vector2(0, -BULLET_SPEED)
 	
 func _physics_process(_delta):
-	# If bullet goes off the top of the screen, destroy it
+	# If bullet goes off the top of the screen, queue it to be freed
 	if position.y < OFF_SCREEN:
 		queue_free()
 
@@ -19,5 +19,5 @@ func _on_PlayerBullet_body_entered(body):
 		Global.score += 1
 #	elif body.is_in_group("ENEMY_1"):
 #		Global.score += 3
-#	# Destroy the bullet
+#	# Queue the bullet to be freed
 	queue_free()

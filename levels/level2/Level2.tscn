@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://background.png" type="Texture" id=1]
+[ext_resource path="res://levels/textures/background1.png" type="Texture" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://levels/level2/Level2.gd" type="Script" id=3]
 
@@ -27,15 +27,15 @@ one_shot = true
 process_mode = 0
 one_shot = true
 
-[node name="AsteroidTopTimer2" type="Timer" parent="Timers"]
+[node name="AsteroidTopTimer" type="Timer" parent="Timers"]
 process_mode = 0
 one_shot = true
 
-[node name="AsteroidRLTimer2" type="Timer" parent="Timers"]
+[node name="AsteroidRLTimer" type="Timer" parent="Timers"]
 process_mode = 0
 one_shot = true
 
 [connection signal="timeout" from="Timers/Level2Timer" to="." method="_on_Level2Timer_timeout"]
 [connection signal="timeout" from="Timers/Level2EndTimer" to="." method="_on_Level2EndTimer_timeout"]
-[connection signal="timeout" from="Timers/AsteroidTopTimer2" to="." method="_on_AsteroidTopTimer2_timeout"]
-[connection signal="timeout" from="Timers/AsteroidRLTimer2" to="." method="_on_AsteroidRLTimer2_timeout"]
+[connection signal="timeout" from="Timers/AsteroidTopTimer" to="." method="_on_AsteroidTopTimer_timeout"]
+[connection signal="timeout" from="Timers/AsteroidRLTimer" to="." method="_on_AsteroidRLTimer_timeout"]
