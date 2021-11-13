@@ -8,35 +8,44 @@ var current_level
 func _ready():
 	current_level = Global.level
 	level_scene = load("res://levels/level" + str(current_level) + "/Level" + str(current_level) + ".tscn")
-	# Instantiate the current level and add it as a child of the world node
+	# Instantiate the current level (same as Global.level) and add it as a child of the world node
 	level_x = level_scene.instance()
 	add_child(level_x)
-
+	
 func _process(_delta):
+	# If Global.level differs from current_level, it means we have entered a new level
 	if current_level != Global.level and !Global.final_level:
-		for child in get_children():
-			if child.is_in_group("levels"):
-				child.queue_free()
 		current_level = Global.level
-		level_scene = load("res://levels/level" + str(current_level) + "/Level" + str(current_level) + ".tscn")
-		level_x = level_scene.instance()
-		add_child(level_x)
-		
-	if Input.is_action_just_pressed("next_level") and !Global.final_level:
+		# For each child of world, if that child is a level then queue that node to be freed
 		for child in get_children():
 			if child.is_in_group("levels"):
 				child.queue_free()
-		current_level += 1
 		level_scene = load("res://levels/level" + str(current_level) + "/Level" + str(current_level) + ".tscn")
+		# Instantiate the current level (same as Global.level) and add it as a child of the world node
 		level_x = level_scene.instance()
 		add_child(level_x)
-	
-	
-	if Input.is_action_just_pressed("prev_level") and !Global.first_level:
+
+func _input(event):
+	if event.is_action_pressed("next_level") and !Global.final_level:
+		# For each child of world, if that child is a level then queue that node to be freed
 		for child in get_children():
 			if child.is_in_group("levels"):
 				child.queue_free()
-		current_level -= 1
-		level_scene = load("res://levels/level" + str(current_level) + "/Level" + str(current_level) + ".tscn")
+		level_scene = load("res://levels/level" + str(current_level + 1) + "/Level" + str(current_level + 1) + ".tscn")
+		# Instantiate the next level and add it as a child of the world node
 		level_x = level_scene.instance()
 		add_child(level_x)
+		# New level node changes Global.level so current_level needs to be set to it
+		current_level = Global.level
+	
+	if event.is_action_pressed("prev_level") and !Global.first_level:
+		# For each child of world, if that child is a level then queue that node to be freed
+		for child in get_children():
+			if child.is_in_group("levels"):
+				child.queue_free()
+		level_scene = load("res://levels/level" + str(current_level - 1) + "/Level" + str(current_level - 1) + ".tscn")
+		# Instantiate the previous level and add it as a child of the world node
+		level_x = level_scene.instance()
+		add_child(level_x)
+		# New level node changes Global.level so current_level needs to be set to it
+		current_level = Global.level

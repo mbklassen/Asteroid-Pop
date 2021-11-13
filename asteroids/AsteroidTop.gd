@@ -4,9 +4,10 @@ extends RigidBody2D
 const ROTATION_DIRECTION_SWITCH = 1
 const OFF_SCREEN = 660
 const PIECE_POSITION_VARIABILITY = 16
+const HP_VALUE = 20
 
 
-# the asteroids are given variable velocities
+# The asteroids are given variable velocities
 var velocity_linear = Vector2(0, rand_range(100, 300))
 var velocity_counterclockwise = rand_range(-4, -1)
 var velocity_clockwise = rand_range(1, 4)
@@ -18,6 +19,7 @@ var scale_factor = rand_range(1, 1.8)
 var scale_vector = Vector2(scale_factor, scale_factor)
 # load explosion particles node
 var explosion_scene = preload("res://particles/Explosion.tscn")
+# Load asteroid pieces
 var piece1_scene = preload("res://asteroids/pieces/AsteroidPiece1.tscn")
 var piece2_scene = preload("res://asteroids/pieces/AsteroidPiece2.tscn")
 var piece3_scene = preload("res://asteroids/pieces/AsteroidPiece3.tscn")
@@ -38,8 +40,6 @@ func _ready():
 		angular_velocity = velocity_counterclockwise
 	else:
 		angular_velocity = velocity_clockwise
-	# get HealthBar node
-#	healthbar = get_tree().current_scene.get_node("UI/HUD/HealthBar")
 
 func _physics_process(_delta):
 	# If asteroid goes off the bottom of the screen, destroy it
@@ -50,21 +50,21 @@ func _physics_process(_delta):
 func _on_AsteroidTop_body_entered(body):
 	# Instantiate Explosion node
 	var explosion = explosion_scene.instance()
-	# set explosion's initial position to be the same as Asteroid's current position
+	# Set explosion's initial position to be the same as Asteroid's current position
 	explosion.global_position = global_position
-	# set explosion colour to be same as asteroid's
+	# Set explosion colour to be same as asteroid's
 	explosion.process_material.color = explosion_color
-	# explosion particles are now emitting
+	# Explosion particles are now emitting
 	explosion.emitting = true
-	# get World node
+	# Get level node
 	var level_node = get_parent()
-	# add child of level_node (so it is a sibling to Asteroid)
+	# Add child of level_node (so it is a sibling to Asteroid)
 	level_node.add_child(explosion)
 
 	
-	# If asteroid collided with player, decrease value of HealthBar by 20
+	# If asteroid collided with player, decrease value of health bar
 	if body.name == "Player":
-		Global.hp -= 20
+		Global.hp -= HP_VALUE
 	
 	# If asteroid collides with PlayerBullet
 	else:

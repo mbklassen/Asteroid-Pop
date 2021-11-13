@@ -7,7 +7,8 @@ var timer
 var firing_positions
 
 func _ready():
-	timer = get_node("TimeBetweenShots")
+	
+	timer = $TimeBetweenShots
 	timer.connect("timeout", self, "_on_timer_timeout")
 	timer.wait_time = 0.2
 	
@@ -17,12 +18,13 @@ func _ready():
 	
 func _physics_process(_delta):
 	if Input.is_action_pressed("shoot") and can_shoot:
-		# Instantiate PlayerBullets node 
-		# Create a bullet at each firing position (add it as a child of the World scene)
+		# Create a bullet at each firing position (add it as a child of the Level node)
 		for child in firing_positions.get_children():
 			var bullet = bullet_scene.instance()
 			bullet.global_position = child.global_position
+			# Get level node
 			var level_node = get_parent().get_parent().get_parent()
+			# Instantiate PlayerBullet node 
 			level_node.add_child(bullet)
 		# Player can no longer shoot, start timer
 		can_shoot = false

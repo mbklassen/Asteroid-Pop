@@ -19,5 +19,5 @@ func _on_PlayerBullet_body_entered(body):
 		Global.score += 1
 #	elif body.is_in_group("ENEMY_1"):
 #		Global.score += 3
-#	# Destroy the bullets
+#	# Destroy the bullet
 	queue_free()
