@@ -13,6 +13,7 @@ func _ready():
 	# Get FiringPositions node (Shoot -> States -> FiringPositions)
 	firing_positions = get_parent().get_parent().get_node("FiringPositions")
 	
+	
 func _physics_process(_delta):
 	if Input.is_action_pressed("shoot") and can_shoot:
 		# Instantiate PlayerBullets node 
