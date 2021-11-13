@@ -8,6 +8,7 @@ var firing_positions
 
 func _ready():
 	timer = get_node("TimeBetweenShots")
+	timer.connect("timeout", self, "_on_timer_timeout")
 	timer.wait_time = 0.2
 	
 	# Get FiringPositions node (Shoot -> States -> FiringPositions)
@@ -28,5 +29,5 @@ func _physics_process(_delta):
 		timer.start()
 
 # When timer runs out, player can shoot again
-func _on_TimeBetweenShots_timeout():
+func _on_timer_timeout():
 	can_shoot = true

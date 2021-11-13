@@ -1,7 +1,7 @@
 extends Node2D
 
-const LEVEL_TIMER_WAIT_TIME = 30
-const LEVEL_END_TIMER_WAIT_TIME = 5
+const LEVEL_TIMER_WAIT_TIME = 120
+const LEVEL_END_TIMER_WAIT_TIME = 4
 
 var asteroid_top_scene1 = load("res://asteroids/AsteroidTop.tscn")
 
@@ -20,14 +20,14 @@ func _ready():
 	Global.score = 0
 	Global.hp = 100
 	# Get LevelTimer node and connect its timeout signal to _on_level_timer_timeout() method
-	level1_timer = $Timers/Level1Timer
+	level1_timer = get_node("Timers/Level1Timer")
 	level1_timer.wait_time = LEVEL_TIMER_WAIT_TIME
 	level1_timer.start()
 	# Get LevelEndTimer node and connect its timeout signal to _on_level_end_timer_timeout() method
-	level1_end_timer = $Timers/Level1EndTimer
+	level1_end_timer = get_node("Timers/Level1EndTimer")
 	level1_end_timer.wait_time = LEVEL_END_TIMER_WAIT_TIME
 	# Get AsteroidTimer node
-	asteroid_top_timer1 = $Timers/AsteroidTopTimer1
+	asteroid_top_timer1 = get_node("Timers/AsteroidTopTimer1")
 	_setup_AsteroidTop_timer()
 	
 	
@@ -46,6 +46,6 @@ func _on_Level1EndTimer_timeout():
 
 func _on_AsteroidTopTimer1_timeout():
 	var asteroid_top = asteroid_top_scene1.instance()
-	asteroid_top.global_position = Vector2(rand_range(20, 340), -30)
+	asteroid_top.position = Vector2(rand_range(20, 340), -30)
 	add_child(asteroid_top)
-	asteroid_top_timer1.start()
+	_setup_AsteroidTop_timer()
