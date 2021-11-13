@@ -101,4 +101,4 @@ func _on_AsteroidLeft_body_entered(body):
 		level_node.call_deferred("add_child", piece3)
 	
 	# Remove Asteroid and all its children from the queue
-	queue_free()
+	call_deferred("free")
