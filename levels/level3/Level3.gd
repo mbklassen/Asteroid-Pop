@@ -7,6 +7,7 @@ const LEVEL_END_TIMER_WAIT_TIME = 4
 var asteroid_top_scene = preload("res://asteroids/AsteroidTop.tscn")
 var asteroid_left_scene = preload("res://asteroids/AsteroidLeft.tscn")
 var asteroid_right_scene = preload("res://asteroids/AsteroidRight.tscn")
+var enemy1_scene = preload("res://enemies/enemy1/Enemy1.tscn")
 
 # Length of time for this level
 var level3_timer
@@ -53,7 +54,8 @@ func _setup_asteroid_rl_timer():
 	asteroid_rl_timer.start()
 
 func _setup_enemy1_timer():
-	pass
+	enemy1_timer.wait_time = rand_range(0.5, 2)
+	enemy1_timer.start()
 
 func _on_Level3Timer_timeout():
 	asteroid_top_timer.stop()
@@ -77,16 +79,17 @@ func _on_AsteroidRLTimer_timeout():
 	if asteroid_rl_spawn_side < 1:
 		var asteroid_left = asteroid_left_scene.instance()
 		asteroid_left.global_position = Vector2(-30, rand_range(-30, 350))
-		add_child(asteroid_left)
-		
+		add_child(asteroid_left)	
 	# Spawn from the right, travelling left
 	elif asteroid_rl_spawn_side >= 1:
 		var asteroid_right = asteroid_right_scene.instance()
 		asteroid_right.global_position = Vector2(390, rand_range(-30, 350))
 		add_child(asteroid_right)
-
 	_setup_asteroid_rl_timer()
 
 
 func _on_Enemy1Timer_timeout():
-	pass # Replace with function body.
+	var enemy1 = enemy1_scene.instance()
+	enemy1.global_position = Vector2(rand_range(20, 340), -30)
+	add_child(enemy1)
+	_setup_enemy1_timer()

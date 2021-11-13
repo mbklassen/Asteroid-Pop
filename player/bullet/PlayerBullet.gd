@@ -17,7 +17,7 @@ func _on_PlayerBullet_body_entered(body):
 	# If the object the bullets collided with is an enemy, increase score by 1
 	if body.is_in_group("asteroids"):
 		Global.score += 1
-#	elif body.is_in_group("ENEMY_1"):
-#		Global.score += 3
-#	# Queue the bullet to be freed
+	elif body.is_in_group("enemy-type1"):
+		Global.score += 3
+	# Queue the bullet to be freed
 	queue_free()

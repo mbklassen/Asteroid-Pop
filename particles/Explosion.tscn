@@ -11,7 +11,7 @@ initial_velocity = 11.7
 initial_velocity_random = 0.44
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-color = Color( 0.34902, 0.34902, 0.34902, 1 )
+color = Color( 0.631373, 0, 0, 1 )
 
 [node name="Explosion" type="Particles2D"]
 scale = Vector2( 3, 3 )
