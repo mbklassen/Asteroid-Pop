@@ -1,14 +1,7 @@
 extends Node
 
-var level
-var hp
-var score
-var first_level
-var final_level
-
-func _ready():
-	level = 1
-	hp = 100
-	score = 0
-	first_level = true
-	final_level = false
+var level = 1
+var hp = 100
+var score = 0
+var first_level = true
+var final_level = false

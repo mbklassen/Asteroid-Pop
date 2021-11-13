@@ -1,11 +1,11 @@
 extends Node2D
 
-const LEVEL_TIMER_WAIT_TIME = 120
+const LEVEL_TIMER_WAIT_TIME = 60
 const LEVEL_END_TIMER_WAIT_TIME = 4
 
-var asteroid_top_scene2 = load("res://asteroids/AsteroidTop.tscn")
-var asteroid_left_scene2 = load("res://asteroids/AsteroidLeft.tscn")
-var asteroid_right_scene2 = load("res://asteroids/AsteroidRight.tscn")
+var asteroid_top_scene2 = preload("res://asteroids/AsteroidTop.tscn")
+var asteroid_left_scene2 = preload("res://asteroids/AsteroidLeft.tscn")
+var asteroid_right_scene2 = preload("res://asteroids/AsteroidRight.tscn")
 
 # Length of time for this level
 var level2_timer

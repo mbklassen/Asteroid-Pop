@@ -25,21 +25,7 @@ func _physics_process(_delta):
 	if position.y > OFF_SCREEN_BOTTOM or position.y < OFF_SCREEN_TOP:
 		queue_free()
 
-func _on_AsteroidPiece1_body_entered(body):
-	if body.name == "Player":
-		Global.hp -= 10
-	# Destroy the asteroid
-	queue_free()
-
-
-func _on_AsteroidPiece2_body_entered(body):
-	if body.name == "Player":
-		Global.hp -= 10
-	# Destroy the asteroid
-	queue_free()
-
-
-func _on_AsteroidPiece3_body_entered(body):
+func _on_AsteroidPiece_body_entered(body):
 	if body.name == "Player":
 		Global.hp -= 10
 	# Destroy the asteroid

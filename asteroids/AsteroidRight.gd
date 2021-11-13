@@ -17,10 +17,10 @@ var rotation_direction = rand_range(0, 2)
 var scale_factor = rand_range(1, 1.8)
 var scale_vector = Vector2(scale_factor, scale_factor)
 # Load explosion particles node
-var explosion_scene = load("res://particles/Explosion.tscn")
-var piece1_scene = load("res://asteroids/pieces/AsteroidPiece1.tscn")
-var piece2_scene = load("res://asteroids/pieces/AsteroidPiece2.tscn")
-var piece3_scene = load("res://asteroids/pieces/AsteroidPiece3.tscn")
+var explosion_scene = preload("res://particles/Explosion.tscn")
+var piece1_scene = preload("res://asteroids/pieces/AsteroidPiece1.tscn")
+var piece2_scene = preload("res://asteroids/pieces/AsteroidPiece2.tscn")
+var piece3_scene = preload("res://asteroids/pieces/AsteroidPiece3.tscn")
 
 var explosion_color = Color(0.35, 0.35, 0.35, 1)
 
