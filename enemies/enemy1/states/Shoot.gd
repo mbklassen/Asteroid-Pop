@@ -2,15 +2,17 @@ extends Node
 
 
 var bullet_scene = preload("res://enemies/enemy1/bullet/Enemy1Bullet.tscn")
-var can_shoot = true
+var can_shoot = false
 
 var timer
 
 func _ready():
 	timer = $TimeBetweenShots
+	timer.wait_time = rand_range(0.3, 2)
+	timer.start()
 
 func _physics_process(_delta):
-	if can_shoot:
+	if can_shoot :
 		can_shoot = false
 		var bullet = bullet_scene.instance()
 		# Get level node

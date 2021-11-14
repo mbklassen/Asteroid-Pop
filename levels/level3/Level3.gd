@@ -60,6 +60,7 @@ func _setup_enemy1_timer():
 func _on_Level3Timer_timeout():
 	asteroid_top_timer.stop()
 	asteroid_rl_timer.stop()
+	enemy1_timer.stop()
 	level3_end_timer.start()
 
 func _on_Level3EndTimer_timeout():

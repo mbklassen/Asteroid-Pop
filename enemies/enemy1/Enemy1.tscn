@@ -30,6 +30,8 @@ script = ExtResource( 4 )
 script = ExtResource( 3 )
 
 [node name="TimeBetweenShots" type="Timer" parent="States/Shoot"]
+process_mode = 0
+one_shot = true
 
 [node name="FiringPosition" type="Node2D" parent="."]
 position = Vector2( 0, 17 )
