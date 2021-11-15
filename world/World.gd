@@ -26,7 +26,7 @@ func _process(_delta):
 		add_child(level_x)
 
 func _input(event):
-	if event.is_action_pressed("next_level") and !Global.final_level:
+	if event.is_action_pressed("next_level") and !Global.final_level and !Global.game_paused:
 		# For each child of world, if that child is a level then queue that node to be freed
 		for child in get_children():
 			if child.is_in_group("levels"):
@@ -38,7 +38,7 @@ func _input(event):
 		# Newly created level node changes Global.level, so current_level needs to be set to it
 		current_level = Global.level
 	
-	if event.is_action_pressed("prev_level") and !Global.first_level:
+	if event.is_action_pressed("prev_level") and !Global.first_level and !Global.game_paused:
 		# For each child of world, if that child is a level then queue that node to be freed
 		for child in get_children():
 			if child.is_in_group("levels"):

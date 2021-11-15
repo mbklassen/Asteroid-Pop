@@ -11,8 +11,6 @@ var enemy1_scene = preload("res://enemies/enemy1/Enemy1.tscn")
 
 # Length of time for this level
 var level3_timer
-# Wait time at the end of this level
-var level3_end_timer
 # Length of time between each asteroid coming from the top
 var asteroid_top_timer
 # Length of time between each asteroid coming from the right/left
@@ -31,9 +29,6 @@ func _ready():
 	level3_timer = $Timers/Level3Timer
 	level3_timer.wait_time = LEVEL_TIMER_WAIT_TIME
 	level3_timer.start()
-	
-	level3_end_timer = $Timers/Level3EndTimer
-	level3_end_timer.wait_time = LEVEL_END_TIMER_WAIT_TIME
 	
 	asteroid_top_timer = $Timers/AsteroidTopTimer
 	_setup_asteroid_top_timer()
@@ -61,18 +56,13 @@ func _on_Level3Timer_timeout():
 	asteroid_top_timer.stop()
 	asteroid_rl_timer.stop()
 	enemy1_timer.stop()
-	level3_end_timer.start()
-
-func _on_Level3EndTimer_timeout():
-	if !Global.final_level:
-		Global.level += 1
+	Global.level_ended = true
 
 func _on_AsteroidTopTimer_timeout():
 	var asteroid_top = asteroid_top_scene.instance()
 	asteroid_top.global_position = Vector2(rand_range(20, 340), -30)
 	add_child(asteroid_top)
 	_setup_asteroid_top_timer()
-
 
 func _on_AsteroidRLTimer_timeout():
 	var asteroid_rl_spawn_side = rand_range(0, 2)

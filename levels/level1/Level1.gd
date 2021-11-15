@@ -7,8 +7,6 @@ var asteroid_top_scene1 = preload("res://asteroids/AsteroidTop.tscn")
 
 # Length of time for this level
 var level1_timer
-# Wait time at the end of this level
-var level1_end_timer
 # Length of time between each asteroid
 var asteroid_top_timer
 
@@ -24,9 +22,6 @@ func _ready():
 	level1_timer = $Timers/Level1Timer
 	level1_timer.wait_time = LEVEL_TIMER_WAIT_TIME
 	level1_timer.start()
-	# Get LevelEndTimer node and connect its timeout signal to _on_level_end_timer_timeout() method
-	level1_end_timer = $Timers/Level1EndTimer
-	level1_end_timer.wait_time = LEVEL_END_TIMER_WAIT_TIME
 	# Get AsteroidTimer node
 	asteroid_top_timer = $Timers/AsteroidTopTimer
 	_setup_AsteroidTop_timer()
@@ -39,12 +34,7 @@ func _setup_AsteroidTop_timer():
 
 func _on_Level1Timer_timeout():
 	asteroid_top_timer.stop()
-	level1_end_timer.start()
-
-
-func _on_Level1EndTimer_timeout():
-	if !Global.final_level:
-		Global.level += 1
+	Global.level_ended = true
 
 func _on_AsteroidTopTimer_timeout():
 	var asteroid_top = asteroid_top_scene1.instance()

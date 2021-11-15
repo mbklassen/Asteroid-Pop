@@ -9,3 +9,4 @@ var hp = 100
 var score = 0
 
 var game_paused = false
+var level_ended = false

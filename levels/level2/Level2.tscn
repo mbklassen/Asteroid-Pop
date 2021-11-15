@@ -23,10 +23,6 @@ texture = ExtResource( 1 )
 process_mode = 0
 one_shot = true
 
-[node name="Level2EndTimer" type="Timer" parent="Timers"]
-process_mode = 0
-one_shot = true
-
 [node name="AsteroidTopTimer" type="Timer" parent="Timers"]
 process_mode = 0
 one_shot = true
@@ -36,6 +32,5 @@ process_mode = 0
 one_shot = true
 
 [connection signal="timeout" from="Timers/Level2Timer" to="." method="_on_Level2Timer_timeout"]
-[connection signal="timeout" from="Timers/Level2EndTimer" to="." method="_on_Level2EndTimer_timeout"]
 [connection signal="timeout" from="Timers/AsteroidTopTimer" to="." method="_on_AsteroidTopTimer_timeout"]
 [connection signal="timeout" from="Timers/AsteroidRLTimer" to="." method="_on_AsteroidRLTimer_timeout"]
