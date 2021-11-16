@@ -18,6 +18,7 @@ func _ready():
 	Global.final_level = false
 	Global.score = 0
 	Global.hp = 100
+	Global.level_ended = false
 	# Get LevelTimer node and connect its timeout signal to _on_level_timer_timeout() method
 	level1_timer = $Timers/Level1Timer
 	level1_timer.wait_time = LEVEL_TIMER_WAIT_TIME
