@@ -5,6 +5,7 @@ const ROTATION_DIRECTION_SWITCH = 1
 const OFF_SCREEN = -50
 const PIECE_POSITION_VARIABILITY = 16
 const HP_VALUE = 20
+const DROP_POTENTIAL = 0.2
 
 
 # The asteroids are given variable velocities
@@ -26,6 +27,12 @@ var piece3_scene = preload("res://asteroids/pieces/AsteroidPiece3.tscn")
 
 var explosion_color = Color(0.35, 0.35, 0.35, 1)
 
+var drop_value = rand_range(0, 1)
+var item_shoot_faster = preload("res://items/ShootFaster.tscn")
+var item_list = [item_shoot_faster]
+
+var will_drop_item
+
 func _ready():
 	# Scale asteroid by a value in a random range
 	$Sprite.scale = scale_vector
@@ -37,6 +44,11 @@ func _ready():
 		angular_velocity = velocity_counterclockwise
 	else:
 		angular_velocity = velocity_clockwise
+		
+	if drop_value < DROP_POTENTIAL:
+		will_drop_item = true
+	else:
+		will_drop_item = false
 
 func _physics_process(_delta):
 	# If asteroid goes off the bottom of the screen, destroy it
@@ -66,6 +78,10 @@ func _on_AsteroidRight_body_entered(body):
 	
 	# If asteroid collides with PlayerBullet
 	else:
+		if will_drop_item:
+			var item = item_list[randi() % item_list.size()].instance()
+			item.global_position = global_position
+			level_node.call_deferred("add_child", item)
 		# Instantiate AsteroidPiece1 node
 		var piece1 = piece1_scene.instance()
 		# Set piece1's initial position
