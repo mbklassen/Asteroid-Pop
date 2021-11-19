@@ -27,6 +27,10 @@ script = ExtResource( 3 )
 process_mode = 0
 one_shot = true
 
+[node name="ShootFasterTimer" type="Timer" parent="States/Shoot"]
+process_mode = 0
+one_shot = true
+
 [node name="FiringPositions" type="Node2D" parent="."]
 
 [node name="LeftGun" type="Node2D" parent="FiringPositions"]
@@ -34,3 +38,6 @@ position = Vector2( -10, -4 )
 
 [node name="RightGun" type="Node2D" parent="FiringPositions"]
 position = Vector2( 10, -4 )
+
+[connection signal="timeout" from="States/Shoot/TimeBetweenShots" to="States/Shoot" method="_on_TimeBetweenShots_timeout"]
+[connection signal="timeout" from="States/Shoot/ShootFasterTimer" to="States/Shoot" method="_on_ShootFasterTimer_timeout"]

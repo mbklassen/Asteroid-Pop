@@ -5,7 +5,7 @@ const ROTATION_DIRECTION_SWITCH = 1
 const OFF_SCREEN = 660
 const PIECE_POSITION_VARIABILITY = 16
 const HP_VALUE = 20
-const DROP_POTENTIAL = 0.2
+const DROP_POTENTIAL = 0.1
 
 
 # The asteroids are given variable velocities
@@ -81,6 +81,7 @@ func _on_AsteroidTop_body_entered(body):
 		if will_drop_item:
 			var item = item_list[randi() % item_list.size()].instance()
 			item.global_position = global_position
+			item.set_linear_velocity(velocity_linear / 2)
 			level_node.call_deferred("add_child", item)
 		# Instantiate AsteroidPiece1 node
 		var piece1 = piece1_scene.instance()

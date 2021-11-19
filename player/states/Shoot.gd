@@ -1,18 +1,27 @@
 extends Node
 
+const BULLET_SPEED = 0.3
+const FASTER_BULLET_SPEED = 0.15
+const FASTER_SHOOT_DURATION = 10
+
 var bullet_scene = preload("res://player/bullet/PlayerBullet.tscn")
 var can_shoot = true
+var shooting_faster = false
 
-var timer
+var timer1
+var timer2
 var firing_positions
+var item_shoot_faster
 
 func _ready():
 	
-	timer = $TimeBetweenShots
-	timer.connect("timeout", self, "_on_timer_timeout")
-	timer.wait_time = 0.2
+	timer1 = $TimeBetweenShots
+	timer1.wait_time = BULLET_SPEED
 	
-	# Get FiringPositions node (Shoot -> States -> FiringPositions)
+	timer2 = $ShootFasterTimer
+	timer2.wait_time = FASTER_SHOOT_DURATION
+	
+	# Get FiringPositions node (^States -> ^Player -> FiringPositions)
 	firing_positions = get_parent().get_parent().get_node("FiringPositions")
 	
 	
@@ -22,14 +31,23 @@ func _physics_process(_delta):
 		for child in firing_positions.get_children():
 			var bullet = bullet_scene.instance()
 			bullet.global_position = child.global_position
-			# Get level node
+			# Get level node (^States -> ^Player -> ^LevelX)
 			var level_node = get_parent().get_parent().get_parent()
 			# Instantiate PlayerBullet node 
 			level_node.add_child(bullet)
 		# Player can no longer shoot, start timer
 		can_shoot = false
-		timer.start()
+		if Global.item_shoot_faster_acquired:
+			Global.item_shoot_faster_acquired = false
+			if !timer2.is_stopped():
+				timer2.stop()
+			timer2.start()
+			timer1.wait_time = FASTER_BULLET_SPEED
+		timer1.start()
 
-# When timer runs out, player can shoot again
-func _on_timer_timeout():
+
+func _on_TimeBetweenShots_timeout():
 	can_shoot = true
+	
+func _on_ShootFasterTimer_timeout():
+	timer1.wait_time = BULLET_SPEED

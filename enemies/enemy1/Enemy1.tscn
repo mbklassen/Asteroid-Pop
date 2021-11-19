@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://enemies/textures/enemy1.png" type="Texture" id=1]
 [ext_resource path="res://enemies/enemy1/Enemy1.gd" type="Script" id=2]
 [ext_resource path="res://enemies/enemy1/states/Shoot.gd" type="Script" id=3]
-[ext_resource path="res://enemies/enemy1/states/Move.gd" type="Script" id=4]
 
 [node name="Enemy1" type="RigidBody2D" groups=[
 "enemies",
@@ -23,9 +22,6 @@ texture = ExtResource( 1 )
 polygon = PoolVector2Array( -0.85379, 15.8357, 0.825588, 15.8357, 2.94691, 13.7143, 2.85852, 9.02975, 4.80306, 7.8807, 4.89145, 3.19612, 8.69215, 0.632854, 11.3438, 3.72645, 14.8793, -7.76404, 7.98504, -12.8022, 3.0353, -15.8958, -2.88672, -16.0725, -8.10163, -12.8906, -14.9075, -7.76404, -11.6372, 3.99162, -8.45519, 0.544468, -5.00805, 3.28451, -5.00805, 7.79231, -2.88672, 9.29491, -2.79834, 13.8911 )
 
 [node name="States" type="Node" parent="."]
-
-[node name="Move" type="Node" parent="States"]
-script = ExtResource( 4 )
 
 [node name="Shoot" type="Node" parent="States"]
 script = ExtResource( 3 )
