@@ -12,3 +12,4 @@ var level_ended = false
 var game_paused = false
 
 var item_shoot_faster_acquired = false
+var item_health_acquired = false

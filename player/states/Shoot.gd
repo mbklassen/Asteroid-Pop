@@ -6,7 +6,6 @@ const FASTER_SHOOT_DURATION = 10
 
 var bullet_scene = preload("res://player/bullet/PlayerBullet.tscn")
 var can_shoot = true
-var shooting_faster = false
 
 var timer1
 var timer2

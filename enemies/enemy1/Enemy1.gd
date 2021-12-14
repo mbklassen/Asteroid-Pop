@@ -1,13 +1,15 @@
 extends RigidBody2D
 
 const HP_VALUE = 20
-const DROP_POTENTIAL = 0.15
+const DROP_POTENTIAL = 0.1
+
 var explosion_scene = preload("res://particles/Explosion.tscn")
 var explosion_color = Color(0.63, 0, 0, 1)
 
 var drop_value = rand_range(0, 1)
 var item_shoot_faster = preload("res://items/ShootFaster.tscn")
-var item_list = [item_shoot_faster]
+var item_health = preload("res://items/Health.tscn")
+var item_list = [item_shoot_faster, item_health]
 var velocity_linear = Vector2(0, 200)
 
 var will_drop_item

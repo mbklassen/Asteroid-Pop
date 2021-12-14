@@ -17,3 +17,10 @@ func _physics_process(_delta):
 	# Moves player according to velocity vector
 	# Also handles collision (slides along walls)
 	var _collision = move_and_slide(player_velocity)
+	
+	if Global.item_health_acquired:
+		if Global.hp > 80:
+			Global.hp = 100
+		else:
+			Global.hp += 20
+		Global.item_health_acquired = false

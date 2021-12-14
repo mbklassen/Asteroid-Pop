@@ -5,7 +5,7 @@ const ROTATION_DIRECTION_SWITCH = 1
 const OFF_SCREEN = 660
 const PIECE_POSITION_VARIABILITY = 16
 const HP_VALUE = 20
-const DROP_POTENTIAL = 0.1
+const DROP_POTENTIAL = 0.07
 
 
 # The asteroids are given variable velocities
@@ -29,7 +29,8 @@ var explosion_color = Color(0.35, 0.35, 0.35, 1)
 
 var drop_value = rand_range(0, 1)
 var item_shoot_faster = preload("res://items/ShootFaster.tscn")
-var item_list = [item_shoot_faster]
+var item_health = preload("res://items/Health.tscn")
+var item_list = [item_shoot_faster, item_health]
 
 var will_drop_item
 

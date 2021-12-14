@@ -1,7 +1,7 @@
 extends Node2D
 
 
-const LEVEL_TIMER_WAIT_TIME = 30
+const LEVEL_TIMER_WAIT_TIME = 60
 const LEVEL_END_TIMER_WAIT_TIME = 4
 
 var asteroid_top_scene = preload("res://asteroids/AsteroidTop.tscn")
