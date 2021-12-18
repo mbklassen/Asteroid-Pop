@@ -12,11 +12,6 @@ func _ready():
 	global_position = Vector2((screen_width/2), (screen_height - 60))
 	
 func _physics_process(_delta):
-	# Get player velocity from move state node
-	var player_velocity = $States/Move.velocity
-	# Moves player according to velocity vector
-	# Also handles collision (slides along walls)
-	var _collision = move_and_slide(player_velocity)
 	
 	if Global.item_health_acquired:
 		if Global.hp > 80:

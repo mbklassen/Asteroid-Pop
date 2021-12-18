@@ -1,12 +1,13 @@
 extends Node2D
 
-# Load current level scene, based on the value stored in Global.level
+
 var level_scene
 var level_x
 var current_level
 
 func _ready():
 	current_level = Global.level
+	# Load current level scene, based on the value stored in current_level (Global.level)
 	level_scene = load("res://levels/level" + str(current_level) + "/Level" + str(current_level) + ".tscn")
 	# Instantiate the current level (same as Global.level) and add it as a child of the world node
 	level_x = level_scene.instance()

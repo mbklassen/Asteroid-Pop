@@ -27,9 +27,12 @@ var piece3_scene = preload("res://asteroids/pieces/AsteroidPiece3.tscn")
 
 var explosion_color = Color(0.35, 0.35, 0.35, 1)
 
+# Sets the drop value for this asteroid (determines whether it will drop an item)
 var drop_value = rand_range(0, 1)
+# Load item nodes
 var item_shoot_faster = preload("res://items/ShootFaster.tscn")
 var item_health = preload("res://items/Health.tscn")
+# Add items to an array 
 var item_list = [item_shoot_faster, item_health]
 
 var will_drop_item
@@ -45,7 +48,7 @@ func _ready():
 		angular_velocity = velocity_counterclockwise
 	else:
 		angular_velocity = velocity_clockwise
-		
+	
 	if drop_value < DROP_POTENTIAL:
 		will_drop_item = true
 	else:
@@ -56,8 +59,7 @@ func _physics_process(_delta):
 	if position.x > OFF_SCREEN:
 		queue_free()
 
-# Called when body_entered signal is emmited
-# On collision with another object
+# Called when body_entered signal is emmited on collision with another object
 func _on_AsteroidLeft_body_entered(body):
 	# Instantiate Explosion node
 	var explosion = explosion_scene.instance()

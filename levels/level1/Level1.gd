@@ -32,7 +32,6 @@ func _setup_AsteroidTop_timer():
 	asteroid_top_timer.wait_time = rand_range(0.1, 2)
 	asteroid_top_timer.start()
 
-
 func _on_Level1Timer_timeout():
 	asteroid_top_timer.stop()
 	Global.level_ended = true
