@@ -12,7 +12,7 @@ func _ready():
 	timer.start()
 
 func _physics_process(_delta):
-	if can_shoot :
+	if can_shoot:
 		can_shoot = false
 		var bullet = bullet_scene.instance()
 		# Get level node

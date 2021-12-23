@@ -3,9 +3,7 @@
 [ext_resource path="res://asteroids/pieces/AsteroidPiece.gd" type="Script" id=1]
 [ext_resource path="res://asteroids/textures/asteroid-piece1.png" type="Texture" id=2]
 
-[node name="AsteroidPiece1" type="RigidBody2D" groups=[
-"asteroids",
-]]
+[node name="AsteroidPiece1" type="RigidBody2D" groups=["asteroids"]]
 collision_layer = 8
 collision_mask = 2
 gravity_scale = 0.0
@@ -18,7 +16,7 @@ script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="Collision" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -6.875, 3.375, -7, 0.125, -0.625, -7.25, 2.625, -7.25, 6.875, -0.625, 1.25, 5.875 )
 
 [connection signal="body_entered" from="." to="." method="_on_AsteroidPiece_body_entered"]

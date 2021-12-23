@@ -1,8 +1,8 @@
 extends Node
 
-const ACCELERATION = 1300
+const ACCELERATION = 1600
 const MAX_SPEED = 400
-const FRICTION = 600
+const FRICTION = 900
 
 var velocity = Vector2.ZERO
 var motion = Vector2.ZERO

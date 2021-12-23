@@ -40,7 +40,7 @@ var will_drop_item
 func _ready():
 	# Scale asteroid by a value in a random range
 	$Sprite.scale = scale_vector
-	$CollisionShape2D.scale = scale_vector
+	$Collision.scale = scale_vector
 	# Set downward speed of asteroid
 	linear_velocity = velocity_linear
 	# Set rotation speed and direction
@@ -94,7 +94,7 @@ func _on_AsteroidLeft_body_entered(body):
 		piece1.position.y = position.y - PIECE_POSITION_VARIABILITY
 		piece1.set_linear_velocity(velocity_linear + Vector2(0, rand_range(-150, -50)))
 		piece1.get_node("Sprite").scale = scale_vector
-		piece1.get_node("CollisionPolygon2D").scale = scale_vector
+		piece1.get_node("Collision").scale = scale_vector
 		# Add child of level node (so it is a sibling to AsteroidTop)
 		level_node.call_deferred("add_child", piece1)
 
@@ -105,7 +105,7 @@ func _on_AsteroidLeft_body_entered(body):
 		piece2.position.y = position.y
 		piece2.set_linear_velocity(velocity_linear + Vector2(0, rand_range(-50, 50)))
 		piece2.get_node("Sprite").scale = scale_vector
-		piece2.get_node("CollisionPolygon2D").scale = scale_vector
+		piece2.get_node("Collision").scale = scale_vector
 		# Add child of level node (so it is a sibling to AsteroidTop)
 		level_node.call_deferred("add_child", piece2)
 
@@ -116,7 +116,7 @@ func _on_AsteroidLeft_body_entered(body):
 		piece3.position.y = position.y + PIECE_POSITION_VARIABILITY
 		piece3.set_linear_velocity(velocity_linear + Vector2(0, rand_range(50, 150)))
 		piece3.get_node("Sprite").scale = scale_vector
-		piece3.get_node("CollisionPolygon2D").scale = scale_vector
+		piece3.get_node("Collision").scale = scale_vector
 		# Add child of level node (so it is a sibling to AsteroidTop)
 		level_node.call_deferred("add_child", piece3)
 	

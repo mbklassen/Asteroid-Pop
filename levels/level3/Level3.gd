@@ -22,7 +22,7 @@ func _ready():
 	# Set Global variables
 	Global.level = 3
 	Global.first_level = false
-	Global.final_level = true
+	Global.final_level = false
 	Global.score = 0
 	Global.hp = 100
 	Global.level_ended = false

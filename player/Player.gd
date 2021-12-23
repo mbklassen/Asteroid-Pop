@@ -13,6 +13,9 @@ func _ready():
 	
 func _physics_process(_delta):
 	
+	Global.player_position = global_position
+	print(Global.player_position)
+	
 	if Global.item_health_acquired:
 		if Global.hp > 80:
 			Global.hp = 100
