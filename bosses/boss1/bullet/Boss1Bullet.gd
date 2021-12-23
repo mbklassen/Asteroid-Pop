@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-const BULLET_SPEED = 600
+const BULLET_SPEED = 700
 const HP_VALUE = 10
 const OFF_SCREEN = 690
 

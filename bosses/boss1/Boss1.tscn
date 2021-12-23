@@ -42,4 +42,10 @@ position = Vector2( 29.039, 9.18259 )
 [node name="MissileLauncher" type="Node2D" parent="."]
 position = Vector2( -0.0286026, 32.2295 )
 
+[node name="RayCastRight" type="RayCast2D" parent="."]
+cast_to = Vector2( 40, 0 )
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+cast_to = Vector2( -40, 0 )
+
 [connection signal="timeout" from="States/Shoot/TimeBetweenShots1" to="States/Shoot" method="_on_TimeBetweenShots1_timeout"]
