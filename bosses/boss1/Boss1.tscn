@@ -4,8 +4,8 @@
 [ext_resource path="res://bosses/boss1/states/Move.gd" type="Script" id=3]
 [ext_resource path="res://bosses/boss1/states/Shoot.gd" type="Script" id=4]
 
-[node name="Boss1" type="KinematicBody2D"]
-modulate = Color( 1.5, 1.5, 1.5, 1 )
+[node name="Boss1" type="KinematicBody2D" groups=["bosses"]]
+modulate = Color( 1.4, 1.4, 1.4, 1 )
 collision_layer = 8
 collision_mask = 2
 
@@ -24,6 +24,12 @@ script = ExtResource( 3 )
 script = ExtResource( 4 )
 
 [node name="TimeBetweenShots1" type="Timer" parent="States/Shoot"]
+process_mode = 0
+one_shot = true
+
+[node name="TimeBetweenShots2" type="Timer" parent="States/Shoot"]
+process_mode = 0
+one_shot = true
 
 [node name="FiringPositions" type="Node2D" parent="."]
 
@@ -43,9 +49,10 @@ position = Vector2( 29.039, 9.18259 )
 position = Vector2( -0.0286026, 32.2295 )
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-cast_to = Vector2( 40, 0 )
+cast_to = Vector2( 30, 0 )
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-cast_to = Vector2( -40, 0 )
+cast_to = Vector2( -30, 0 )
 
 [connection signal="timeout" from="States/Shoot/TimeBetweenShots1" to="States/Shoot" method="_on_TimeBetweenShots1_timeout"]
+[connection signal="timeout" from="States/Shoot/TimeBetweenShots2" to="States/Shoot" method="_on_TimeBetweenShots2_timeout"]

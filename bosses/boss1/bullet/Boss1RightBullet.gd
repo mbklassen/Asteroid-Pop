@@ -1,13 +1,13 @@
 extends RigidBody2D
 
-const BULLET_SPEED = 700
+const BULLET_SPEED = 600
 const HP_VALUE = 10
 const OFF_SCREEN = 690
 
 
 func _ready():
 	# Set direction equal to the normalized vector between boss bullet and player
-	var direction = (Global.player_position - global_position).normalized()
+	var direction = (Vector2(1,4)).normalized()
 	linear_velocity = direction * BULLET_SPEED
 	# Set rotation of boss bullet to be relative to direction of movement
 	rotation_degrees = -direction.x * 90

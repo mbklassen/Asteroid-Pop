@@ -4,6 +4,7 @@ extends Node2D
 const BOSS_TIMER_WAIT_TIME = 1
 
 var boss_scene = preload("res://bosses/boss1/Boss1.tscn")
+var boss_hp_scene = preload("res://ui/hud/HUD.tscn")
 
 var screen_width
 var boss_wait_timer
@@ -16,6 +17,9 @@ func _ready():
 	Global.score = 200
 	Global.hp = 100
 	Global.level_ended = false
+	Global.boss_level = true
+	Global.boss1_hp = 200
+	Global.boss1_hp_visible = true
 	
 	screen_width = get_viewport_rect().size.x
 	

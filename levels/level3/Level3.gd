@@ -26,6 +26,8 @@ func _ready():
 	Global.score = 0
 	Global.hp = 100
 	Global.level_ended = false
+	Global.boss_level = false
+	Global.boss1_hp_visible = false
 	
 	level3_timer = $Timers/Level3Timer
 	level3_timer.wait_time = LEVEL_TIMER_WAIT_TIME

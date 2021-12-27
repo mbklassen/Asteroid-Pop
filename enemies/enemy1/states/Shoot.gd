@@ -8,7 +8,7 @@ var timer
 
 func _ready():
 	timer = $TimeBetweenShots
-	timer.wait_time = rand_range(0.3, 2)
+	timer.wait_time = rand_range(0.3, 1)
 	timer.start()
 
 func _physics_process(_delta):
@@ -21,10 +21,8 @@ func _physics_process(_delta):
 		bullet.global_position = firing_position.global_position
 		# Add child of parent node (so it is a sibling to Enemy1)
 		level_node.add_child(bullet)
-		# If timer stops, start it again
-		if (timer.is_stopped()):
-			timer.wait_time = rand_range(2, 4)
-			timer.start()
 	
 func _on_TimeBetweenShots_timeout():
 	can_shoot = true
+	timer.wait_time = rand_range(1, 3)
+	timer.start()
