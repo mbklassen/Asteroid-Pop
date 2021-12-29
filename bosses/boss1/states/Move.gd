@@ -1,11 +1,11 @@
 extends Node
 
-const ACCELERATION = 700
+const ACCELERATION = 500
 const MAX_SPEED = 120
-const FRICTION = 300
+const FRICTION = 250
 
 const HOLD_POSITION = 120
-const MOVEMENT_BUFFER = 40
+const MOVEMENT_BUFFER = 45
 
 var motion = Vector2.ZERO
 var initial_velocity = Vector2(0, 80)
@@ -14,15 +14,13 @@ var moving_right = true
 var moving_left = false
 
 var boss
-var raycast_right
-var raycast_left
 var direction
 var collision
+var hit_effect_timer
 
 func _ready():
 	boss = get_parent().get_parent()
-	raycast_right = get_parent().get_parent().get_node("RayCastRight")
-	raycast_left = get_parent().get_parent().get_node("RayCastLeft")
+	hit_effect_timer = $HitEffectTimer
 
 func _physics_process(delta):
 	if !boss_holding_y:
@@ -30,14 +28,11 @@ func _physics_process(delta):
 		if boss.global_position.y >= HOLD_POSITION and !boss_holding_y:
 			boss_holding_y = true
 	else:
-		if !raycast_right.enabled and !raycast_left.enabled:
-			raycast_right.enabled = true
-			raycast_left.enabled = true
 		
-		if (raycast_right.is_colliding()) or (boss.global_position.x >= Global.player_position.x + MOVEMENT_BUFFER and !raycast_left.is_colliding()):
+		if boss.global_position.x >= Global.player_position.x + MOVEMENT_BUFFER:
 			moving_right = false
 			moving_left = true
-		elif (raycast_left.is_colliding()) or (boss.global_position.x <= Global.player_position.x - MOVEMENT_BUFFER and !raycast_right.is_colliding()):
+		elif boss.global_position.x <= Global.player_position.x - MOVEMENT_BUFFER:
 			moving_right = true
 			moving_left = false
 		elif boss.global_position.x < Global.player_position.x + MOVEMENT_BUFFER and boss.global_position.x > Global.player_position.x - MOVEMENT_BUFFER:
@@ -65,4 +60,14 @@ func _physics_process(delta):
 			motion += acceleration
 			motion = motion.clamped(MAX_SPEED)
 			
-		motion = boss.move_and_slide(motion)
+		collision = boss.move_and_collide(motion * delta)
+		
+	if collision != null and collision.collider.is_in_group("player_bullets"):
+		print ("boss was hit")
+		boss.modulate = Color(2, 2, 2, 1)
+		hit_effect_timer.wait_time = 0.3
+		hit_effect_timer.start()
+		
+
+func _on_HitEffectTimer_timeout():
+	boss.modulate = Color(1, 1, 1, 1)

@@ -5,9 +5,8 @@
 [ext_resource path="res://bosses/boss1/states/Shoot.gd" type="Script" id=4]
 
 [node name="Boss1" type="KinematicBody2D" groups=["bosses"]]
-modulate = Color( 1.4, 1.4, 1.4, 1 )
 collision_layer = 8
-collision_mask = 2
+collision_mask = 6
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -19,6 +18,10 @@ polygon = PoolVector2Array( 1, 32, -1, 32, -3, 30, -3, 24, -14, 16, -18, 16, -19
 
 [node name="Move" type="Node" parent="States"]
 script = ExtResource( 3 )
+
+[node name="HitEffectTimer" type="Timer" parent="States/Move"]
+process_mode = 0
+one_shot = true
 
 [node name="Shoot" type="Node" parent="States"]
 script = ExtResource( 4 )
@@ -48,11 +51,6 @@ position = Vector2( 29.039, 9.18259 )
 [node name="MissileLauncher" type="Node2D" parent="."]
 position = Vector2( -0.0286026, 32.2295 )
 
-[node name="RayCastRight" type="RayCast2D" parent="."]
-cast_to = Vector2( 30, 0 )
-
-[node name="RayCastLeft" type="RayCast2D" parent="."]
-cast_to = Vector2( -30, 0 )
-
+[connection signal="timeout" from="States/Move/HitEffectTimer" to="States/Move" method="_on_HitEffectTimer_timeout"]
 [connection signal="timeout" from="States/Shoot/TimeBetweenShots1" to="States/Shoot" method="_on_TimeBetweenShots1_timeout"]
 [connection signal="timeout" from="States/Shoot/TimeBetweenShots2" to="States/Shoot" method="_on_TimeBetweenShots2_timeout"]

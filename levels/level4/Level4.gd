@@ -18,7 +18,7 @@ func _ready():
 	Global.hp = 100
 	Global.level_ended = false
 	Global.boss_level = true
-	Global.boss1_hp = 200
+	Global.boss1_hp = 300
 	Global.boss1_hp_visible = true
 	
 	screen_width = get_viewport_rect().size.x

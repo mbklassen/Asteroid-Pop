@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://world/World.gd" type="Script" id=1]
 [ext_resource path="res://particles/Starfield.gd" type="Script" id=2]
 [ext_resource path="res://particles/Starfield_Boss.gd" type="Script" id=3]
+[ext_resource path="res://world/Barrier.gd" type="Script" id=4]
 
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 2
@@ -41,6 +42,9 @@ extents = Vector2( 10, 319.229 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 189.778, 10 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 189.5, 10 )
 
 [sub_resource type="Environment" id=4]
 background_mode = 4
@@ -93,6 +97,17 @@ shape = SubResource( 3 )
 [node name="BottomEdge" type="CollisionShape2D" parent="EdgeOfScreen"]
 position = Vector2( 180, 620 )
 shape = SubResource( 3 )
+
+[node name="BossBarrier" type="StaticBody2D" parent="."]
+visible = false
+collision_layer = 256
+collision_mask = 0
+
+[node name="Barrier" type="CollisionShape2D" parent="BossBarrier"]
+position = Vector2( 180, 181 )
+shape = SubResource( 6 )
+disabled = true
+script = ExtResource( 4 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )
