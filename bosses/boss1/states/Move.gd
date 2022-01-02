@@ -7,7 +7,11 @@ const FRICTION = 250
 const HOLD_POSITION = 120
 const MOVEMENT_BUFFER = 45
 
+var thruster_small_scene = preload("res://particles/BossThrusterSmall.tscn")
+var thruster_big_scene = preload("res://particles/BossThrusterBig.tscn")
+
 var motion = Vector2.ZERO
+var enter_speed = Vector2.ZERO
 var initial_velocity = Vector2(0, 80)
 var boss_holding_y = false
 var moving_right = true
@@ -16,19 +20,41 @@ var moving_left = false
 var boss
 var direction
 var collision
-var hit_effect_timer
+var thruster_left_position
+var thruster_right_position
+var thruster_center_position
+var thruster_left
+var thruster_right
+var thruster_center
 
 func _ready():
 	boss = get_parent().get_parent()
-	hit_effect_timer = $HitEffectTimer
+	thruster_left_position = boss.get_node("ThrusterPositions/LeftThruster")
+	thruster_right_position = boss.get_node("ThrusterPositions/RightThruster")
+	thruster_center_position = boss.get_node("ThrusterPositions/CenterThruster")
+	
+	# Instantiate Thruster nodes
+	thruster_left = thruster_small_scene.instance()
+	thruster_right = thruster_small_scene.instance()
+	thruster_center = thruster_big_scene.instance()
+	# Explosion particles are now emitting
+	thruster_left.emitting = false
+	thruster_right.emitting = false
+	thruster_center.emitting = false
+	# Get World node
+	var level_node = get_parent().get_parent().get_parent()
+	# Add child of level node (so it is a sibling to Asteroid)
+	level_node.call_deferred("add_child", thruster_left)
+	level_node.call_deferred("add_child", thruster_right)
+	level_node.call_deferred("add_child", thruster_center)
 
 func _physics_process(delta):
 	if !boss_holding_y:
-		collision = boss.move_and_collide(initial_velocity * delta)
+		enter_speed = boss.move_and_slide(initial_velocity)
 		if boss.global_position.y >= HOLD_POSITION and !boss_holding_y:
 			boss_holding_y = true
 	else:
-		
+		enter_speed = Vector2.ZERO
 		if boss.global_position.x >= Global.player_position.x + MOVEMENT_BUFFER:
 			moving_right = false
 			moving_left = true
@@ -60,14 +86,19 @@ func _physics_process(delta):
 			motion += acceleration
 			motion = motion.clamped(MAX_SPEED)
 			
-		collision = boss.move_and_collide(motion * delta)
-		
-	if collision != null and collision.collider.is_in_group("player_bullets"):
-		print ("boss was hit")
-		boss.modulate = Color(2, 2, 2, 1)
-		hit_effect_timer.wait_time = 0.3
-		hit_effect_timer.start()
-		
-
-func _on_HitEffectTimer_timeout():
-	boss.modulate = Color(1, 1, 1, 1)
+		motion = boss.move_and_slide(motion)
+	
+	thruster_left.global_position = thruster_left_position.global_position
+	thruster_right.global_position = thruster_right_position.global_position
+	thruster_center.global_position = thruster_center_position.global_position
+	if enter_speed == Vector2.ZERO:
+		thruster_left.emitting = false
+		thruster_right.emitting = false
+		thruster_center.emitting = false
+	else:
+		thruster_left.emitting = true
+		thruster_right.emitting = true
+		thruster_center.emitting = true
+	if motion != Vector2.ZERO:
+		thruster_left.emitting = true
+		thruster_right.emitting = true

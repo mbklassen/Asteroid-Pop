@@ -24,5 +24,5 @@ func _physics_process(_delta):
 	
 func _on_TimeBetweenShots_timeout():
 	can_shoot = true
-	timer.wait_time = rand_range(1, 3)
+	timer.wait_time = rand_range(1.5, 2.5)
 	timer.start()

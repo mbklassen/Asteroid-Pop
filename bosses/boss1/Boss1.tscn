@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://bosses/textures/boss1.png" type="Texture" id=1]
+[ext_resource path="res://bosses/boss1/CollisionArea.gd" type="Script" id=2]
 [ext_resource path="res://bosses/boss1/states/Move.gd" type="Script" id=3]
 [ext_resource path="res://bosses/boss1/states/Shoot.gd" type="Script" id=4]
 
 [node name="Boss1" type="KinematicBody2D" groups=["bosses"]]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+z_index = 2
 collision_layer = 8
-collision_mask = 6
+collision_mask = 4
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -14,14 +17,26 @@ texture = ExtResource( 1 )
 [node name="Collision" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 1, 32, -1, 32, -3, 30, -3, 24, -14, 16, -18, 16, -19, 21, -17, 23, -17, 30, -18, 31, -20, 30, -20, 25, -24, 22, -24, 17, -18, 11, -18, 9, -23, 9, -32, 5, -32, 4, -18, 4, -17, -7, -9, -15, -20, -32, 20, -32, 9, -15, 17, -7, 18, 4, 32, 4, 32, 5, 23, 9, 18, 9, 18, 11, 24, 17, 24, 22, 20, 25, 20, 30, 18, 31, 17, 30, 17, 23, 19, 21, 18, 16, 14, 16, 3, 24, 3, 30 )
 
+[node name="CollisionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+gravity_vec = Vector2( 0, 0 )
+gravity = 0.0
+linear_damp = 0.0
+angular_damp = 0.0
+script = ExtResource( 2 )
+
+[node name="Collision" type="CollisionPolygon2D" parent="CollisionArea"]
+polygon = PoolVector2Array( 1, 32, -1, 32, -3, 30, -3, 24, -14, 16, -18, 16, -19, 21, -17, 23, -17, 30, -18, 31, -20, 30, -20, 25, -24, 22, -24, 17, -18, 11, -18, 9, -23, 9, -32, 5, -32, 4, -18, 4, -17, -7, -9, -15, -20, -32, 20, -32, 9, -15, 17, -7, 18, 4, 32, 4, 32, 5, 23, 9, 18, 9, 18, 11, 24, 17, 24, 22, 20, 25, 20, 30, 18, 31, 17, 30, 17, 23, 19, 21, 18, 16, 14, 16, 3, 24, 3, 30 )
+
+[node name="HitEffectTimer" type="Timer" parent="CollisionArea"]
+process_mode = 0
+one_shot = true
+
 [node name="States" type="Node" parent="."]
 
 [node name="Move" type="Node" parent="States"]
 script = ExtResource( 3 )
-
-[node name="HitEffectTimer" type="Timer" parent="States/Move"]
-process_mode = 0
-one_shot = true
 
 [node name="Shoot" type="Node" parent="States"]
 script = ExtResource( 4 )
@@ -51,6 +66,18 @@ position = Vector2( 29.039, 9.18259 )
 [node name="MissileLauncher" type="Node2D" parent="."]
 position = Vector2( -0.0286026, 32.2295 )
 
-[connection signal="timeout" from="States/Move/HitEffectTimer" to="States/Move" method="_on_HitEffectTimer_timeout"]
+[node name="ThrusterPositions" type="Node2D" parent="."]
+
+[node name="LeftThruster" type="Node2D" parent="ThrusterPositions"]
+position = Vector2( -26, 0 )
+
+[node name="RightThruster" type="Node2D" parent="ThrusterPositions"]
+position = Vector2( 26, 0 )
+
+[node name="CenterThruster" type="Node2D" parent="ThrusterPositions"]
+position = Vector2( 0, -23 )
+
+[connection signal="body_entered" from="CollisionArea" to="CollisionArea" method="_on_CollisionArea_body_entered"]
+[connection signal="timeout" from="CollisionArea/HitEffectTimer" to="CollisionArea" method="_on_HitEffectTimer_timeout"]
 [connection signal="timeout" from="States/Shoot/TimeBetweenShots1" to="States/Shoot" method="_on_TimeBetweenShots1_timeout"]
 [connection signal="timeout" from="States/Shoot/TimeBetweenShots2" to="States/Shoot" method="_on_TimeBetweenShots2_timeout"]

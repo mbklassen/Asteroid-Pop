@@ -7,9 +7,9 @@
 radius = 2.40151
 height = 12.0803
 
-[node name="Boss1LockOnBullet" type="RigidBody2D"]
-modulate = Color( 2.8, 2.8, 2.8, 1 )
-z_index = -1
+[node name="Boss1Bullet" type="RigidBody2D"]
+modulate = Color( 2.55, 2.55, 2.55, 1 )
+z_index = 1
 collision_layer = 16
 collision_mask = 2
 gravity_scale = 0.0

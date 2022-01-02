@@ -25,8 +25,6 @@ var piece1_scene = preload("res://asteroids/pieces/AsteroidPiece1.tscn")
 var piece2_scene = preload("res://asteroids/pieces/AsteroidPiece2.tscn")
 var piece3_scene = preload("res://asteroids/pieces/AsteroidPiece3.tscn")
 
-var explosion_color = Color(0.35, 0.35, 0.35, 1)
-
 # Sets the drop value for this asteroid (determines whether it will drop an item)
 var drop_value = rand_range(0, 1)
 var item_shoot_faster = preload("res://items/ShootFaster.tscn")
@@ -34,6 +32,7 @@ var item_health = preload("res://items/Health.tscn")
 var item_list = [item_shoot_faster, item_health]
 
 var will_drop_item
+var explosion_color
 
 
 func _ready():
@@ -65,6 +64,7 @@ func _on_AsteroidTop_body_entered(body):
 	# Set explosion's initial position to be the same as Asteroid's current position
 	explosion.global_position = global_position
 	# Set explosion colour to be same as asteroid's
+	explosion_color = Color(0.35, 0.35, 0.35, 1)
 	explosion.process_material.color = explosion_color
 	# Explosion particles are now emitting
 	explosion.emitting = true

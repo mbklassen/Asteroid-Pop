@@ -23,5 +23,8 @@ one_shot = true
 
 [node name="ScoreDecrementTimer" type="Timer" parent="Timers"]
 
-[connection signal="timeout" from="Timers/BossWaitTimer" to="." method="_on_BossStartTimer_timeout"]
+[node name="Enemy1Timer" type="Timer" parent="Timers"]
+
+[connection signal="timeout" from="Timers/BossWaitTimer" to="." method="_on_BossWaitTimer_timeout"]
 [connection signal="timeout" from="Timers/ScoreDecrementTimer" to="." method="_on_ScoreDecrementTimer_timeout"]
+[connection signal="timeout" from="Timers/Enemy1Timer" to="." method="_on_Enemy1Timer_timeout"]

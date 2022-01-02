@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://particles/Explosion.gd" type="Script" id=1]
+[ext_resource path="res://particles/PlayerExplosion.gd" type="Script" id=1]
 
 [sub_resource type="ParticlesMaterial" id=1]
 flag_disable_z = true
@@ -13,10 +13,10 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 color = Color( 0.631373, 0, 0, 1 )
 
-[node name="Explosion" type="Particles2D"]
+[node name="PlayerExplosion" type="Particles2D"]
 scale = Vector2( 3, 3 )
 emitting = false
-amount = 6
+amount = 4
 lifetime = 8.0
 one_shot = true
 speed_scale = 15.0
