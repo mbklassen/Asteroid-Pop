@@ -22,8 +22,12 @@ process_mode = 0
 one_shot = true
 
 [node name="ScoreDecrementTimer" type="Timer" parent="Timers"]
+process_mode = 0
+one_shot = true
 
 [node name="Enemy1Timer" type="Timer" parent="Timers"]
+process_mode = 0
+one_shot = true
 
 [connection signal="timeout" from="Timers/BossWaitTimer" to="." method="_on_BossWaitTimer_timeout"]
 [connection signal="timeout" from="Timers/ScoreDecrementTimer" to="." method="_on_ScoreDecrementTimer_timeout"]

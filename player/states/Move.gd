@@ -51,7 +51,7 @@ func _physics_process(delta):
 	motion = player.move_and_slide(motion)
 	
 	thruster.global_position = thruster_position.global_position
-	if motion.y > 0 or motion == Vector2.ZERO:
+	if motion == Vector2.ZERO:
 		thruster.emitting = false
 	else:
 		thruster.emitting = true

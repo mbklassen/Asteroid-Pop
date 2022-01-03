@@ -22,7 +22,7 @@ func _ready():
 	level_end_timer.connect("timeout", self, "_on_level_end_timer_timeout")
 
 func _process(_delta):
-	if Global.hp <= 0 and gameover_timer.is_stopped():
+	if (Global.hp <= 0 or (Global.score == 0 and Global.boss_level)) and (gameover_timer.is_stopped()):
 		gameover_timer.start()
 	if Global.level_ended and level_end_timer.is_stopped():
 		level_end_timer.start()
