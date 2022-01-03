@@ -9,6 +9,8 @@ var boss_ready = false
 var can_shoot = false
 var can_shoot_all = false
 var super_effect_repeated = false
+var super_effect_color = Color(2, 2, 2)
+var normal_color = Color(1.4, 1.4, 1.4)
 
 var time_between_shots
 var time_between_super
@@ -129,36 +131,36 @@ func _on_TimeBetweenSuper_timeout():
 	can_shoot = false
 	time_between_shots.stop()
 	
-	Global.boss1_charging_up = true
-	boss.modulate = Color(1.9, 1.9, 1.9)
-	super_effect_off_timer.wait_time = 0.2
+	boss.modulate = super_effect_color
+	super_effect_off_timer.wait_time = 0.3
 	super_effect_off_timer.start()
 
 func _on_SuperEffectOff_timeout():
-	boss.modulate = Color(1.5, 1.5, 1.5)
+	boss.modulate = normal_color
 	if !super_effect_repeated:
 		super_effect_repeated = true
-		super_effect_on_timer.wait_time = 0.2
+		super_effect_on_timer.wait_time = 0.3
 		super_effect_on_timer.start()
 	else:
 		super_effect_repeated = false
-		Global.boss1_charging_up = false
 		time_between_shots_super.wait_time = 0.5
 		time_between_shots_super.start()
 
 func _on_SuperEffectOn_timeout():
-	boss.modulate = Color(1.9, 1.9, 1.9)
-	super_effect_off_timer.wait_time = 0.2
+	boss.modulate = super_effect_color
+	super_effect_off_timer.wait_time = 0.3
 	super_effect_off_timer.start()
 
 func _on_TimeBetweenShotsSuper_timeout():
 	if super_shots_left > 0:
 		super_shots_left -= 1
 		can_shoot_all = true
-		time_between_shots_super.wait_time = 0.4
+		Global.boss1_super_mode = true
+		time_between_shots_super.wait_time = 0.5
 		time_between_shots_super.start()
 	else:
 		can_shoot_all = false
+		Global.boss1_super_mode = false
 		time_between_shots.wait_time = 1
 		time_between_shots.start()
 		time_between_super.wait_time = rand_range(4, 10)

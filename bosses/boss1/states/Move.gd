@@ -72,7 +72,7 @@ func _physics_process(delta):
 		elif !moving_left and !moving_right:
 			direction = Vector2.ZERO
 			
-		if direction.x == 0:
+		if direction.x == 0 or Global.boss1_super_mode:
 			var amount = FRICTION * delta
 			# Apply friction when the player's speed is greater than FRICTION * delta
 			if motion.length() > amount:

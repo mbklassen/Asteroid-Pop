@@ -40,5 +40,8 @@ func _on_pause_timer_timeout():
 	get_tree().paused = true
 
 func _on_level_end_timer_timeout():
-	$UI/EndOfLevel.visible = true
+	if !Global.final_level:
+		$UI/EndOfLevel.visible = true
+	else:
+		$UI/YouWin.visible = true
 	get_tree().paused = true

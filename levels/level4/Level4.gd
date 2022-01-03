@@ -31,9 +31,19 @@ func _ready():
 	boss_wait_timer.start()
 	
 	enemy1_timer = $Timers/Enemy1Timer
-	#enemy1_timer.wait_time = 4
-	#enemy1_timer.start()
+	enemy1_timer.wait_time = 4
+
+func _physics_process(_delta):
+	if Global.boss1_hp <= 150 and enemy1_timer.is_stopped() and !Global.level_ended:
+		enemy1_timer.start()
 	
+	if Global.boss1_hp <= 0 and !Global.level_ended:
+		for child in get_children():
+			if child.is_in_group("bosses"):
+				child.queue_free()
+		enemy1_timer.stop()
+		Global.level_ended = true
+
 func _on_BossWaitTimer_timeout():
 	var boss = boss_scene.instance()
 	boss.global_position = Vector2(screen_width/2, -30)

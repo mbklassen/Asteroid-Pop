@@ -12,7 +12,7 @@ var level_ended = false
 var boss_level = false
 var boss1_hp = 300
 var boss1_hp_visible = false
-var boss1_charging_up = false
+var boss1_super_mode = false
 
 var game_paused = false
 
