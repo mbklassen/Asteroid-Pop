@@ -14,6 +14,8 @@ func _ready():
 	boss_shoot.connect("bullet_type_straight", self, "_on_Shoot_straight")
 	boss_shoot.connect("bullet_type_ld", self, "_on_Shoot_ld")
 	boss_shoot.connect("bullet_type_rd", self, "_on_Shoot_rd")
+	boss_shoot.connect("bullet_type_lds", self, "_on_Shoot_lds")
+	boss_shoot.connect("bullet_type_rds", self, "_on_Shoot_rds")
 	
 
 func _physics_process(_delta):
@@ -46,7 +48,7 @@ func _on_Shoot_straight():
 func _on_Shoot_ld():
 	if !bullet_has_shot:
 		# Set direction equal to a normalized vector pointing left-down
-		var direction = (Vector2(-1,4)).normalized()
+		var direction = (Vector2(-1,8)).normalized()
 		linear_velocity = direction * BULLET_SPEED
 		# Set rotation of boss bullet to be relative to direction of movement
 		rotation_degrees = -direction.x * 90
@@ -55,9 +57,26 @@ func _on_Shoot_ld():
 func _on_Shoot_rd():
 	if !bullet_has_shot:
 		# Set direction equal to a normalized vector pointing left-down
-		var direction = (Vector2(1,4)).normalized()
+		var direction = (Vector2(1,8)).normalized()
 		linear_velocity = direction * BULLET_SPEED
 		# Set rotation of boss bullet to be relative to direction of movement
 		rotation_degrees = -direction.x * 90
 		bullet_has_shot = true
 		
+func _on_Shoot_lds():
+	if !bullet_has_shot:
+		# Set direction equal to a normalized vector pointing left-down
+		var direction = (Vector2(-1,4)).normalized()
+		linear_velocity = direction * BULLET_SPEED
+		# Set rotation of boss bullet to be relative to direction of movement
+		rotation_degrees = -direction.x * 90
+		bullet_has_shot = true
+		
+func _on_Shoot_rds():
+	if !bullet_has_shot:
+		# Set direction equal to a normalized vector pointing left-down
+		var direction = (Vector2(1,4)).normalized()
+		linear_velocity = direction * BULLET_SPEED
+		# Set rotation of boss bullet to be relative to direction of movement
+		rotation_degrees = -direction.x * 90
+		bullet_has_shot = true

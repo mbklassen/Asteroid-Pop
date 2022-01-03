@@ -31,8 +31,8 @@ func _ready():
 	boss_wait_timer.start()
 	
 	enemy1_timer = $Timers/Enemy1Timer
-	enemy1_timer.wait_time = 4
-	enemy1_timer.start()
+	#enemy1_timer.wait_time = 4
+	#enemy1_timer.start()
 	
 func _on_BossWaitTimer_timeout():
 	var boss = boss_scene.instance()

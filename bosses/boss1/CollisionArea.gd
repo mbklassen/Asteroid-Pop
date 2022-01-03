@@ -13,7 +13,7 @@ func _ready():
 	hit_effect_timer = $HitEffectTimer
 
 func _on_CollisionArea_body_entered(_body):
-	if !being_hit:
+	if !being_hit and !Global.boss1_charging_up:
 		being_hit = true
 		boss.modulate = Color(1, 1, 1)
 		
