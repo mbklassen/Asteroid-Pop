@@ -19,9 +19,10 @@ func _physics_process(_delta):
 		var level_node = get_parent().get_parent().get_parent()
 		var firing_position = get_parent().get_parent().get_node("FiringPosition")
 		bullet.global_position = firing_position.global_position
-		# Add child of parent node (so it is a sibling to Enemy1)
+		# Add bullet as a child of current level
 		level_node.add_child(bullet)
-	
+
+# Enemy spawns bullets between delays
 func _on_TimeBetweenShots_timeout():
 	can_shoot = true
 	timer.wait_time = rand_range(1.5, 2.5)

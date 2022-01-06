@@ -13,7 +13,7 @@ var velocity_linear = Vector2(rand_range(-200,-50), rand_range(100,200))
 var velocity_counterclockwise = rand_range(-4, -1)
 var velocity_clockwise = rand_range(1, 4)
 # Will dictate the spin direction, depending on the number that rand_range() returns 
-# (< 1 means spin counterclockwise and >= 1 means spin )
+# (< 1 means spin counterclockwise and >= 1 means spin clockwise)
 var rotation_direction = rand_range(0, 2)
 # Will dictate the factor by which the asteroid will be scaled
 var scale_factor = rand_range(1, 1.8)
@@ -40,14 +40,17 @@ func _ready():
 	# Scale asteroid by a value in a random range
 	$Sprite.scale = scale_vector
 	$Collision.scale = scale_vector
+	
 	# Set downward speed of asteroid
 	linear_velocity = velocity_linear
+	
 	# Set rotation speed and direction
 	if (rotation_direction < ROTATION_DIRECTION_SWITCH):
 		angular_velocity = velocity_counterclockwise
 	else:
 		angular_velocity = velocity_clockwise
-		
+	
+	# Determine whether asteroid wilol drop an item	
 	if drop_value < DROP_POTENTIAL:
 		will_drop_item = true
 	else:
@@ -65,58 +68,60 @@ func _on_AsteroidRight_body_entered(body):
 	var explosion = explosion_scene.instance()
 	# Set explosion's initial position to be the same as Asteroid's current position
 	explosion.global_position = global_position
-	# Set explosion colour to be same as asteroid's
+	# Set explosion color to be same as asteroid's
 	explosion.process_material.color = explosion_color
 	# Explosion particles are now emitting
 	explosion.emitting = true
-	# Get World node
+	# Get current level
 	var level_node = get_parent()
-	# Add child of level_node (so it is a sibling to Asteroid)
+	# Add explosion as a child of current level
 	level_node.add_child(explosion)
 
 	
-	# If asteroid collided with player, decrease value of health bar
+	# If asteroid collided with player, decrease value of hp
 	if body.name == "Player":
 		Global.hp -= HP_VALUE
 	
 	# If asteroid collides with PlayerBullet
 	else:
+		# Spawn item upon asteroid destruction
 		if will_drop_item:
+			# Makes the item random
 			var item = item_list[randi() % item_list.size()].instance()
 			item.global_position = global_position
 			item.set_linear_velocity(velocity_linear / 2)
 			level_node.call_deferred("add_child", item)
 		# Instantiate AsteroidPiece1 node
 		var piece1 = piece1_scene.instance()
-		# Set piece1's initial position
+		# Set piece1's initial position, velocity, and scale
 		piece1.position.x = position.x
 		piece1.position.y = position.y - PIECE_POSITION_VARIABILITY
 		piece1.set_linear_velocity(velocity_linear + Vector2(0, rand_range(-150, -50)))
 		piece1.get_node("Sprite").scale = scale_vector
 		piece1.get_node("Collision").scale = scale_vector
-		# Add child of level_node (so it is a sibling to AsteroidTop)
+		# Add asteroid piece as a child of current level
 		level_node.call_deferred("add_child", piece1)
 
 		# Instantiate AsteroidPiece2 node
 		var piece2 = piece2_scene.instance()
-		# Set piece2's initial position
+		# Set piece2's initial position, velocity, and scale
 		piece2.position.x = position.x + PIECE_POSITION_VARIABILITY
 		piece2.position.y = position.y
 		piece2.set_linear_velocity(velocity_linear + Vector2(0, rand_range(-50, 50)))
 		piece2.get_node("Sprite").scale = scale_vector
 		piece2.get_node("Collision").scale = scale_vector
-		# Add child of level_node (so it is a sibling to AsteroidTop)
+		# Add asteroid piece as a child of current level
 		level_node.call_deferred("add_child", piece2)
 
 		# Instantiate AsteroidPiece3 node
 		var piece3 = piece3_scene.instance()
-		# Set piece3's initial position
+		# Set piece3's initial position, velocity, and scale
 		piece3.position.x = position.x
 		piece3.position.y = position.y + PIECE_POSITION_VARIABILITY
 		piece3.set_linear_velocity(velocity_linear + Vector2(0, rand_range(50, 150)))
 		piece3.get_node("Sprite").scale = scale_vector
 		piece3.get_node("Collision").scale = scale_vector
-		# Add child of level_node (so it is a sibling to AsteroidTop)
+		# Add asteroid piece as a child of current level
 		level_node.call_deferred("add_child", piece3)
 	
 	# Remove Asteroid and all its children from the queue

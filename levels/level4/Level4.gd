@@ -61,6 +61,7 @@ func _physics_process(_delta):
 			if child.is_in_group("bosses"):
 				child.queue_free()
 		enemy1_timer.stop()
+		score_decrement_timer.stop()
 		Global.level_ended = true
 
 func _on_BossWaitTimer_timeout():

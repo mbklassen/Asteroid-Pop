@@ -1,6 +1,8 @@
 extends Area2D
 
 
+# This node/script is needed to handle collision for this kinematic body
+
 var explosion_scene = preload("res://particles/BossExplosion.tscn")
 var explosion_color = Color(0.63, 0, 0, 1)
 

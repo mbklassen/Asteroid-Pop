@@ -15,6 +15,7 @@ var velocity_linear = Vector2(0, 200)
 var will_drop_item
 
 func _ready():
+	# Determines whether an item will drop
 	if drop_value < DROP_POTENTIAL:
 		will_drop_item = true
 	else:
@@ -33,12 +34,13 @@ func _on_Enemy1_body_entered(body):
 	explosion.emitting = true
 	# Get World node
 	var level_node = get_parent()
-	# Add child of level node (so it is a sibling to Asteroid)
+	# Add explosion as a child of level node
 	level_node.add_child(explosion)
 	
 	if body.name == "Player":
 		Global.hp -= HP_VALUE
 	else:
+		# Spawns a random item on enemy destruction
 		if will_drop_item:
 			var item = item_list[randi() % item_list.size()].instance()
 			item.global_position = global_position
