@@ -1,7 +1,7 @@
 extends Node2D
 
 
-const LEVEL_TIMER_WAIT_TIME = 60
+const LEVEL_TIMER_WAIT_TIME = 45
 const LEVEL_END_TIMER_WAIT_TIME = 4
 
 var asteroid_top_scene = preload("res://asteroids/AsteroidTop.tscn")
@@ -55,6 +55,7 @@ func _setup_enemy1_timer():
 	enemy1_timer.wait_time = rand_range(0.5, 2)
 	enemy1_timer.start()
 
+# (When Global.level_ended is set to true, a timer is started by Main.gd to show "end of level" menu)
 func _on_Level3Timer_timeout():
 	asteroid_top_timer.stop()
 	asteroid_rl_timer.stop()

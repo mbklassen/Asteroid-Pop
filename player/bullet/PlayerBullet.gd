@@ -21,7 +21,7 @@ func _on_PlayerBullet_body_entered(body):
 	elif body.is_in_group("enemy-type1"):
 		Global.score += 3
 	elif body.is_in_group("bosses"):
-		Global.boss1_hp -= 2
+		Global.boss1_hp -= 1
 		
 	# Queue the bullet to be freed
 	queue_free()

@@ -93,7 +93,7 @@ func _on_AsteroidTop_body_entered(body):
 		piece1.set_linear_velocity(velocity_linear + Vector2(rand_range(-150, -50), 0))
 		piece1.get_node("Sprite").scale = scale_vector
 		piece1.get_node("Collision").scale = scale_vector
-		# Add child of level_node (so it is a sibling to AsteroidTop)
+		# Add child of level_node (so it is a sibling to AsteroidLeft)
 		level_node.call_deferred("add_child", piece1)
 
 		# Instantiate AsteroidPiece2 node
@@ -104,7 +104,7 @@ func _on_AsteroidTop_body_entered(body):
 		piece2.set_linear_velocity(velocity_linear + Vector2(rand_range(-50, 50), 0))
 		piece2.get_node("Sprite").scale = scale_vector
 		piece2.get_node("Collision").scale = scale_vector
-		# Add child of level_node (so it is a sibling to AsteroidTop)
+		# Add child of level_node (so it is a sibling to AsteroidLeft)
 		level_node.call_deferred("add_child", piece2)
 
 		# Instantiate AsteroidPiece3 node
@@ -115,7 +115,7 @@ func _on_AsteroidTop_body_entered(body):
 		piece3.set_linear_velocity(velocity_linear + Vector2(rand_range(50, 150), 0))
 		piece3.get_node("Sprite").scale = scale_vector
 		piece3.get_node("Collision").scale = scale_vector
-		# Add child of level_node (so it is a sibling to AsteroidTop)
+		# Add child of level_node (so it is a sibling to AsteroidLeft)
 		level_node.call_deferred("add_child", piece3)
 	
 	# Remove Asteroid and all its children from the queue

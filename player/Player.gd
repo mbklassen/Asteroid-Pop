@@ -21,3 +21,5 @@ func _physics_process(_delta):
 		else:
 			Global.hp += 20
 		Global.item_health_acquired = false
+	if Global.hp <= 0:
+		queue_free()

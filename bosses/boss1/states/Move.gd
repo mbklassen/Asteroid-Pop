@@ -41,12 +41,10 @@ func _ready():
 	thruster_left.emitting = false
 	thruster_right.emitting = false
 	thruster_center.emitting = false
-	# Get World node
-	var level_node = get_parent().get_parent().get_parent()
-	# Add child of level node (so it is a sibling to Asteroid)
-	level_node.call_deferred("add_child", thruster_left)
-	level_node.call_deferred("add_child", thruster_right)
-	level_node.call_deferred("add_child", thruster_center)
+	# Add thrusters as children of boss node
+	boss.call_deferred("add_child", thruster_left)
+	boss.call_deferred("add_child", thruster_right)
+	boss.call_deferred("add_child", thruster_center)
 
 func _physics_process(delta):
 	if !boss_holding_y:
@@ -55,13 +53,13 @@ func _physics_process(delta):
 			boss_holding_y = true
 	else:
 		enter_speed = Vector2.ZERO
-		if boss.global_position.x >= Global.player_position.x + MOVEMENT_BUFFER:
+		if boss.global_position.x > Global.player_position.x + MOVEMENT_BUFFER:
 			moving_right = false
 			moving_left = true
-		elif boss.global_position.x <= Global.player_position.x - MOVEMENT_BUFFER:
+		elif boss.global_position.x < Global.player_position.x - MOVEMENT_BUFFER:
 			moving_right = true
 			moving_left = false
-		elif boss.global_position.x < Global.player_position.x + MOVEMENT_BUFFER and boss.global_position.x > Global.player_position.x - MOVEMENT_BUFFER:
+		elif boss.global_position.x <= Global.player_position.x + MOVEMENT_BUFFER and boss.global_position.x >= Global.player_position.x - MOVEMENT_BUFFER:
 			moving_left = false
 			moving_right = false
 			

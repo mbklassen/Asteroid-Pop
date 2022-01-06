@@ -9,8 +9,8 @@ var boss_ready = false
 var can_shoot = false
 var can_shoot_all = false
 var super_effect_repeated = false
-var super_effect_color = Color(2, 2, 2)
-var normal_color = Color(1.4, 1.4, 1.4)
+var super_effect_color = Color(1.9, 1.9, 1.9)
+var normal_color = Color(1.5, 1.5, 1.5)
 
 var time_between_shots
 var time_between_super
@@ -19,6 +19,7 @@ var super_effect_off_timer
 var super_effect_on_timer
 
 var boss
+var boss_sprite
 var firing_positions
 var firing_side
 var boss_holding_y
@@ -40,6 +41,7 @@ func _ready():
 	super_effect_on_timer = $SuperEffectOn
 	
 	boss = get_parent().get_parent()
+	boss_sprite = boss.get_node("Sprite")
 	firing_positions = get_parent().get_parent().get_node("FiringPositions")
 
 func _physics_process(_delta):
@@ -131,12 +133,12 @@ func _on_TimeBetweenSuper_timeout():
 	can_shoot = false
 	time_between_shots.stop()
 	
-	boss.modulate = super_effect_color
+	boss_sprite.self_modulate = super_effect_color
 	super_effect_off_timer.wait_time = 0.3
 	super_effect_off_timer.start()
 
 func _on_SuperEffectOff_timeout():
-	boss.modulate = normal_color
+	boss_sprite.self_modulate = normal_color
 	if !super_effect_repeated:
 		super_effect_repeated = true
 		super_effect_on_timer.wait_time = 0.3
@@ -147,7 +149,7 @@ func _on_SuperEffectOff_timeout():
 		time_between_shots_super.start()
 
 func _on_SuperEffectOn_timeout():
-	boss.modulate = super_effect_color
+	boss_sprite.self_modulate = super_effect_color
 	super_effect_off_timer.wait_time = 0.3
 	super_effect_off_timer.start()
 

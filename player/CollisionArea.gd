@@ -5,19 +5,21 @@ var explosion_scene = preload("res://particles/PlayerExplosion.tscn")
 var being_hit = false
 
 var player
+var player_sprite
 var hit_effect_timer
 var explosion_color
 
 
 func _ready():
 	player = get_parent()
+	player_sprite = player.get_node("Sprite")
 	hit_effect_timer = $HitEffectTimer
 
 
 func _on_CollisionArea_body_entered(_body):
 	if !being_hit:
 		being_hit = true
-		player.modulate = Color(0.5, 0.5, 0.5)
+		player_sprite.self_modulate = Color(0.5, 0.5, 0.5)
 		
 		# Instantiate Explosion node
 		var explosion = explosion_scene.instance()
@@ -38,4 +40,4 @@ func _on_CollisionArea_body_entered(_body):
 
 func _on_HitEffectTimer_timeout():
 	being_hit = false
-	player.modulate = Color(1, 1, 1)
+	player_sprite.self_modulate = Color(1, 1, 1)

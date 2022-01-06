@@ -8,7 +8,7 @@ radius = 2.53373
 height = 11.3151
 
 [node name="PlayerBullet" type="RigidBody2D" groups=["player-bullets"]]
-modulate = Color( 1.8, 1.8, 1.8, 1 )
+modulate = Color( 1.5, 1.8, 1.9, 1 )
 z_index = -1
 collision_layer = 4
 collision_mask = 8

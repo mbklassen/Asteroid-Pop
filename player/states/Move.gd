@@ -20,10 +20,8 @@ func _ready():
 	thruster = thruster_scene.instance()
 	# Explosion particles are now emitting
 	thruster.emitting = false
-	# Get World node
-	var level_node = get_parent().get_parent().get_parent()
-	# Add child of level node (so it is a sibling to Asteroid)
-	level_node.call_deferred("add_child", thruster)
+	# Add thruster as a child of player node
+	player.call_deferred("add_child", thruster)
 
 func _physics_process(delta):
 	var input_vector = Vector2.ZERO
