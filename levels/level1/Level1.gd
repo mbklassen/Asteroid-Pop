@@ -1,7 +1,8 @@
 extends Node2D
 
-const LEVEL_TIMER_WAIT_TIME = 40
+const LEVEL_TIMER_WAIT_TIME = 15
 const LEVEL_END_TIMER_WAIT_TIME = 4
+const SAVE_FILE_PATH = "user://level1_highscore.save"
 
 var asteroid_top_scene1 = preload("res://asteroids/AsteroidTop.tscn")
 
@@ -19,8 +20,12 @@ func _ready():
 	Global.score = 0
 	Global.hp = 100
 	Global.level_ended = false
+	Global.new_highscore = false
+	
 	Global.boss_level = false
 	Global.boss1_hp_visible = false
+	
+	load_highscore()
 	
 	# Get LevelTimer node and connect its timeout signal to _on_level_timer_timeout() method
 	level1_timer = $Timers/Level1Timer
@@ -30,6 +35,13 @@ func _ready():
 	asteroid_top_timer = $Timers/AsteroidTopTimer
 	_setup_AsteroidTop_timer()
 	
+func load_highscore():
+	var save_data = File.new()
+	if save_data.file_exists(SAVE_FILE_PATH):
+		save_data.open(SAVE_FILE_PATH, File.READ)
+		Global.highscore = save_data.get_var()
+		save_data.close()
+		print("loaded variable from file: " + str(Global.highscore))
 
 func _setup_AsteroidTop_timer():
 	asteroid_top_timer.wait_time = rand_range(0.1, 2)

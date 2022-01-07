@@ -8,7 +8,10 @@ var first_level = true
 var final_level = false
 var hp = 100
 var score = 0
+var highscore = 0
 var level_ended = false
+var new_highscore = false
+
 
 var player_position = Vector2.ZERO
 

@@ -6,6 +6,7 @@ const BOSS_TIMER_WAIT_TIME = 1
 const SCORE_DECREMENT_WAIT_TIME = 0.6
 # Threshold of boss hp at which regular enemies start spawning
 const ENEMY1_SPAWNING_HP = 150
+const SAVE_FILE_PATH = "user://level4_highscore.save"
 
 var boss_scene = preload("res://bosses/boss1/Boss1.tscn")
 var boss_hp_scene = preload("res://ui/hud/HUD.tscn")
@@ -25,11 +26,14 @@ func _ready():
 	Global.score = 200
 	Global.hp = 100
 	Global.level_ended = false
+	Global.new_highscore = false
 	
 	Global.boss_level = true
 	Global.boss1_hp = 300
 	Global.boss1_hp_visible = true
 	Global.boss1_super_mode = false
+	
+	load_highscore()
 	
 	# Get screen width for boss initial position
 	screen_width = get_viewport_rect().size.x
@@ -63,6 +67,14 @@ func _physics_process(_delta):
 		enemy1_timer.stop()
 		score_decrement_timer.stop()
 		Global.level_ended = true
+		print("loaded variable from file: " + str(Global.highscore))
+
+func load_highscore():
+	var save_data = File.new()
+	if save_data.file_exists(SAVE_FILE_PATH):
+		save_data.open(SAVE_FILE_PATH, File.READ)
+		Global.highscore = save_data.get_var()
+		save_data.close()
 
 func _on_BossWaitTimer_timeout():
 	var boss = boss_scene.instance()

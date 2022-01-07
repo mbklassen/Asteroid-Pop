@@ -1,8 +1,9 @@
 extends Node2D
 
 
-const LEVEL_TIMER_WAIT_TIME = 50
+const LEVEL_TIMER_WAIT_TIME = 15
 const LEVEL_END_TIMER_WAIT_TIME = 4
+const SAVE_FILE_PATH = "user://level2_highscore.save"
 
 var asteroid_top_scene = preload("res://asteroids/AsteroidTop.tscn")
 var asteroid_left_scene = preload("res://asteroids/AsteroidLeft.tscn")
@@ -24,8 +25,12 @@ func _ready():
 	Global.score = 0
 	Global.hp = 100
 	Global.level_ended = false
+	Global.new_highscore = false
+	
 	Global.boss_level = false
 	Global.boss1_hp_visible = false
+	
+	load_highscore()
 	
 	level2_timer = $Timers/Level2Timer
 	level2_timer.wait_time = LEVEL_TIMER_WAIT_TIME
@@ -37,7 +42,15 @@ func _ready():
 	asteroid_rl_timer = $Timers/AsteroidRLTimer
 	_setup_asteroid_rl_timer()
 	
-	
+
+func load_highscore():
+	var save_data = File.new()
+	if save_data.file_exists(SAVE_FILE_PATH):
+		save_data.open(SAVE_FILE_PATH, File.READ)
+		Global.highscore = save_data.get_var()
+		save_data.close()
+		print("loaded variable from file: " + str(Global.highscore))
+
 func _setup_asteroid_top_timer():
 	asteroid_top_timer.wait_time = rand_range(0.1, 2)
 	asteroid_top_timer.start()

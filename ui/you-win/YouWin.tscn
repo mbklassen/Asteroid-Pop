@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ui/you-win/YouWin.gd" type="Script" id=1]
+[ext_resource path="res://ui/you-win/ScoreLabel.gd" type="Script" id=2]
+[ext_resource path="res://ui/you-win/NewHighScoreLabel.gd" type="Script" id=3]
 
 [node name="YouWin" type="Control"]
 pause_mode = 2
@@ -33,6 +35,42 @@ text = "You win!"
 align = 1
 valign = 1
 uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewHighScoreLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -170.0
+margin_top = -210.0
+margin_bottom = -196.0
+rect_scale = Vector2( 2, 2 )
+text = "New High Score!"
+align = 1
+valign = 1
+uppercase = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -170.0
+margin_top = -170.0
+margin_bottom = -156.0
+rect_scale = Vector2( 2, 2 )
+text = "100"
+align = 1
+valign = 1
+uppercase = true
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
