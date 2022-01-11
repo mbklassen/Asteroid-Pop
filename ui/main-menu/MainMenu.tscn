@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/main-menu/Level2Button.gd" type="Script" id=1]
+[ext_resource path="res://ui/main-menu/MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://ui/main-menu/Level3Button.gd" type="Script" id=3]
+[ext_resource path="res://ui/main-menu/Level4Button.gd" type="Script" id=4]
+
+[node name="MainMenu" type="Control"]
+pause_mode = 2
+margin_right = 360.0
+margin_bottom = 640.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlackOverlay" type="ColorRect" parent="."]
+margin_right = 360.0
+margin_bottom = 640.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectLevelLabel" type="Label" parent="."]
+margin_left = 140.0
+margin_top = 264.0
+margin_right = 223.0
+margin_bottom = 278.0
+text = "Select Level"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 134.0
+margin_top = 290.0
+margin_right = 226.0
+margin_bottom = 312.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level1Button" type="Button" parent="HBoxContainer"]
+margin_right = 20.0
+margin_bottom = 22.0
+text = "1"
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level2Button" type="Button" parent="HBoxContainer"]
+margin_left = 24.0
+margin_right = 44.0
+margin_bottom = 22.0
+disabled = true
+text = "2"
+flat = true
+expand_icon = true
+script = ExtResource( 1 )
+
+[node name="Level3Button" type="Button" parent="HBoxContainer"]
+margin_left = 48.0
+margin_right = 68.0
+margin_bottom = 22.0
+disabled = true
+text = "3"
+flat = true
+expand_icon = true
+script = ExtResource( 3 )
+
+[node name="Level4Button" type="Button" parent="HBoxContainer"]
+margin_left = 72.0
+margin_right = 92.0
+margin_bottom = 22.0
+disabled = true
+text = "4"
+flat = true
+expand_icon = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="HBoxContainer/Level1Button" to="." method="_on_Level1Button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Level2Button" to="." method="_on_Level2Button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Level3Button" to="." method="_on_Level3Button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Level4Button" to="." method="_on_Level4Button_pressed"]

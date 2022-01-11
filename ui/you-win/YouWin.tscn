@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://ui/you-win/YouWin.gd" type="Script" id=1]
-[ext_resource path="res://ui/you-win/ScoreLabel.gd" type="Script" id=2]
 [ext_resource path="res://ui/you-win/NewHighScoreLabel.gd" type="Script" id=3]
 
 [node name="YouWin" type="Control"]
@@ -16,7 +15,26 @@ __meta__ = {
 [node name="BlackOverlay" type="ColorRect" parent="."]
 margin_right = 360.0
 margin_bottom = 640.0
-color = Color( 0, 0, 0, 0.772549 )
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewHighScoreLabel" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -170.0
+margin_top = -210.0
+margin_bottom = -196.0
+rect_scale = Vector2( 2, 2 )
+text = "New High Score!"
+align = 1
+valign = 1
+uppercase = true
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -39,42 +57,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NewHighScoreLabel" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -170.0
-margin_top = -210.0
-margin_bottom = -196.0
-rect_scale = Vector2( 2, 2 )
-text = "New High Score!"
-align = 1
-valign = 1
-uppercase = true
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ScoreLabel" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -170.0
-margin_top = -170.0
-margin_bottom = -156.0
-rect_scale = Vector2( 2, 2 )
-text = "100"
-align = 1
-valign = 1
-uppercase = true
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -88,22 +70,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RestartButton" type="Button" parent="VBoxContainer"]
+[node name="MainMenuButton" type="Button" parent="VBoxContainer"]
 margin_right = 95.0
 margin_bottom = 20.0
-text = "Restart Level"
+text = "Main Menu"
 flat = true
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="RestartButton" type="Button" parent="VBoxContainer"]
 margin_top = 24.0
 margin_right = 95.0
 margin_bottom = 44.0
-text = "Quit"
+text = "Restart Level"
 flat = true
 
 [node name="LevelEndTimer" type="Timer" parent="."]
 process_mode = 0
 one_shot = true
 
+[connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

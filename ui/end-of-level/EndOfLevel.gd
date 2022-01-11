@@ -25,6 +25,16 @@ func _on_NextLevelButton_pressed():
 		visible = false
 		Global.level += 1
 		Global.level_ended = false
+		
+func _on_MainMenuButton_pressed():
+	if get_tree().paused:
+		var _restart = get_tree().reload_current_scene()
+		visible = false
+		in_level_end_menu = false
+		focus_grabbed = false
+		get_tree().paused = false
+		Global.level_ended = false
+		Global.in_main_menu = true
 
 # When "restart" button is pressed, hide the menu and restart current level
 func _on_RestartButton_pressed():
@@ -33,8 +43,3 @@ func _on_RestartButton_pressed():
 		get_tree().paused = false
 		focus_grabbed = false
 		in_level_end_menu = false
-
-# When "quit" button is pressed, close game window
-func _on_QuitButton_pressed():
-	if get_tree().paused:
-		get_tree().quit()

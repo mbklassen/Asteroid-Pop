@@ -14,7 +14,7 @@ __meta__ = {
 [node name="BlackOverlay" type="ColorRect" parent="."]
 margin_right = 360.0
 margin_bottom = 640.0
-color = Color( 0, 0, 0, 0.772549 )
+color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -56,18 +56,18 @@ margin_bottom = 20.0
 text = "Continue"
 flat = true
 
-[node name="RestartButton" type="Button" parent="VBoxContainer"]
+[node name="MainMenuButton" type="Button" parent="VBoxContainer"]
 margin_top = 24.0
 margin_right = 95.0
 margin_bottom = 44.0
-text = "Restart Level"
+text = "Main Menu"
 flat = true
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="RestartButton" type="Button" parent="VBoxContainer"]
 margin_top = 48.0
 margin_right = 95.0
 margin_bottom = 68.0
-text = "Quit"
+text = "Restart Level"
 flat = true
 
 [node name="PauseTimer" type="Timer" parent="."]
@@ -75,5 +75,5 @@ process_mode = 0
 one_shot = true
 
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

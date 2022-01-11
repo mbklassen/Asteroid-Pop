@@ -23,8 +23,11 @@ func _on_RestartButton_pressed():
 		focus_grabbed = false
 		in_game_over_menu = false
 
-# When "quit" button is pressed, close game window
-func _on_QuitButton_pressed():
+func _on_MainMenuButton_pressed():
 	if get_tree().paused:
-		get_tree().quit()
-
+		var _restart = get_tree().reload_current_scene()
+		visible = false
+		in_game_over_menu = false
+		focus_grabbed = false
+		get_tree().paused = false
+		Global.in_main_menu = true

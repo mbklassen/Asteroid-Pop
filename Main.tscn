@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://world/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/hud/HUD.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://ui/end-of-level/EndOfLevel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/pause/Pause.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/you-win/YouWin.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/main-menu/MainMenu.tscn" type="PackedScene" id=8]
 
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
@@ -27,4 +28,7 @@ visible = false
 visible = false
 
 [node name="YouWin" parent="UI" instance=ExtResource( 7 )]
+visible = false
+
+[node name="MainMenu" parent="UI" instance=ExtResource( 8 )]
 visible = false

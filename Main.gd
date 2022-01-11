@@ -8,11 +8,6 @@ const LEVEL2_SAVE_FILE_PATH = "user://level2_highscore.save"
 const LEVEL3_SAVE_FILE_PATH = "user://level3_highscore.save"
 const LEVEL4_SAVE_FILE_PATH = "user://level4_highscore.save"
 
-var highscore_level1 = 0
-var highscore_level2 = 0
-var highscore_level3 = 0
-var highscore_level4 = 0
-
 var gameover_timer
 var pause_timer
 var level_end_timer
@@ -42,18 +37,16 @@ func _process(_delta):
 	if Global.level_ended and level_end_timer.is_stopped():
 		level_end_timer.start()
 		
+	if Global.in_main_menu:
+		$UI/MainMenu.visible = true
+		
 func _input(event):
 	# If the pause button/key is pressed and both pause_timer and level_end_timer are stopped, then start pause_timer
 	# The level_end_timer check is to prevent the game from being paused when the level is about to end
-	if event.is_action_pressed("ui_home") and pause_timer.is_stopped() and level_end_timer.is_stopped():
+	if event.is_action_pressed("ui_home") and pause_timer.is_stopped() and level_end_timer.is_stopped() and gameover_timer.is_stopped():
 		pause_timer.start()
-		
-	# !!! TO BE REMOVED ON COMPLETION OF TESTING !!!
-	# Prevents level from ending when player switches to another level while level_end_timer is running
-	if (event.is_action_pressed("next_level") or event.is_action_pressed("prev_level")) and (!level_end_timer.is_stopped()):
-		level_end_timer.stop()
 
-# On gameover_timer timeout, "game over" menu becomes visible and the rest of the game is paused
+# On gameover_timer timeout, if level has not ended, "game over" menu becomes visible and the rest of the game is paused
 func _on_gameover_timer_timeout():
 	$UI/GameOver.visible = true
 	get_tree().paused = true

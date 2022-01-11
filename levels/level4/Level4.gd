@@ -27,6 +27,7 @@ func _ready():
 	Global.hp = 100
 	Global.level_ended = false
 	Global.new_highscore = false
+	Global.highscore = 0
 	
 	Global.boss_level = true
 	Global.boss1_hp = 300
@@ -67,7 +68,6 @@ func _physics_process(_delta):
 		enemy1_timer.stop()
 		score_decrement_timer.stop()
 		Global.level_ended = true
-		print("loaded variable from file: " + str(Global.highscore))
 
 func load_highscore():
 	var save_data = File.new()
@@ -75,6 +75,7 @@ func load_highscore():
 		save_data.open(SAVE_FILE_PATH, File.READ)
 		Global.highscore = save_data.get_var()
 		save_data.close()
+		print("loaded variable from file: " + str(Global.highscore))
 
 func _on_BossWaitTimer_timeout():
 	var boss = boss_scene.instance()

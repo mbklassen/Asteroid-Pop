@@ -1,7 +1,7 @@
 extends Node2D
 
 
-const LEVEL_TIMER_WAIT_TIME = 15
+const LEVEL_TIMER_WAIT_TIME = 50
 const LEVEL_END_TIMER_WAIT_TIME = 4
 const SAVE_FILE_PATH = "user://level2_highscore.save"
 
@@ -26,6 +26,7 @@ func _ready():
 	Global.hp = 100
 	Global.level_ended = false
 	Global.new_highscore = false
+	Global.highscore = 0
 	
 	Global.boss_level = false
 	Global.boss1_hp_visible = false
