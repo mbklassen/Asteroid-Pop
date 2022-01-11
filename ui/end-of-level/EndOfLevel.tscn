@@ -22,6 +22,7 @@ __meta__ = {
 
 [node name="NewHighScoreLabel" type="Label" parent="."]
 visible = false
+modulate = Color( 1.5, 1.5, 0.6, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -30,16 +31,15 @@ margin_left = -170.0
 margin_top = -210.0
 margin_bottom = -196.0
 rect_scale = Vector2( 2, 2 )
-text = "New high score!"
 align = 1
 valign = 1
-uppercase = true
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LevelEndLabel" type="Label" parent="."]
+modulate = Color( 0.5, 0.9, 1.8, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -49,10 +49,9 @@ margin_top = -79.1666
 margin_right = -51.9861
 margin_bottom = -65.1666
 rect_scale = Vector2( 3, 3 )
-text = "Level complete"
+text = "Level Complete"
 align = 1
 valign = 1
-uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

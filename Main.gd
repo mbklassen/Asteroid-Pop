@@ -31,7 +31,7 @@ func _ready():
 
 func _process(_delta):
 	# If player dies or the score reaches zero on a boss level, and gameover_timer is stopped, then start gameover_timer
-	if (Global.hp <= 0 or (Global.score == 0 and Global.boss_level)) and (gameover_timer.is_stopped()):
+	if (Global.hp <= 0 or (Global.score == 0 and Global.boss_level)) and (gameover_timer.is_stopped()) and (level_end_timer.is_stopped()):
 		gameover_timer.start()
 	# If level has ended and level_end_timer is stopped, then start level_end_timer
 	if Global.level_ended and level_end_timer.is_stopped():
@@ -81,4 +81,3 @@ func save_highscore():
 		save_data.open(LEVEL4_SAVE_FILE_PATH, File.WRITE)
 	save_data.store_var(Global.score)
 	save_data.close()
-	print("stored variable in file: " + str(Global.score))

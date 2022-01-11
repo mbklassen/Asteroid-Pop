@@ -12,7 +12,6 @@ func _process(_delta):
 	if Global.in_main_menu and !get_tree().paused:
 		visible = true
 		get_tree().paused = true
-		print("pausing game")
 	# If game is paused and a menu button is not selected and we are in the menu
 	# then grab focus (select) the "level 1" button
 	# Focus is now grabbed (a menu button is selected)

@@ -42,7 +42,6 @@ func load_highscore():
 		save_data.open(SAVE_FILE_PATH, File.READ)
 		Global.highscore = save_data.get_var()
 		save_data.close()
-		print("loaded variable from file: " + str(Global.highscore))
 
 func _setup_AsteroidTop_timer():
 	asteroid_top_timer.wait_time = rand_range(0.1, 2)

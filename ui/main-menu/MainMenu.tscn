@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/main-menu/Level2Button.gd" type="Script" id=1]
 [ext_resource path="res://ui/main-menu/MainMenu.gd" type="Script" id=2]
 [ext_resource path="res://ui/main-menu/Level3Button.gd" type="Script" id=3]
 [ext_resource path="res://ui/main-menu/Level4Button.gd" type="Script" id=4]
+[ext_resource path="res://ui/textures/main-menu.png" type="Texture" id=5]
 
 [node name="MainMenu" type="Control"]
 pause_mode = 2
@@ -14,32 +15,42 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BlackOverlay" type="ColorRect" parent="."]
-margin_right = 360.0
-margin_bottom = 640.0
-color = Color( 0, 0, 0, 1 )
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 180, 320 )
+texture = ExtResource( 5 )
+
+[node name="TitleLabel" type="Label" parent="."]
+modulate = Color( 0.5, 0.9, 1.8, 1 )
+margin_left = 31.0
+margin_top = 199.0
+margin_right = 131.0
+margin_bottom = 230.0
+rect_scale = Vector2( 3, 3 )
+text = "Pixel Galaxy"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SelectLevelLabel" type="Label" parent="."]
-margin_left = 140.0
-margin_top = 264.0
-margin_right = 223.0
-margin_bottom = 278.0
+modulate = Color( 0.5, 0.9, 1.8, 1 )
+margin_left = 139.0
+margin_top = 315.0
+margin_right = 222.0
+margin_bottom = 329.0
 text = "Select Level"
 align = 1
 valign = 1
-uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 134.0
-margin_top = 290.0
+margin_top = 336.0
 margin_right = 226.0
-margin_bottom = 312.0
+margin_bottom = 358.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
