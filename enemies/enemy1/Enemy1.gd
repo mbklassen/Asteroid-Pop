@@ -3,8 +3,9 @@ extends RigidBody2D
 const HP_VALUE = 20
 const DROP_POTENTIAL = 0.1
 
-var explosion_scene = preload("res://particles/Explosion.tscn")
-var explosion_color = Color(0.63, 0, 0, 1)
+var explosion_particles_scene = preload("res://particles/Explosion.tscn")
+var explosion_particles_color = Color(0.63, 0, 0, 1)
+var explosion_scene = preload("res://explosions/ExplosionMedium.tscn")
 
 var drop_value = rand_range(0, 1)
 var item_shoot_faster = preload("res://items/ShootFaster.tscn")
@@ -13,6 +14,7 @@ var item_list = [item_shoot_faster, item_health]
 var velocity_linear = Vector2(0, 200)
 
 var will_drop_item
+var level_node
 
 func _ready():
 	# Determines whether an item will drop
@@ -21,21 +23,24 @@ func _ready():
 	else:
 		will_drop_item = false
 		
+	level_node = get_parent()
 	linear_velocity = velocity_linear
 
 func _on_Enemy1_body_entered(body):
-	# Instantiate Explosion node
 	var explosion = explosion_scene.instance()
-	# Get parent of current node (World) and store it in level_root
 	explosion.global_position = global_position
+	level_node.call_deferred("add_child", explosion)
+	
+	# Instantiate explosion particles node
+	var explosion_particles = explosion_particles_scene.instance()
+	explosion_particles.global_position = global_position
 	# Set explosion colour to be same as asteroid's
-	explosion.process_material.color = explosion_color
+	explosion_particles.process_material.color = explosion_particles_color
 	# Explosion particles are now emitting
-	explosion.emitting = true
-	# Get World node
-	var level_node = get_parent()
+	explosion_particles.emitting = true
 	# Add explosion as a child of level node
-	level_node.add_child(explosion)
+	level_node.call_deferred("add_child", explosion_particles)
+	
 	
 	if body.name == "Player":
 		Global.hp -= HP_VALUE

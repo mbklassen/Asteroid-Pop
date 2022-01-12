@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-var death_explosion_scene = preload("res://explosions/Explosion1.tscn")
+var death_explosion_scene = preload("res://explosions/ExplosionBig.tscn")
 
 var screen_width
 var screen_height

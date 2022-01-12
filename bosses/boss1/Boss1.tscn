@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://bosses/textures/boss1.png" type="Texture" id=1]
 [ext_resource path="res://bosses/boss1/CollisionArea.gd" type="Script" id=2]
 [ext_resource path="res://bosses/boss1/states/Move.gd" type="Script" id=3]
 [ext_resource path="res://bosses/boss1/states/Shoot.gd" type="Script" id=4]
+[ext_resource path="res://bosses/boss1/Boss1.gd" type="Script" id=5]
 
 [node name="Boss1" type="KinematicBody2D" groups=["bosses"]]
 z_index = 2
 collision_layer = 8
 collision_mask = 4
+script = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 self_modulate = Color( 1.5, 1.5, 1.5, 1 )
@@ -84,6 +86,17 @@ position = Vector2( 26, 0 )
 
 [node name="CenterThruster" type="Node2D" parent="ThrusterPositions"]
 position = Vector2( 0, -23 )
+
+[node name="ExplosionPositions" type="Node2D" parent="."]
+
+[node name="Explosion1" type="Node2D" parent="ExplosionPositions"]
+position = Vector2( 10, 20 )
+
+[node name="Explosion2" type="Node2D" parent="ExplosionPositions"]
+position = Vector2( -16, -10 )
+
+[node name="Explosion3" type="Node2D" parent="ExplosionPositions"]
+position = Vector2( 22, -4 )
 
 [connection signal="body_entered" from="CollisionArea" to="CollisionArea" method="_on_CollisionArea_body_entered"]
 [connection signal="timeout" from="States/Shoot/TimeBetweenShots" to="States/Shoot" method="_on_TimeBetweenShots_timeout"]

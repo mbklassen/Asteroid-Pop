@@ -24,6 +24,8 @@ var boss_level = false
 var boss1_hp = 300
 var boss1_hp_visible = false
 var boss1_super_mode = false
+var boss_dead = false
+var boss_explosion_finished = false
 
 var in_main_menu = true
 var level1_complete = false

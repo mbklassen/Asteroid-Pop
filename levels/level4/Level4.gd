@@ -33,6 +33,7 @@ func _ready():
 	Global.boss1_hp = 300
 	Global.boss1_hp_visible = true
 	Global.boss1_super_mode = false
+	Global.boss_dead = false
 	
 	load_highscore()
 	
@@ -61,7 +62,7 @@ func _physics_process(_delta):
 	
 	# If boss hp reaches zero and level isn't ending, then delete boss node, stop enemy1_timer, and end the level
 	# (When Global.level_ended is set to true, a timer is started by Main.gd to show "you win" menu)
-	if Global.boss1_hp <= 0 and !Global.level_ended:
+	if Global.boss_dead and !Global.level_ended:
 		for child in get_children():
 			if child.is_in_group("bosses"):
 				child.queue_free()
