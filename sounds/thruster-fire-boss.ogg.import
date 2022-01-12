@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/thruster-fire-boss.ogg-50d30885e064dfb9078dc62d6aebfd61.oggstr"
+
+[deps]
+
+source_file="res://sounds/thruster-fire-boss.ogg"
+dest_files=[ "res://.import/thruster-fire-boss.ogg-50d30885e064dfb9078dc62d6aebfd61.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

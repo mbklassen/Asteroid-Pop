@@ -26,6 +26,7 @@ var thruster_center_position
 var thruster_left
 var thruster_right
 var thruster_center
+var thruster_sound
 
 func _ready():
 	boss = get_parent().get_parent()
@@ -45,6 +46,9 @@ func _ready():
 	boss.call_deferred("add_child", thruster_left)
 	boss.call_deferred("add_child", thruster_right)
 	boss.call_deferred("add_child", thruster_center)
+	
+	thruster_sound = boss.get_node("ThrusterSound")
+	thruster_sound.play()
 
 func _physics_process(delta):
 	if !boss_holding_y:
@@ -93,10 +97,13 @@ func _physics_process(delta):
 		thruster_left.emitting = false
 		thruster_right.emitting = false
 		thruster_center.emitting = false
+		thruster_sound.stream_paused = true
 	else:
 		thruster_left.emitting = true
 		thruster_right.emitting = true
 		thruster_center.emitting = true
+		thruster_sound.stream_paused = false
 	if motion != Vector2.ZERO:
 		thruster_left.emitting = true
 		thruster_right.emitting = true
+		thruster_sound.stream_paused = false
