@@ -1,8 +1,11 @@
 extends KinematicBody2D
 
 
+var death_explosion_scene = preload("res://explosions/Explosion1.tscn")
+
 var screen_width
 var screen_height
+var level_scene
 
 func _ready():
 	# Get width and height of viewport
@@ -22,4 +25,8 @@ func _physics_process(_delta):
 			Global.hp += 20
 		Global.item_health_acquired = false
 	if Global.hp <= 0:
+		var death_explosion = death_explosion_scene.instance()
+		death_explosion.global_position = global_position
+		var level_node = get_parent()
+		level_node.add_child(death_explosion)
 		queue_free()

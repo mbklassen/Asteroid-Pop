@@ -1,6 +1,6 @@
 extends Node
 
-const GAMEOVER_WAIT_TIME = 0.5
+const GAMEOVER_WAIT_TIME = 1
 const PAUSE_WAIT_TIME = 0.1
 const LEVEL_END_WAIT_TIME = 4
 const LEVEL1_SAVE_FILE_PATH = "user://level1_highscore.save"
