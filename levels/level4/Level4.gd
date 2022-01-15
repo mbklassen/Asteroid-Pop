@@ -1,7 +1,7 @@
 extends Node2D
 
 # Length of time before boss spawns above top of screen
-const BOSS_TIMER_WAIT_TIME = 2.2
+const BOSS_TIMER_WAIT_TIME = 4
 # Time between each score decrement
 const SCORE_DECREMENT_WAIT_TIME = 0.6
 # Threshold of boss hp at which regular enemies start spawning

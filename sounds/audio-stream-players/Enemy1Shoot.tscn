@@ -7,7 +7,7 @@ data = PoolByteArray( 79, 103, 103, 83, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 88, 74, 0,
 
 [node name="Enemy1Shoot" type="AudioStreamPlayer"]
 stream = SubResource( 1 )
-volume_db = -5.386
+volume_db = -11.394
 pitch_scale = 1.43
 script = ExtResource( 2 )
 
