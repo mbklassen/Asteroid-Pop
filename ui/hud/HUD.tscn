@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ui/hud/LevelString.gd" type="Script" id=1]
 [ext_resource path="res://ui/hud/ScoreString.gd" type="Script" id=2]
 [ext_resource path="res://ui/hud/hpbar_theme.tres" type="Theme" id=3]
 [ext_resource path="res://ui/hud/HealthBar.gd" type="Script" id=4]
 [ext_resource path="res://ui/hud/Boss1HealthBar.gd" type="Script" id=5]
+[ext_resource path="res://fonts/Roboto-Medium.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 6 )
 
 [node name="HUD" type="Control"]
 margin_right = 360.0
@@ -16,6 +23,7 @@ __meta__ = {
 [node name="Level" type="Label" parent="."]
 margin_right = 360.0
 margin_bottom = 46.0
+custom_fonts/font = SubResource( 1 )
 text = "Level 0    "
 align = 2
 valign = 1
@@ -27,6 +35,7 @@ __meta__ = {
 [node name="Score" type="Label" parent="."]
 margin_right = 360.0
 margin_bottom = 46.0
+custom_fonts/font = SubResource( 2 )
 text = "    Score 0"
 valign = 1
 script = ExtResource( 2 )

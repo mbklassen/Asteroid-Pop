@@ -1,10 +1,31 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://ui/main-menu/Level2Button.gd" type="Script" id=1]
 [ext_resource path="res://ui/main-menu/MainMenu.gd" type="Script" id=2]
 [ext_resource path="res://ui/main-menu/Level3Button.gd" type="Script" id=3]
 [ext_resource path="res://ui/main-menu/Level4Button.gd" type="Script" id=4]
 [ext_resource path="res://ui/textures/main-menu.png" type="Texture" id=5]
+[ext_resource path="res://fonts/Roboto-Medium.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 46
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 6 )
 
 [node name="MainMenu" type="Control"]
 pause_mode = 2
@@ -20,12 +41,16 @@ position = Vector2( 180, 320 )
 texture = ExtResource( 5 )
 
 [node name="TitleLabel" type="Label" parent="."]
-modulate = Color( 0.5, 0.9, 1.8, 1 )
-margin_left = 29.0
-margin_top = 221.0
-margin_right = 132.0
-margin_bottom = 244.0
-rect_scale = Vector2( 3, 3 )
+modulate = Color( 0.4, 0.7, 1.8, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -133.5
+margin_top = -102.5
+margin_right = 133.5
+margin_bottom = -47.5
+custom_fonts/font = SubResource( 1 )
 text = "Asteroid Pop"
 align = 1
 valign = 1
@@ -34,11 +59,16 @@ __meta__ = {
 }
 
 [node name="SelectLevelLabel" type="Label" parent="."]
-modulate = Color( 0.5, 0.9, 1.8, 1 )
-margin_left = 139.0
-margin_top = 315.0
-margin_right = 222.0
-margin_bottom = 329.0
+modulate = Color( 0.4, 0.7, 1.8, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -54.5
+margin_top = -37.0
+margin_right = 54.5
+margin_bottom = -13.0
+custom_fonts/font = SubResource( 2 )
 text = "Select Level"
 align = 1
 valign = 1
@@ -47,17 +77,22 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_left = 134.0
-margin_top = 336.0
-margin_right = 226.0
-margin_bottom = 358.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -48.0
+margin_top = -12.5
+margin_right = 48.0
+margin_bottom = 12.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Level1Button" type="Button" parent="HBoxContainer"]
-margin_right = 20.0
-margin_bottom = 22.0
+margin_right = 21.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 3 )
 text = "1"
 flat = true
 expand_icon = true
@@ -66,9 +101,10 @@ __meta__ = {
 }
 
 [node name="Level2Button" type="Button" parent="HBoxContainer"]
-margin_left = 24.0
-margin_right = 44.0
-margin_bottom = 22.0
+margin_left = 25.0
+margin_right = 46.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 4 )
 disabled = true
 text = "2"
 flat = true
@@ -76,9 +112,10 @@ expand_icon = true
 script = ExtResource( 1 )
 
 [node name="Level3Button" type="Button" parent="HBoxContainer"]
-margin_left = 48.0
-margin_right = 68.0
-margin_bottom = 22.0
+margin_left = 50.0
+margin_right = 71.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 5 )
 disabled = true
 text = "3"
 flat = true
@@ -86,9 +123,10 @@ expand_icon = true
 script = ExtResource( 3 )
 
 [node name="Level4Button" type="Button" parent="HBoxContainer"]
-margin_left = 72.0
-margin_right = 92.0
-margin_bottom = 22.0
+margin_left = 75.0
+margin_right = 96.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 6 )
 disabled = true
 text = "4"
 flat = true

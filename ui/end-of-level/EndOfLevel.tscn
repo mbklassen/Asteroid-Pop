@@ -40,7 +40,6 @@ __meta__ = {
 }
 
 [node name="ScoreLabel" type="Label" parent="."]
-visible = false
 modulate = Color( 1.6, 0.4, 0.4, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
