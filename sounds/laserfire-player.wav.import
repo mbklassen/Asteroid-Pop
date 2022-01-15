@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/laserfire-player.wav-5c8a269c913e93aef71021b3c0b9d7dd.sample"
+
+[deps]
+
+source_file="res://sounds/laserfire-player.wav"
+dest_files=[ "res://.import/laserfire-player.wav-5c8a269c913e93aef71021b3c0b9d7dd.sample" ]
+
+[params]
+
+force/8_bit=true
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

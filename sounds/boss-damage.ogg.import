@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/boss-damage.ogg-2de6b661346b0732545485d8831fb280.oggstr"
+
+[deps]
+
+source_file="res://sounds/boss-damage.ogg"
+dest_files=[ "res://.import/boss-damage.ogg-2de6b661346b0732545485d8831fb280.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

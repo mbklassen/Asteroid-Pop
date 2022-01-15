@@ -12,7 +12,6 @@ var motion = Vector2.ZERO
 var player
 var thruster_position
 var thruster
-var thruster_sound
 
 func _ready():
 	player = get_parent().get_parent()
@@ -23,9 +22,6 @@ func _ready():
 	thruster.emitting = false
 	# Add thruster as a child of player node
 	player.call_deferred("add_child", thruster)
-	
-	thruster_sound = player.get_node("ThrusterSound")
-	thruster_sound.play()
 
 func _physics_process(delta):
 	var input_vector = Vector2.ZERO
@@ -55,7 +51,5 @@ func _physics_process(delta):
 	thruster.global_position = thruster_position.global_position
 	if motion == Vector2.ZERO:
 		thruster.emitting = false
-		thruster_sound.stream_paused = true
 	else:
 		thruster.emitting = true
-		thruster_sound.stream_paused = false

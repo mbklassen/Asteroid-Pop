@@ -4,6 +4,8 @@ extends Node
 const BOSS_HP_THRESHOLD = 300
 
 var bullet_scene = preload("res://bosses/boss1/bullets/Boss1Bullet.tscn")
+var shoot_sound_scene = preload("res://sounds/audio-stream-players/BossShoot.tscn")
+var super_shoot_sound_scene = preload("res://sounds/audio-stream-players/BossShootSuper.tscn")
 var super_shots_left = 3
 var boss_ready = false
 var can_shoot = false
@@ -11,6 +13,8 @@ var can_shoot_all = false
 var super_effect_repeated = false
 var super_effect_color = Color(1.9, 1.9, 1.9)
 var normal_color = Color(1.5, 1.5, 1.5)
+
+var level_node
 
 var time_between_shots
 var time_between_super
@@ -40,9 +44,10 @@ func _ready():
 	super_effect_off_timer = $SuperEffectOff
 	super_effect_on_timer = $SuperEffectOn
 	
+	level_node = get_parent().get_parent().get_parent()
 	boss = get_parent().get_parent()
 	boss_sprite = boss.get_node("Sprite")
-	firing_positions = get_parent().get_parent().get_node("FiringPositions")
+	firing_positions = boss.get_node("FiringPositions")
 
 func _physics_process(_delta):
 	firing_side = rand_range(0, 1)
@@ -55,70 +60,62 @@ func _physics_process(_delta):
 		time_between_super.start()
 	
 	if can_shoot and boss_holding_y and firing_side < 0.5:
+		var shoot_sound = shoot_sound_scene.instance()
+		level_node.add_child(shoot_sound)
 		can_shoot = false
 		for child in firing_positions.get_children():
 			if child.name == "LeftFrontGun":
 				var bullet = bullet_scene.instance()
 				bullet.global_position = child.global_position
-				# Get level node (^States -> ^Player -> ^LevelX)
-				var level_node = get_parent().get_parent().get_parent()
 				# Instantiate Boss1Bullet node 
 				level_node.add_child(bullet)
 				emit_signal("bullet_type_lockon")
 	
 	if can_shoot and boss_holding_y and firing_side >= 0.5:
+		var shoot_sound = shoot_sound_scene.instance()
+		level_node.add_child(shoot_sound)
 		can_shoot = false
 		for child in firing_positions.get_children():
 			if child.name == "RightFrontGun":
 				var bullet = bullet_scene.instance()
 				bullet.global_position = child.global_position
-				# Get level node (^States -> ^Player -> ^LevelX)
-				var level_node = get_parent().get_parent().get_parent()
 				# Instantiate Boss1Bullet node 
 				level_node.add_child(bullet)
 				emit_signal("bullet_type_lockon")
 				
 		
 	if can_shoot_all and boss_holding_y:
+		var super_shoot_sound = super_shoot_sound_scene.instance()
+		level_node.add_child(super_shoot_sound)
 		can_shoot_all = false
 		for child in firing_positions.get_children():
 			if child.name == "LeftFrontGun":
 				var bullet = bullet_scene.instance()
 				bullet.global_position = child.global_position
-				# Get level node (^States -> ^Player -> ^LevelX)
-				var level_node = get_parent().get_parent().get_parent()
 				# Instantiate Boss1Bullet node 
 				level_node.add_child(bullet)
 				emit_signal("bullet_type_ld")
 			if child.name == "RightFrontGun":
 				var bullet = bullet_scene.instance()
 				bullet.global_position = child.global_position
-				# Get level node (^States -> ^Player -> ^LevelX)
-				var level_node = get_parent().get_parent().get_parent()
 				# Instantiate Boss1Bullet node 
 				level_node.add_child(bullet)
 				emit_signal("bullet_type_rd")
 			if child.name == "LeftSideGun":
 				var bullet = bullet_scene.instance()
 				bullet.global_position = child.global_position
-				# Get level node (^States -> ^Player -> ^LevelX)
-				var level_node = get_parent().get_parent().get_parent()
 				# Instantiate Boss1Bullet node 
 				level_node.add_child(bullet)
 				emit_signal("bullet_type_lds")
 			if child.name == "RightSideGun":
 				var bullet = bullet_scene.instance()
 				bullet.global_position = child.global_position
-				# Get level node (^States -> ^Player -> ^LevelX)
-				var level_node = get_parent().get_parent().get_parent()
 				# Instantiate Boss1Bullet node 
 				level_node.add_child(bullet)
 				emit_signal("bullet_type_rds")
 			if child.name == "CenterGun":
 				var bullet = bullet_scene.instance()
 				bullet.global_position = child.global_position
-				# Get level node (^States -> ^Player -> ^LevelX)
-				var level_node = get_parent().get_parent().get_parent()
 				# Instantiate Boss1Bullet node 
 				level_node.add_child(bullet)
 				emit_signal("bullet_type_straight")

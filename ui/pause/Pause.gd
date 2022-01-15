@@ -25,7 +25,6 @@ func _on_ContinueButton_pressed():
 		
 func _on_MainMenuButton_pressed():
 	if get_tree().paused:
-		var _restart = get_tree().reload_current_scene()
 		visible = false
 		in_pause_menu = false
 		focus_grabbed = false

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sounds/asteroid-piece-pop.ogg" type="AudioStream" id=1]
+[ext_resource path="res://sounds/audio-stream-players/AsteroidPiecePop.gd" type="Script" id=2]
+
+[node name="AsteroidPiecePop" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+volume_db = -3.496
+pitch_scale = 2.48
+script = ExtResource( 2 )
+
+[connection signal="finished" from="." to="." method="_on_AsteroidPiecePop_finished"]

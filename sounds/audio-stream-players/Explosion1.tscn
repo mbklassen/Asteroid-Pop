@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sounds/audio-stream-players/Explosion1.gd" type="Script" id=1]
+[ext_resource path="res://sounds/explosion1.ogg" type="AudioStream" id=2]
+
+[node name="Explosion1" type="AudioStreamPlayer"]
+stream = ExtResource( 2 )
+volume_db = -10.488
+pitch_scale = 1.23
+script = ExtResource( 1 )
+
+[connection signal="finished" from="." to="." method="_on_Explosion1_finished"]

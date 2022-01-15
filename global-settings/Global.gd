@@ -27,7 +27,11 @@ var boss1_super_mode = false
 var boss_dead = false
 var boss_explosion_finished = false
 
+var boss_music_playing = false
+var new_music_started = true
+
 var in_main_menu = true
 var level1_complete = false
 var level2_complete = false
 var level3_complete = false
+var highscore_loaded = false

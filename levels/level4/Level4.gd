@@ -1,7 +1,7 @@
 extends Node2D
 
 # Length of time before boss spawns above top of screen
-const BOSS_TIMER_WAIT_TIME = 1
+const BOSS_TIMER_WAIT_TIME = 2.2
 # Time between each score decrement
 const SCORE_DECREMENT_WAIT_TIME = 0.6
 # Threshold of boss hp at which regular enemies start spawning
@@ -23,7 +23,7 @@ func _ready():
 	Global.level = 4
 	Global.first_level = false
 	Global.final_level = true
-	Global.score = 200
+	Global.score = 300
 	Global.hp = 100
 	Global.level_ended = false
 	Global.new_highscore = false
@@ -34,6 +34,8 @@ func _ready():
 	Global.boss1_hp_visible = true
 	Global.boss1_super_mode = false
 	Global.boss_dead = false
+	Global.boss_music_playing = true
+	Global.new_music_started = true
 	
 	load_highscore()
 	

@@ -4,22 +4,27 @@ extends Area2D
 # This node/script is needed to handle collision for this kinematic body
 
 var explosion_scene = preload("res://particles/PlayerExplosion.tscn")
+var damage_sound_scene = preload("res://sounds/audio-stream-players/PlayerDamage.tscn")
 var being_hit = false
 
 var player
 var player_sprite
 var hit_effect_timer
 var explosion_color
+var level_node
 
 
 func _ready():
 	player = get_parent()
 	player_sprite = player.get_node("Sprite")
 	hit_effect_timer = $HitEffectTimer
-
+	level_node = get_parent().get_parent()
 
 func _on_CollisionArea_body_entered(_body):
 	if !being_hit:
+		var damage_sound = damage_sound_scene.instance()
+		level_node.add_child(damage_sound)
+		
 		# Change color of ship briefly when hit
 		being_hit = true
 		player_sprite.self_modulate = Color(0.5, 0.5, 0.5)
@@ -32,8 +37,6 @@ func _on_CollisionArea_body_entered(_body):
 		explosion.process_material.color = explosion_color
 		# Explosion particles are now emitting
 		explosion.emitting = true
-		# Get current level
-		var level_node = get_parent().get_parent()
 		# Add explosion as a child of current level
 		level_node.add_child(explosion)
 		

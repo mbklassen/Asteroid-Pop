@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/laserfire-boss.ogg-33a0d8f922d79fb1d2717dce7d0eeedb.oggstr"
+
+[deps]
+
+source_file="res://sounds/laserfire-boss.ogg"
+dest_files=[ "res://.import/laserfire-boss.ogg-33a0d8f922d79fb1d2717dce7d0eeedb.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

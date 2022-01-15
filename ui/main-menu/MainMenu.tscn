@@ -21,12 +21,12 @@ texture = ExtResource( 5 )
 
 [node name="TitleLabel" type="Label" parent="."]
 modulate = Color( 0.5, 0.9, 1.8, 1 )
-margin_left = 31.0
-margin_top = 199.0
-margin_right = 131.0
-margin_bottom = 230.0
+margin_left = 29.0
+margin_top = 221.0
+margin_right = 132.0
+margin_bottom = 244.0
 rect_scale = Vector2( 3, 3 )
-text = "Stellar Shooter"
+text = "Asteroid Pop"
 align = 1
 valign = 1
 __meta__ = {

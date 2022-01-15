@@ -31,7 +31,7 @@ func _ready():
 
 func _process(_delta):
 	# If player dies or the score reaches zero on a boss level, and gameover_timer is stopped, then start gameover_timer
-	if (Global.hp <= 0 or (Global.score == 0 and Global.boss_level)) and (gameover_timer.is_stopped()) and (level_end_timer.is_stopped()):
+	if (Global.hp <= 0 or (Global.score == 0 and Global.boss_level)) and (gameover_timer.is_stopped() and level_end_timer.is_stopped() and !Global.boss_dead):
 		gameover_timer.start()
 	# If level has ended and level_end_timer is stopped, then start level_end_timer
 	if Global.level_ended and level_end_timer.is_stopped():
@@ -39,6 +39,7 @@ func _process(_delta):
 		
 	if Global.in_main_menu:
 		$UI/MainMenu.visible = true
+		level_end_timer.stop()
 		
 func _input(event):
 	# If the pause button/key is pressed and both pause_timer and level_end_timer are stopped, then start pause_timer

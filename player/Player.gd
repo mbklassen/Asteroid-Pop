@@ -3,9 +3,11 @@ extends KinematicBody2D
 
 var death_explosion_scene = preload("res://explosions/ExplosionBig.tscn")
 
+var explosion_sound_scene = preload("res://sounds/audio-stream-players/Explosion2.tscn")
+
 var screen_width
 var screen_height
-var level_scene
+var level_node
 
 func _ready():
 	# Get width and height of viewport
@@ -13,6 +15,8 @@ func _ready():
 	screen_height = get_viewport_rect().size.y
 	# Set player position to the lower center of the screen
 	global_position = Vector2((screen_width/2), (screen_height - 60))
+	
+	level_node = get_parent()
 	
 func _physics_process(_delta):
 	
@@ -25,8 +29,10 @@ func _physics_process(_delta):
 			Global.hp += 20
 		Global.item_health_acquired = false
 	if Global.hp <= 0:
+		var explosion_sound = explosion_sound_scene.instance()
+		level_node.add_child(explosion_sound)
+		
 		var death_explosion = death_explosion_scene.instance()
 		death_explosion.global_position = global_position
-		var level_node = get_parent()
 		level_node.add_child(death_explosion)
 		queue_free()

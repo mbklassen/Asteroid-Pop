@@ -25,6 +25,10 @@ var piece1_scene = preload("res://asteroids/pieces/AsteroidPiece1.tscn")
 var piece2_scene = preload("res://asteroids/pieces/AsteroidPiece2.tscn")
 var piece3_scene = preload("res://asteroids/pieces/AsteroidPiece3.tscn")
 
+var pop_sound_scene = preload("res://sounds/audio-stream-players/AsteroidPop.tscn")
+
+var explosion_color = Color(0.35, 0.35, 0.35, 1)
+
 # Sets the drop value for this asteroid (determines whether it will drop an item)
 var drop_value = rand_range(0, 1)
 var item_shoot_faster = preload("res://items/ShootFaster.tscn")
@@ -32,7 +36,7 @@ var item_health = preload("res://items/Health.tscn")
 var item_list = [item_shoot_faster, item_health]
 
 var will_drop_item
-var explosion_color
+var level_node
 
 
 func _ready():
@@ -54,6 +58,8 @@ func _ready():
 		will_drop_item = true
 	else:
 		will_drop_item = false
+		
+	level_node = get_parent()
 
 func _physics_process(_delta):
 	# If asteroid goes off the bottom of the screen, destroy it
@@ -62,17 +68,16 @@ func _physics_process(_delta):
 
 # Called when body_entered signal is emmited
 func _on_AsteroidTop_body_entered(body):
+	var pop_sound = pop_sound_scene.instance()
+	level_node.add_child(pop_sound)
 	# Instantiate Explosion node
 	var explosion = explosion_scene.instance()
 	# Set explosion's initial position to be the same as Asteroid's current position
 	explosion.global_position = global_position
 	# Set explosion colour to be same as asteroid's
-	explosion_color = Color(0.35, 0.35, 0.35, 1)
 	explosion.process_material.color = explosion_color
 	# Explosion particles are now emitting
 	explosion.emitting = true
-	# Get current level
-	var level_node = get_parent()
 	# Add explosion as a child of current level
 	level_node.add_child(explosion)
 

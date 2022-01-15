@@ -12,6 +12,9 @@ func _process(_delta):
 	if Global.in_main_menu and !get_tree().paused:
 		visible = true
 		get_tree().paused = true
+		if Global.boss_level:
+			Global.boss_music_playing = false
+			Global.new_music_started = true
 	# If game is paused and a menu button is not selected and we are in the menu
 	# then grab focus (select) the "level 1" button
 	# Focus is now grabbed (a menu button is selected)
@@ -52,3 +55,4 @@ func _close_menu():
 	focus_grabbed = false
 	Global.in_main_menu = false
 	visible = false
+	var _restart = get_tree().reload_current_scene()
