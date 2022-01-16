@@ -4,5 +4,5 @@ extends AudioStreamPlayer
 func _ready():
 	play()
 
-func _on_ItemPickup_finished():
+func _on_Sound_finished():
 	queue_free()

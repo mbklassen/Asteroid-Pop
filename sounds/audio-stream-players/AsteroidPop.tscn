@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://sounds/asteroid-pop.ogg" type="AudioStream" id=1]
-[ext_resource path="res://sounds/audio-stream-players/AsteroidPop.gd" type="Script" id=2]
+[ext_resource path="res://sounds/audio-stream-players/SoundController.gd" type="Script" id=2]
 
 [node name="AsteroidPop" type="AudioStreamPlayer"]
 stream = ExtResource( 1 )
@@ -9,4 +9,4 @@ volume_db = -3.496
 pitch_scale = 1.4
 script = ExtResource( 2 )
 
-[connection signal="finished" from="." to="." method="_on_AsteroidPop_finished"]
+[connection signal="finished" from="." to="." method="_on_Sound_finished"]

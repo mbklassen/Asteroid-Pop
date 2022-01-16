@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://sounds/laserfire-boss.ogg" type="AudioStream" id=1]
-[ext_resource path="res://sounds/audio-stream-players/BossShoot.gd" type="Script" id=2]
+[ext_resource path="res://sounds/audio-stream-players/SoundController.gd" type="Script" id=2]
 
 [node name="BossShoot" type="AudioStreamPlayer"]
 stream = ExtResource( 1 )
@@ -9,4 +9,4 @@ volume_db = -5.386
 pitch_scale = 0.76
 script = ExtResource( 2 )
 
-[connection signal="finished" from="." to="." method="_on_BossShoot_finished"]
+[connection signal="finished" from="." to="." method="_on_Sound_finished"]

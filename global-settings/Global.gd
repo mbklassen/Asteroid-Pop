@@ -12,7 +12,6 @@ var highscore = 0
 var level_ended = false
 var new_highscore = false
 
-
 var player_position = Vector2.ZERO
 
 var game_paused = false
@@ -35,3 +34,5 @@ var level1_complete = false
 var level2_complete = false
 var level3_complete = false
 var highscore_loaded = false
+
+var ui_button_selected = false

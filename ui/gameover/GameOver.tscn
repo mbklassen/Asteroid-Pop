@@ -81,5 +81,7 @@ flat = true
 process_mode = 0
 one_shot = true
 
+[connection signal="focus_exited" from="VBoxContainer/RestartButton" to="." method="_on_Button_focus_exited"]
 [connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="focus_exited" from="VBoxContainer/MainMenuButton" to="." method="_on_Button_focus_exited"]
 [connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]

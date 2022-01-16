@@ -21,6 +21,7 @@ default_bus_layout=""
 
 Global="*res://global-settings/Global.gd"
 BgMusic="*res://music/BGMusic.tscn"
+SelectSoundParent="*res://sounds/etc/SelectSoundParent.tscn"
 
 [display]
 

@@ -1,5 +1,7 @@
 extends Control
 
+var change_focus_sound = preload("res://sounds/audio-stream-players/UIChange.tscn")
+var select_sound_scene = preload("res://sounds/audio-stream-players/UISelect.tscn")
 
 const SAVE_FILE_PATH_LEVEL1 = "user://level1_highscore.save"
 const SAVE_FILE_PATH_LEVEL2 = "user://level2_highscore.save"
@@ -21,7 +23,7 @@ func _process(_delta):
 	if get_tree().paused and !focus_grabbed and Global.in_main_menu:
 		$HBoxContainer/Level1Button.grab_focus()
 		focus_grabbed = true
-	
+		
 	var save_data = File.new()
 	if !Global.level1_complete and save_data.file_exists(SAVE_FILE_PATH_LEVEL1):
 		Global.level1_complete = true
@@ -55,4 +57,10 @@ func _close_menu():
 	focus_grabbed = false
 	Global.in_main_menu = false
 	visible = false
+	var select_sound = select_sound_scene.instance()
+	SelectSoundParent.add_child(select_sound)
 	var _restart = get_tree().reload_current_scene()
+
+func _on_Button_focus_exited():
+	var change_focus = change_focus_sound.instance()
+	add_child(change_focus)

@@ -1,5 +1,7 @@
 extends Control
 
+var change_focus_sound = preload("res://sounds/audio-stream-players/UIChange.tscn")
+var select_sound_scene = preload("res://sounds/audio-stream-players/UISelect.tscn")
 
 var focus_grabbed = false
 var in_pause_menu = false
@@ -22,6 +24,8 @@ func _on_ContinueButton_pressed():
 		get_tree().paused = false
 		focus_grabbed = false
 		in_pause_menu = false
+		var select_sound = select_sound_scene.instance()
+		SelectSoundParent.add_child(select_sound)
 		
 func _on_MainMenuButton_pressed():
 	if get_tree().paused:
@@ -30,6 +34,8 @@ func _on_MainMenuButton_pressed():
 		focus_grabbed = false
 		get_tree().paused = false
 		Global.in_main_menu = true
+		var select_sound = select_sound_scene.instance()
+		SelectSoundParent.add_child(select_sound)
 
 # When "restart" button is pressed, hide the menu and restart current level
 func _on_RestartButton_pressed():
@@ -38,3 +44,9 @@ func _on_RestartButton_pressed():
 		get_tree().paused = false
 		focus_grabbed = false
 		in_pause_menu = false
+		var select_sound = select_sound_scene.instance()
+		SelectSoundParent.add_child(select_sound)
+
+func _on_Button_focus_exited():
+	var change_focus = change_focus_sound.instance()
+	add_child(change_focus)
