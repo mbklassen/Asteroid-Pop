@@ -10,8 +10,10 @@ config_version=4
 
 [application]
 
-config/name="SpaceShooter"
+config/name="Asteroid Pop"
 run/main_scene="res://Main.tscn"
+config/icon="res://player/textures/playerV2.png"
+config/windows_native_icon="res://icon.ico"
 
 [audio]
 
