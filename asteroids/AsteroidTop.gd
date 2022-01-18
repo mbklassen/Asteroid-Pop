@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 
-const ROTATION_DIRECTION_SWITCH = 1
+const ROTATION_DIRECTION_SWITCH = 0.5
 const OFF_SCREEN = 660
 const PIECE_POSITION_VARIABILITY = 16
 const HP_VALUE = 20
@@ -12,28 +12,28 @@ const DROP_POTENTIAL = 0.07
 var velocity_linear = Vector2(0, rand_range(100, 300))
 var velocity_counterclockwise = rand_range(-4, -1)
 var velocity_clockwise = rand_range(1, 4)
-# Will dictate the spin direction, depending on the number that rand_range() returns 
-# (< 1 means spin counterclockwise and >= 1 means spin clockwise)
-var rotation_direction = rand_range(0, 2)
+# Will dictate the spin direction
+var rotation_direction = rand_range(0, 1)
 # Will dictate the factor by which the asteroid will be scaled
 var scale_factor = rand_range(1, 1.8)
 var scale_vector = Vector2(scale_factor, scale_factor)
-# load explosion particles node
+
 var explosion_scene = preload("res://particles/Explosion.tscn")
-# Load asteroid pieces
+
 var piece1_scene = preload("res://asteroids/pieces/AsteroidPiece1.tscn")
 var piece2_scene = preload("res://asteroids/pieces/AsteroidPiece2.tscn")
 var piece3_scene = preload("res://asteroids/pieces/AsteroidPiece3.tscn")
-
 var pop_sound_scene = preload("res://sounds/audio-stream-players/AsteroidPop.tscn")
 
 var explosion_color = Color(0.35, 0.35, 0.35, 1)
 
 # Sets the drop value for this asteroid (determines whether it will drop an item)
 var drop_value = rand_range(0, 1)
+
 var item_shoot_faster = preload("res://items/ShootFaster.tscn")
 var item_health = preload("res://items/Health.tscn")
 var item_list = [item_shoot_faster, item_health]
+
 
 var will_drop_item
 var level_node
@@ -47,18 +47,19 @@ func _ready():
 	# Set downward speed of asteroid
 	linear_velocity = velocity_linear
 	
-	# Set rotation speed and direction
+	# Set rotation speed and direction (clockwise vs counterclockwise)
 	if (rotation_direction < ROTATION_DIRECTION_SWITCH):
 		angular_velocity = velocity_counterclockwise
 	else:
 		angular_velocity = velocity_clockwise
 	
-	# Determine whether asteroid wilol drop an item
+	# Determine whether asteroid will drop an item
 	if drop_value < DROP_POTENTIAL:
 		will_drop_item = true
 	else:
 		will_drop_item = false
-		
+	
+	# Gets current level
 	level_node = get_parent()
 
 func _physics_process(_delta):
@@ -66,17 +67,18 @@ func _physics_process(_delta):
 	if position.y > OFF_SCREEN:
 		queue_free()
 
-# Called when body_entered signal is emmited
+# Called when asteroid collides with another body
 func _on_AsteroidTop_body_entered(body):
+	# Intantiate asteroid pop sound and add it as a child of the current level
 	var pop_sound = pop_sound_scene.instance()
 	level_node.add_child(pop_sound)
-	# Instantiate Explosion node
+	
+	# Instantiate explosion particle
 	var explosion = explosion_scene.instance()
-	# Set explosion's initial position to be the same as Asteroid's current position
+	# Set explosion's position to be the same as asteroid's current position
 	explosion.global_position = global_position
 	# Set explosion colour to be same as asteroid's
 	explosion.process_material.color = explosion_color
-	# Explosion particles are now emitting
 	explosion.emitting = true
 	# Add explosion as a child of current level
 	level_node.add_child(explosion)
