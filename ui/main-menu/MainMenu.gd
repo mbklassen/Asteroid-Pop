@@ -58,9 +58,9 @@ func _close_menu():
 	Global.in_main_menu = false
 	visible = false
 	var select_sound = select_sound_scene.instance()
-	SelectSoundParent.add_child(select_sound)
+	SelectSoundParent.call_deferred("add_child", select_sound)
 	var _restart = get_tree().reload_current_scene()
 
 func _on_Button_focus_exited():
 	var change_focus = change_focus_sound.instance()
-	add_child(change_focus)
+	call_deferred("add_child", change_focus)

@@ -25,7 +25,7 @@ func _on_RestartButton_pressed():
 		focus_grabbed = false
 		in_game_over_menu = false
 		var select_sound = select_sound_scene.instance()
-		SelectSoundParent.add_child(select_sound)
+		SelectSoundParent.call_deferred("add_child", select_sound)
 
 func _on_MainMenuButton_pressed():
 	if get_tree().paused:
@@ -36,9 +36,9 @@ func _on_MainMenuButton_pressed():
 		get_tree().paused = false
 		Global.in_main_menu = true
 		var select_sound = select_sound_scene.instance()
-		SelectSoundParent.add_child(select_sound)
+		SelectSoundParent.call_deferred("add_child", select_sound)
 
 
 func _on_Button_focus_exited():
 	var change_focus = change_focus_sound.instance()
-	add_child(change_focus)
+	call_deferred("add_child", change_focus)

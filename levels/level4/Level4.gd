@@ -62,7 +62,7 @@ func _physics_process(_delta):
 	if Global.boss1_hp <= ENEMY1_SPAWNING_HP and enemy1_timer.is_stopped() and !Global.level_ended:
 		enemy1_timer.start()
 	
-	# If boss hp reaches zero and level isn't ending, then delete boss node, stop enemy1_timer, and end the level
+	# If boss explosion finishes and level isn't ending, then delete boss node, stop enemy1_timer, and end the level
 	# (When Global.level_ended is set to true, a timer is started by Main.gd to show "you win" menu)
 	if Global.boss_dead and !Global.level_ended:
 		for child in get_children():

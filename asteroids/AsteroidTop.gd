@@ -12,14 +12,13 @@ const DROP_POTENTIAL = 0.07
 var velocity_linear = Vector2(0, rand_range(100, 300))
 var velocity_counterclockwise = rand_range(-4, -1)
 var velocity_clockwise = rand_range(1, 4)
-# Will dictate the spin direction
+# Will dictate the spin direction (< ROTATION_DIRECTION_SWITCH vs. >= ROTATION_DIRECTION_SWITCH)
 var rotation_direction = rand_range(0, 1)
 # Will dictate the factor by which the asteroid will be scaled
 var scale_factor = rand_range(1, 1.8)
 var scale_vector = Vector2(scale_factor, scale_factor)
 
 var explosion_scene = preload("res://particles/Explosion.tscn")
-
 var piece1_scene = preload("res://asteroids/pieces/AsteroidPiece1.tscn")
 var piece2_scene = preload("res://asteroids/pieces/AsteroidPiece2.tscn")
 var piece3_scene = preload("res://asteroids/pieces/AsteroidPiece3.tscn")
@@ -27,7 +26,7 @@ var pop_sound_scene = preload("res://sounds/audio-stream-players/AsteroidPop.tsc
 
 var explosion_color = Color(0.35, 0.35, 0.35, 1)
 
-# Sets the drop value for this asteroid (determines whether it will drop an item)
+# Sets the drop value for this asteroid (if < DROP_POTENTIAL, it will drop an item)
 var drop_value = rand_range(0, 1)
 
 var item_shoot_faster = preload("res://items/ShootFaster.tscn")
@@ -88,15 +87,19 @@ func _on_AsteroidTop_body_entered(body):
 	if body.name == "Player":
 		Global.hp -= HP_VALUE
 	
-	# If asteroid collides with PlayerBullet
+	# Else if asteroid collides with player's bullet
 	else:
-		# Spawn item upon asteroid destruction
+		# Drop an item if predetermined to do so
 		if will_drop_item:
 			# Makes the item random
 			var item = item_list[randi() % item_list.size()].instance()
+			# Sets item position to asteroid's current position
 			item.global_position = global_position
+			# Sets item's velocity to be relative to asteroid's velocity
 			item.set_linear_velocity(velocity_linear / 2)
+			# Add dropped item as a child of current level
 			level_node.call_deferred("add_child", item)
+			
 		# Instantiate AsteroidPiece1 node
 		var piece1 = piece1_scene.instance()
 		# Set piece's initial position, velocity, and scale
@@ -130,5 +133,5 @@ func _on_AsteroidTop_body_entered(body):
 		# Add asteroid piece as a child of current level
 		level_node.call_deferred("add_child", piece3)
 	
-	# Remove Asteroid and all its children from the queue
+	# Destroy the asteroid
 	queue_free()

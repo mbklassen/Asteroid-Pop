@@ -1,8 +1,6 @@
 extends Node
 
 
-const BOSS_HP_THRESHOLD = 300
-
 var bullet_scene = preload("res://bosses/boss1/bullets/Boss1Bullet.tscn")
 var shoot_sound_scene = preload("res://sounds/audio-stream-players/BossShoot.tscn")
 var super_shoot_sound_scene = preload("res://sounds/audio-stream-players/BossShootSuper.tscn")

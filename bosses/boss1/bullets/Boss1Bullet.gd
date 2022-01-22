@@ -23,60 +23,73 @@ func _physics_process(_delta):
 	if global_position.y > OFF_SCREEN:
 		queue_free()
 
+# Called when boss's bullet collides with another body
 func _on_Boss1Bullet_body_entered(body):
-	# If the object the bullet collided with is the player, decrease value of health bar
+	# If the object the bullet collided with is the player, decrease value of player's hp
 	if body.name == "Player":
 		Global.hp -= HP_VALUE
-	# Queue bullet to be freed
+	# Destroy the bullet
 	queue_free()
 
+# Called when boss's shoot state sends a signal that this is a lockon bullet 
+# (shoots toward player's position at the time the bullet was shot)
 func _on_Shoot_lockon():
 	if !bullet_has_shot:
 		# Set direction equal to the normalized vector between boss bullet and player
 		var direction = (Global.player_position - global_position).normalized()
+		# Use this direction to determine linear_velocity
 		linear_velocity = direction * BULLET_SPEED
-		# Set rotation of boss bullet to be relative to direction of movement
+		# Set angle of boss bullet to be relative to direction of movement
 		rotation_degrees = -direction.x * 90
 		bullet_has_shot = true
 
+# Called when boss's shoot state sends a signal that this is a straight-shooting bullet
 func _on_Shoot_straight():
 	if !bullet_has_shot:
 		# Set linear velocity to be downward at a certain speed
 		linear_velocity = Vector2(0, BULLET_SPEED)
 		bullet_has_shot = true
-		
+
+# Called when boss's shoot state sends a signal that this is a left-down shooting bullet
 func _on_Shoot_ld():
 	if !bullet_has_shot:
-		# Set direction equal to a normalized vector pointing left-down
+		# Set direction equal to a normalized vector pointing diagonally left-down
 		var direction = (Vector2(-1,8)).normalized()
+		# Use this direction to determine linear_velocity
 		linear_velocity = direction * BULLET_SPEED
-		# Set rotation of boss bullet to be relative to direction of movement
+		# Set angle of boss bullet to be relative to direction of movement
 		rotation_degrees = -direction.x * 90
 		bullet_has_shot = true
-		
+
+# Called when boss's shoot state sends a signal that this is a right-down shooting bullet
 func _on_Shoot_rd():
 	if !bullet_has_shot:
-		# Set direction equal to a normalized vector pointing left-down
+		# Set direction equal to a normalized vector pointing diagonally right-down
 		var direction = (Vector2(1,8)).normalized()
+		# Use this direction to determine linear_velocity
 		linear_velocity = direction * BULLET_SPEED
-		# Set rotation of boss bullet to be relative to direction of movement
+		# Set angle of boss bullet to be relative to direction of movement
 		rotation_degrees = -direction.x * 90
 		bullet_has_shot = true
-		
+
+# Called when boss's shoot state sends a signal that this is a left-down shooting bullet from the side (wing)
 func _on_Shoot_lds():
 	if !bullet_has_shot:
-		# Set direction equal to a normalized vector pointing left-down
+		# Set direction equal to a normalized vector pointing diagonally left-down
 		var direction = (Vector2(-1,4)).normalized()
+		# Use this direction to determine linear_velocity
 		linear_velocity = direction * BULLET_SPEED
-		# Set rotation of boss bullet to be relative to direction of movement
+		# Set angle of boss bullet to be relative to direction of movement
 		rotation_degrees = -direction.x * 90
 		bullet_has_shot = true
-		
+
+# Called when boss's shoot state sends a signal that this is a right-down shooting bullet from the side (wing)
 func _on_Shoot_rds():
 	if !bullet_has_shot:
-		# Set direction equal to a normalized vector pointing left-down
+		# Set direction equal to a normalized vector pointing diagonally right-down
 		var direction = (Vector2(1,4)).normalized()
+		# Use this direction to determine linear_velocity
 		linear_velocity = direction * BULLET_SPEED
-		# Set rotation of boss bullet to be relative to direction of movement
+		# Set angle of boss bullet to be relative to direction of movement
 		rotation_degrees = -direction.x * 90
 		bullet_has_shot = true

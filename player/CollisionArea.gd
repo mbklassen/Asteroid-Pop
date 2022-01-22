@@ -1,7 +1,7 @@
+####### This node/script is needed to handle collision for this kinematic body #######
+
 extends Area2D
 
-
-# This node/script is needed to handle collision for this kinematic body
 
 var explosion_scene = preload("res://particles/PlayerExplosion.tscn")
 var damage_sound_scene = preload("res://sounds/audio-stream-players/PlayerDamage.tscn")

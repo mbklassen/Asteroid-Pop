@@ -28,12 +28,12 @@ func _physics_process(_delta):
 	if position.y > OFF_SCREEN_BOTTOM or position.y < OFF_SCREEN_TOP:
 		queue_free()
 
-# Called when AsteroidPiece collides with another body
+# Called when asteroid piece collides with another body
 func _on_AsteroidPiece_body_entered(body):
 	# Instantiate asteroid pop sound and add it as a child of current level
 	var pop_sound = pop_sound_scene.instance()
 	level_node.add_child(pop_sound)
-	# If other body is the Player, decrease value of health bar
+	# If collided body is the Player, decrease value of health bar
 	if body.name == "Player":
 		Global.hp -= HP_VALUE
 	# Destroy the asteroid piece
