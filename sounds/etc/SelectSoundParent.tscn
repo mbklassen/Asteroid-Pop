@@ -1,4 +1,4 @@
 [gd_scene format=2]
 
-[node name="SelectSoundController" type="Node"]
+[node name="SelectSoundParent" type="Node"]
 pause_mode = 2

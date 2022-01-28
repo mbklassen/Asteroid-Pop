@@ -72,6 +72,7 @@ func _physics_process(_delta):
 		score_decrement_timer.stop()
 		Global.level_ended = true
 
+# Reads highscore for current level from a file and updates global highscore variable accordingly
 func load_highscore():
 	var save_data = File.new()
 	if save_data.file_exists(SAVE_FILE_PATH):

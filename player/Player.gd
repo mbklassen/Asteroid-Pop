@@ -22,12 +22,15 @@ func _physics_process(_delta):
 	
 	Global.player_position = global_position
 	
+	# Gain hp when health item is acquired
 	if Global.item_health_acquired:
 		if Global.hp > 80:
 			Global.hp = 100
 		else:
 			Global.hp += 20
 		Global.item_health_acquired = false
+		
+	# If player dies, play a big explosion sound and create an explosion animation where player was located
 	if Global.hp <= 0:
 		var explosion_sound = explosion_sound_scene.instance()
 		level_node.add_child(explosion_sound)

@@ -33,7 +33,7 @@ func _physics_process(delta):
 	# If there is no direction being input
 	if input_vector == Vector2.ZERO:
 		var amount = FRICTION * delta
-		# Apply friction when the player's speed is greater than FRICTION * delta
+		# Apply friction when the player's motion vector is greater than FRICTION * delta
 		if motion.length() > amount:
 			motion -= motion.normalized() * amount
 		# Else, set the player's speed to zero
@@ -48,6 +48,7 @@ func _physics_process(delta):
 	
 	motion = player.move_and_slide(motion)
 	
+	# Player's thruster emits when moving, else it does not
 	thruster.global_position = thruster_position.global_position
 	if motion == Vector2.ZERO:
 		thruster.emitting = false

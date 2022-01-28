@@ -34,10 +34,13 @@ func _physics_process(_delta):
 	if position.y > OFF_SCREEN:
 		queue_free()
 
+# When enemy is hit by a bullet or the player, destroy the enemy
 func _on_Enemy1_body_entered(body):
+	# Creates an explosion sound
 	var explosion_sound = explosion_sound_scene.instance()
 	level_node.add_child(explosion_sound)
 	
+	# Creates an explosion animation
 	var explosion = explosion_scene.instance()
 	explosion.global_position = global_position
 	level_node.call_deferred("add_child", explosion)
@@ -45,16 +48,17 @@ func _on_Enemy1_body_entered(body):
 	# Instantiate explosion particles node
 	var explosion_particles = explosion_particles_scene.instance()
 	explosion_particles.global_position = global_position
-	# Set explosion colour to be same as asteroid's
+	# Set explosion colour to be same as enemy's
 	explosion_particles.process_material.color = explosion_particles_color
 	# Explosion particles are now emitting
 	explosion_particles.emitting = true
-	# Add explosion as a child of level node
+	# Add explosion_particles as a child of current level node
 	level_node.call_deferred("add_child", explosion_particles)
 	
-	
+	# If the colliding body was the player, then decrease player's hp
 	if body.name == "Player":
 		Global.hp -= HP_VALUE
+	# Else if the colliding body was player's bullet, maybe spawn an item
 	else:
 		# Spawns a random item on enemy destruction
 		if will_drop_item:
@@ -62,4 +66,5 @@ func _on_Enemy1_body_entered(body):
 			item.global_position = global_position
 			item.set_linear_velocity(velocity_linear / 2)
 			level_node.call_deferred("add_child", item)
+			
 	queue_free()

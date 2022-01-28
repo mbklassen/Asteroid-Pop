@@ -20,13 +20,11 @@ func _physics_process(_delta):
 		level_node.add_child(shoot_sound)
 		can_shoot = false
 		var bullet = bullet_scene.instance()
-		# Get level node
 		var firing_position = get_parent().get_parent().get_node("FiringPosition")
 		bullet.global_position = firing_position.global_position
-		# Add bullet as a child of current level
 		level_node.add_child(bullet)
 
-# Enemy spawns bullets between delays
+# Enemy spawns bullets between delays (the delay can be anywhere from 1.5 to 2.5 seconds)
 func _on_TimeBetweenShots_timeout():
 	can_shoot = true
 	timer.wait_time = rand_range(1.5, 2.5)
