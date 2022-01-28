@@ -11,6 +11,7 @@ var can_shoot_all = false
 var super_effect_repeated = false
 var super_effect_color = Color(1.9, 1.9, 1.9)
 var normal_color = Color(1.5, 1.5, 1.5)
+var boss_holding_y = false
 
 var level_node
 
@@ -24,8 +25,8 @@ var boss
 var boss_sprite
 var firing_positions
 var firing_side
-var boss_holding_y
 
+# Signals to dictate which type of bullet is fired at a given moment
 signal bullet_type_lockon
 signal bullet_type_straight
 signal bullet_type_ld
@@ -36,20 +37,29 @@ signal bullet_type_rds
 func _ready():
 	time_between_shots = $TimeBetweenShots
 	time_between_shots.wait_time = 1
+	
 	time_between_super = $TimeBetweenSuper
 	time_between_super.wait_time = rand_range(6, 10)
+	
 	time_between_shots_super = $TimeBetweenShotsSuper
+	
 	super_effect_off_timer = $SuperEffectOff
 	super_effect_on_timer = $SuperEffectOn
 	
+	# Get current level
 	level_node = get_parent().get_parent().get_parent()
+	# Get boss node
 	boss = get_parent().get_parent()
+	# Get boss's sprite
 	boss_sprite = boss.get_node("Sprite")
+	# Get boss's firing positions
 	firing_positions = boss.get_node("FiringPositions")
 
 func _physics_process(_delta):
 	firing_side = rand_range(0, 1)
+	# If boss was not holding y-position on the last tick, check to see if it is holding this tick
 	if !boss_holding_y:
+		# Check move state for value of boss_holding_y
 		boss_holding_y = get_parent().get_node("Move").boss_holding_y
 	
 	if time_between_shots.is_stopped() and time_between_super.is_stopped() and boss_holding_y and !boss_ready:
