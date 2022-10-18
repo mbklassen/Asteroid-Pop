@@ -1,8 +1,8 @@
 extends Node
 
-const ACCELERATION = 1600
+const ACCELERATION = 2400
 const MAX_SPEED = 400
-const FRICTION = 900
+const FRICTION = 2400
 
 var thruster_scene = preload("res://particles/PlayerThruster.tscn")
 var velocity = Vector2.ZERO
