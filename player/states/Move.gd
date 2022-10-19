@@ -44,7 +44,7 @@ func _physics_process(delta):
 	else:
 		var acceleration = input_vector * ACCELERATION * delta
 		motion += acceleration
-		motion = motion.clamped(MAX_SPEED)
+		motion = motion.limit_length(MAX_SPEED)
 	
 	motion = player.move_and_slide(motion)
 	

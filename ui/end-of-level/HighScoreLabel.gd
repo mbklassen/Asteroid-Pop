@@ -24,5 +24,5 @@ func _process(_delta):
 			save_data.open(LEVEL3_SAVE_FILE_PATH, File.READ)
 			Global.highscore = save_data.get_var()
 			save_data.close()
-		self.text = "High Score: " + str(Global.highscore)
+		self.text = "Current High Score: " + str(Global.highscore)
 		Global.highscore_loaded = true

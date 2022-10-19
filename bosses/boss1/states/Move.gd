@@ -107,7 +107,7 @@ func _physics_process(delta):
 			# Add instantaneous acceleration to the boss's motion vector
 			motion += acceleration
 			# Limits motion vector (can be no greater than MAX_SPEED)
-			motion = motion.clamped(MAX_SPEED)
+			motion = motion.limit_length(MAX_SPEED)
 		
 		# Move boss in accordance with the current value of motion vector
 		motion = boss.move_and_slide(motion)
