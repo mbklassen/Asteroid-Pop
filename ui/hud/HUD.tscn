@@ -19,9 +19,6 @@ font_data = ExtResource( 6 )
 [node name="HUD" type="Control"]
 margin_right = 360.0
 margin_bottom = 640.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Level" type="Label" parent="."]
 modulate = Color( 0.941176, 0.941176, 0.941176, 1 )
@@ -48,9 +45,9 @@ __meta__ = {
 [node name="LevelBossLvl" type="Label" parent="."]
 visible = false
 modulate = Color( 0.941176, 0.941176, 0.941176, 1 )
-margin_top = 18.0
+margin_top = 9.0
 margin_right = 360.0
-margin_bottom = 64.0
+margin_bottom = 55.0
 custom_fonts/font = SubResource( 1 )
 text = "Level 0    "
 align = 2
@@ -60,16 +57,16 @@ script = ExtResource( 7 )
 [node name="ScoreBossLvl" type="Label" parent="."]
 visible = false
 modulate = Color( 0.941176, 0.941176, 0.941176, 1 )
-margin_top = 18.0
+margin_top = 9.0
 margin_right = 360.0
-margin_bottom = 64.0
+margin_bottom = 55.0
 custom_fonts/font = SubResource( 2 )
 text = "    Score 0"
 valign = 1
 script = ExtResource( 8 )
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-margin_top = 616.0
+margin_top = 624.0
 margin_right = 360.0
 margin_bottom = 640.0
 theme = ExtResource( 3 )
@@ -80,7 +77,7 @@ script = ExtResource( 4 )
 [node name="Boss1HealthBar" type="ProgressBar" parent="."]
 visible = false
 margin_right = 360.0
-margin_bottom = 24.0
+margin_bottom = 14.0
 theme = ExtResource( 9 )
 max_value = 300.0
 value = 300.0

@@ -64,6 +64,9 @@ func _on_level_end_timer_timeout():
 	if Global.score > Global.highscore:
 		save_highscore()
 		Global.new_highscore = true
+	else:
+		Global.new_highscore = false
+	
 	if !Global.final_level:
 		$UI/EndOfLevel.visible = true
 	else:

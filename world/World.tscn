@@ -45,8 +45,8 @@ position = Vector2( 180, 0 )
 z_index = -100
 emitting = false
 amount = 50
-lifetime = 30.0
-preprocess = 30.0
+lifetime = 40.0
+preprocess = 50.0
 fract_delta = false
 process_material = SubResource( 1 )
 script = ExtResource( 2 )
@@ -68,7 +68,7 @@ position = Vector2( 180, 0 )
 shape = SubResource( 3 )
 
 [node name="BottomEdge" type="CollisionShape2D" parent="EdgeOfScreen"]
-position = Vector2( 180, 606 )
+position = Vector2( 180, 615 )
 shape = SubResource( 3 )
 
 [node name="BossBarrier" type="StaticBody2D" parent="."]

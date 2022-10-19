@@ -6,9 +6,7 @@ var current_highscore
 var data_loaded = false
 
 func _process(_delta):
-	if Global.new_highscore:
-		self.text = "New High Score: " + str(Global.score)
-	elif !Global.highscore_loaded:
+	if !Global.new_highscore and !Global.highscore_loaded:
 		var save_data = File.new()
 		if Global.level == 4 and save_data.file_exists(LEVEL4_SAVE_FILE_PATH):
 			save_data.open(LEVEL4_SAVE_FILE_PATH, File.READ)
@@ -16,3 +14,9 @@ func _process(_delta):
 			save_data.close()
 		self.text = "High Score: " + str(Global.highscore)
 		Global.highscore_loaded = true
+		
+	elif Global.new_highscore:
+		self.text = "Old High Score: " + str(Global.highscore)
+		
+	else:
+		self.text = "High Score: " + str(Global.highscore)
