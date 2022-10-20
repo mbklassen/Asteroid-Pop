@@ -35,7 +35,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/smoothing/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [gdnative]
 

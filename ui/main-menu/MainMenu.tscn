@@ -32,9 +32,6 @@ pause_mode = 2
 margin_right = 360.0
 margin_bottom = 640.0
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 180, 320 )
@@ -47,16 +44,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -133.5
-margin_top = -102.5
+margin_top = -114.5
 margin_right = 133.5
-margin_bottom = -47.5
+margin_bottom = -59.5
 custom_fonts/font = SubResource( 1 )
 text = "Asteroid Pop"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="SelectLevelLabel" type="Label" parent="."]
 modulate = Color( 0.4, 0.7, 1.8, 1 )
@@ -65,16 +59,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -54.5
-margin_top = -39.0
+margin_top = -47.0
 margin_right = 54.5
-margin_bottom = -15.0
+margin_bottom = -23.0
 custom_fonts/font = SubResource( 2 )
 text = "Select Level"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_left = 0.5
@@ -90,6 +81,7 @@ __meta__ = {
 }
 
 [node name="Level1Button" type="Button" parent="HBoxContainer"]
+modulate = Color( 0.941176, 0.941176, 0.941176, 1 )
 margin_right = 21.0
 margin_bottom = 25.0
 custom_fonts/font = SubResource( 3 )
@@ -101,6 +93,7 @@ __meta__ = {
 }
 
 [node name="Level2Button" type="Button" parent="HBoxContainer"]
+modulate = Color( 0.941176, 0.941176, 0.941176, 1 )
 margin_left = 25.0
 margin_right = 46.0
 margin_bottom = 25.0
@@ -112,6 +105,7 @@ expand_icon = true
 script = ExtResource( 1 )
 
 [node name="Level3Button" type="Button" parent="HBoxContainer"]
+modulate = Color( 0.941176, 0.941176, 0.941176, 1 )
 margin_left = 50.0
 margin_right = 71.0
 margin_bottom = 25.0
@@ -123,6 +117,7 @@ expand_icon = true
 script = ExtResource( 3 )
 
 [node name="Level4Button" type="Button" parent="HBoxContainer"]
+modulate = Color( 0.941176, 0.941176, 0.941176, 1 )
 margin_left = 75.0
 margin_right = 96.0
 margin_bottom = 25.0

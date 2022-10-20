@@ -6,11 +6,11 @@
 [ext_resource path="res://fonts/Roboto-Medium.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=1]
-size = 30
+size = 40
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 30
+size = 18
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -25,9 +25,6 @@ pause_mode = 2
 margin_right = 360.0
 margin_bottom = 640.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BlackOverlay" type="ColorRect" parent="."]
 margin_right = 360.0
@@ -38,38 +35,34 @@ __meta__ = {
 }
 
 [node name="ScoreLabel" type="Label" parent="."]
-modulate = Color( 0.4, 0.7, 1.8, 1 )
+modulate = Color( 0.239216, 0.337255, 0.682353, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -180.0
-margin_top = 64.0
+margin_top = 157.0
 margin_right = 180.0
-margin_bottom = 100.0
+margin_bottom = 203.0
 custom_fonts/font = SubResource( 1 )
+text = "Your Score"
 align = 1
 valign = 1
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HighScoreLabel" type="Label" parent="."]
-modulate = Color( 1.5, 1.4, 0.35, 1 )
+modulate = Color( 0.4, 0.7, 1.8, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -180.0
-margin_top = -210.0
+margin_top = -246.0
 margin_right = 180.0
-margin_bottom = -174.0
+margin_bottom = -210.0
 custom_fonts/font = SubResource( 2 )
+text = "High Score: 0"
 align = 1
 valign = 1
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="LevelEndLabel" type="Label" parent="."]
 modulate = Color( 0.4, 0.7, 1.8, 1 )
@@ -78,9 +71,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -160.0
-margin_top = -103.5
+margin_top = -298.5
 margin_right = 160.0
-margin_bottom = -48.5
+margin_bottom = -243.5
 custom_fonts/font = SubResource( 3 )
 text = "Level Complete"
 align = 1
@@ -103,6 +96,7 @@ __meta__ = {
 }
 
 [node name="NextLevelButton" type="Button" parent="VBoxContainer"]
+modulate = Color( 0.941176, 0.941176, 0.941176, 1 )
 margin_right = 107.0
 margin_bottom = 25.0
 custom_fonts/font = SubResource( 4 )
@@ -110,6 +104,7 @@ text = "Next Level"
 flat = true
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer"]
+modulate = Color( 0.941176, 0.941176, 0.941176, 1 )
 margin_top = 29.0
 margin_right = 107.0
 margin_bottom = 54.0
@@ -118,6 +113,7 @@ text = "Main Menu"
 flat = true
 
 [node name="RestartButton" type="Button" parent="VBoxContainer"]
+modulate = Color( 0.941176, 0.941176, 0.941176, 1 )
 margin_top = 58.0
 margin_right = 107.0
 margin_bottom = 83.0
