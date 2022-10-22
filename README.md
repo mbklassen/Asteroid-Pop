@@ -1,4 +1,4 @@
-A space shooter game built for the purpose of learning the Godot game engine. 
+A space shooter game built in the Godot game engine. 
 You can find the official release at https://indreamstudio.itch.io/asteroid-pop. 
 
 To set this project up, download and install Godot (this game was built in version 3.5).
