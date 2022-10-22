@@ -21,17 +21,11 @@ pause_mode = 2
 margin_right = 360.0
 margin_bottom = 640.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BlackOverlay" type="ColorRect" parent="."]
 margin_right = 360.0
 margin_bottom = 640.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
 
 [node name="PauseLabel" type="Label" parent="."]
 modulate = Color( 0.4, 0.7, 1.8, 1 )

@@ -18,7 +18,7 @@ func _ready():
 	thruster_position = player.get_node("ThrusterPosition")
 	# Instantiate Thruster node
 	thruster = thruster_scene.instance()
-	# Explosion particles are now emitting
+	# Thruster particles are emittting 
 	thruster.emitting = false
 	# Add thruster as a child of player node
 	player.call_deferred("add_child", thruster)
@@ -50,7 +50,10 @@ func _physics_process(delta):
 	
 	# Player's thruster emits when moving, else it does not
 	thruster.global_position = thruster_position.global_position
-	if motion == Vector2.ZERO:
-		thruster.emitting = false
+	if Global.boss_level:
+		if motion == Vector2.ZERO:
+			thruster.emitting = false
+		else:
+			thruster.emitting = true
 	else:
 		thruster.emitting = true

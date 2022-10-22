@@ -5,7 +5,7 @@ const ROTATION_DIRECTION_SWITCH = 0.5
 const OFF_SCREEN = -50
 const PIECE_POSITION_VARIABILITY = 16
 const HP_VALUE = 20
-const DROP_POTENTIAL = 0.07
+const DROP_POTENTIAL = 0.11
 
 
 # The asteroids are given variable velocities

@@ -5,7 +5,7 @@ const BOSS_TIMER_WAIT_TIME = 4
 # Time between each score decrement
 const SCORE_DECREMENT_WAIT_TIME = 0.6
 # Threshold of boss hp at which regular enemies start spawning
-const ENEMY1_SPAWNING_HP = 150
+const ENEMY1_SPAWNING_HP = 280
 const SAVE_FILE_PATH = "user://level4_highscore.save"
 
 var boss_scene = preload("res://bosses/boss1/Boss1.tscn")
@@ -29,6 +29,7 @@ func _ready():
 	Global.new_highscore = false
 	Global.highscore = 0
 	Global.highscore_loaded = false
+	Global.item_shoot_faster_acquired = false
 	
 	Global.boss_level = true
 	Global.boss1_hp = 300

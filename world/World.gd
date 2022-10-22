@@ -1,9 +1,9 @@
 extends Node2D
 
-
 var level_scene
 var level_x
 var current_level
+
 
 func _ready():
 	current_level = Global.level

@@ -28,6 +28,7 @@ func _ready():
 	Global.new_highscore = false
 	Global.highscore = 0
 	Global.highscore_loaded = false
+	Global.item_shoot_faster_acquired = false
 	
 	Global.boss_level = false
 	Global.boss1_hp_visible = false

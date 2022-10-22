@@ -1,11 +1,11 @@
 extends RigidBody2D
 
 const HP_VALUE = 20
-const DROP_POTENTIAL = 0.1
+const DROP_POTENTIAL = 0.16
 const OFF_SCREEN = 660
 
 var explosion_particles_scene = preload("res://particles/Explosion.tscn")
-var explosion_particles_color = Color(0.63, 0, 0, 1)
+var explosion_particles_color = Color(0.8, 0.65, 0.1, 1)
 var explosion_scene = preload("res://explosions/ExplosionMedium.tscn")
 
 var explosion_sound_scene = preload("res://sounds/audio-stream-players/Explosion1.tscn")
