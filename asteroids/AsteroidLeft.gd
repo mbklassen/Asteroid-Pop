@@ -15,7 +15,7 @@ var velocity_clockwise = rand_range(1, 4)
 # Will dictate the spin direction (< ROTATION_DIRECTION_SWITCH vs. >= ROTATION_DIRECTION_SWITCH)
 var rotation_direction = rand_range(0, 1)
 # Will dictate the factor by which the asteroid will be scaled
-var scale_factor = rand_range(1, 1.8)
+var scale_factor = rand_range(1, 2)
 var scale_vector = Vector2(scale_factor, scale_factor)
 
 var explosion_scene = preload("res://particles/Explosion.tscn")
@@ -23,6 +23,11 @@ var piece1_scene = preload("res://asteroids/pieces/AsteroidPiece1.tscn")
 var piece2_scene = preload("res://asteroids/pieces/AsteroidPiece2.tscn")
 var piece3_scene = preload("res://asteroids/pieces/AsteroidPiece3.tscn")
 var pop_sound_scene = preload("res://sounds/audio-stream-players/AsteroidPop.tscn")
+
+var asteroid_type = rand_range(0,3)
+var asteroid1_texture = preload("res://asteroids/textures/asteroid1.png")
+var asteroid2_texture = preload("res://asteroids/textures/asteroid2.png")
+var asteroid3_texture = preload("res://asteroids/textures/asteroid3.png")
 
 var explosion_color = Color(0.35, 0.35, 0.35, 1)
 
@@ -38,6 +43,13 @@ var will_drop_item
 var level_node
 
 func _ready():
+	if asteroid_type <= 1:
+		$Sprite.texture = asteroid1_texture
+	elif asteroid_type > 1 and asteroid_type <= 2:
+		$Sprite.texture = asteroid2_texture
+	else:
+		$Sprite.texture = asteroid3_texture
+	
 	# Scale asteroid by a value in a random range
 	$Sprite.scale = scale_vector
 	$Collision.scale = scale_vector

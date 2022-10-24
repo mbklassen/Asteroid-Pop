@@ -15,7 +15,7 @@ var velocity_clockwise = rand_range(1, 4)
 # Will dictate the spin direction (< ROTATION_DIRECTION_SWITCH vs. >= ROTATION_DIRECTION_SWITCH)
 var rotation_direction = rand_range(0, 1)
 # Will dictate the factor by which the asteroid will be scaled
-var scale_factor = rand_range(1, 1.8)
+var scale_factor = rand_range(1, 2)
 var scale_vector = Vector2(scale_factor, scale_factor)
 
 var explosion_scene = preload("res://particles/Explosion.tscn")
@@ -23,6 +23,11 @@ var piece1_scene = preload("res://asteroids/pieces/AsteroidPiece1.tscn")
 var piece2_scene = preload("res://asteroids/pieces/AsteroidPiece2.tscn")
 var piece3_scene = preload("res://asteroids/pieces/AsteroidPiece3.tscn")
 var pop_sound_scene = preload("res://sounds/audio-stream-players/AsteroidPop.tscn")
+
+var asteroid_type = rand_range(0,3)
+var asteroid1_texture = preload("res://asteroids/textures/asteroid1.png")
+var asteroid2_texture = preload("res://asteroids/textures/asteroid2.png")
+var asteroid3_texture = preload("res://asteroids/textures/asteroid3.png")
 
 var explosion_color = Color(0.35, 0.35, 0.35, 1)
 
@@ -39,6 +44,13 @@ var level_node
 
 
 func _ready():
+	if asteroid_type <= 1:
+		$Sprite.texture = asteroid1_texture
+	elif asteroid_type > 1 and asteroid_type <= 2:
+		$Sprite.texture = asteroid2_texture
+	else:
+		$Sprite.texture = asteroid3_texture
+		
 	# Scale asteroid by a value in a random range
 	$Sprite.scale = scale_vector
 	$Collision.scale = scale_vector
@@ -100,8 +112,15 @@ func _on_AsteroidTop_body_entered(body):
 			# Add dropped item as a child of current level
 			level_node.call_deferred("add_child", item)
 			
-		# Instantiate AsteroidPiece1 node
-		var piece1 = piece1_scene.instance()
+		# Instantiate asteroid piece node
+		var piece1
+		var choose_piece1 = rand_range(0, 3)
+		if choose_piece1 <= 1:
+			piece1 = piece1_scene.instance()
+		elif choose_piece1 > 1 and choose_piece1 <= 2:
+			piece1 = piece2_scene.instance()
+		else:
+			piece1 = piece3_scene.instance()
 		# Set piece's initial position, velocity, and scale
 		piece1.position.x = position.x - PIECE_POSITION_VARIABILITY
 		piece1.position.y = position.y
@@ -111,8 +130,15 @@ func _on_AsteroidTop_body_entered(body):
 		# Add asteroid piece as a child of current level
 		level_node.call_deferred("add_child", piece1)
 
-		# Instantiate AsteroidPiece2 node
-		var piece2 = piece2_scene.instance()
+		# Instantiate asteroid piece node
+		var piece2
+		var choose_piece2 = rand_range(0, 3)
+		if choose_piece2 <= 1:
+			piece2 = piece1_scene.instance()
+		elif choose_piece2 > 1 and choose_piece2 <= 2:
+			piece2 = piece2_scene.instance()
+		else:
+			piece2 = piece3_scene.instance()
 		# Set piece's initial position, velocity, and scale
 		piece2.position.x = position.x
 		piece2.position.y = position.y + PIECE_POSITION_VARIABILITY
@@ -122,8 +148,16 @@ func _on_AsteroidTop_body_entered(body):
 		# Add asteroid piece as a child of current level
 		level_node.call_deferred("add_child", piece2)
 
-		# Instantiate AsteroidPiece3 node
-		var piece3 = piece3_scene.instance()
+		# Instantiate asteroid piece node
+		var piece3
+		var choose_piece3 = rand_range(0, 3)
+		if choose_piece3 <= 1:
+			piece3 = piece1_scene.instance()
+		elif choose_piece3 > 1 and choose_piece3 <= 2:
+			piece3 = piece2_scene.instance()
+		else:
+			piece3 = piece3_scene.instance()
+
 		# Set piece's initial position, velocity, and scale
 		piece3.position.x = position.x + PIECE_POSITION_VARIABILITY
 		piece3.position.y = position.y

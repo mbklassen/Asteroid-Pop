@@ -27,8 +27,8 @@ SelectSoundParent="*res://sounds/etc/SelectSoundParent.tscn"
 
 window/size/width=360
 window/size/height=640
-window/size/test_width=432
-window/size/test_height=768
+window/size/test_width=360
+window/size/test_height=640
 window/handheld/orientation="portrait"
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
